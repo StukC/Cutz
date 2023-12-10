@@ -64,9 +64,9 @@ section {
 .line {
   position: absolute;
   width: 88%;
-  height: 4px;
+  height: 5px;
   left: 17%;
-  top: 86.5px;
+  top: 98.5px;
   background: #666ca3;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 5px 5px 0px;
@@ -270,7 +270,7 @@ h6 {
 }
 
 .admin-title{
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 p {

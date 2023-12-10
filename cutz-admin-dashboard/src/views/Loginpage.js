@@ -93,7 +93,7 @@ function Loginpage() {
           <img width={200} src={loginpagelogo} alt="" />
         </div>
         <div>
-          <h1 className="admin-title">Admin</h1>
+          <h1 className="titleadmin-">Admin</h1>
         </div>
       </div>
       <div className="line"></div>
