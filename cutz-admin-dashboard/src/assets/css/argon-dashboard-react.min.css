@@ -63,18 +63,22 @@ section {
 }
 .line {
   position: absolute;
-  width: 87%;
-  height: 10px;
-  left: 13%;
-  top: 97px;
+  width: 88%;
+  height: 4px;
+  left: 17%;
+  top: 86.5px;
   background: #666ca3;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 5px 5px 0px;
 }
 .loginhearder {
   width: 35%;
-  height: 334px;
-  position: relative;
+  height: auto;    /*changed*/
+  /*position: relative;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
   background: #fdfdfd;
   border: 0.1px solid #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -82,32 +86,30 @@ section {
 
 .in1 {
   box-sizing: border-box;
-  position: absolute;
-  width: 385px;
+  position: relative ;
+  width: 80%;
+  marigin: 0 auto;
   height: 49px;
-  left: 15%;
-  top: 26%;
+  marigin-bottom: 10px;
   background: #ffffff;
   border: 1px solid #000000;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .in2 {
   box-sizing: border-box;
-  position: absolute;
-  width: 385px;
+  position: relative ;
+  width: 80%;
+  marigin: 0 auto;
   height: 49px;
-  left: 15%;
-  top: 44%;
+  marigin-bottom: 10px;
   background: #ffffff;
   border: 1px solid #000000;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .btn1 {
-  position: absolute;
-  width: 200px;
+  box-sizing: border-box;
+  width: 80%; /* Adjust width as needed */
   height: 52px;
-  left: 34%;
-  top: 62%;
   background: #7e819a;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
@@ -127,11 +129,10 @@ section {
 }
 
 .loginpara {
-  position: absolute;
-  width: 137px;
+  position: relative; /* Change position to relative */
+  width: auto; /* Adjust width as needed */
   height: 21px;
-  left: 41%;
-  top: 79%;
+  margin: 10px auto; /* Center the paragraph horizontally */
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -142,6 +143,7 @@ section {
   backdrop-filter: blur(2px);
 }
 
+
 .headlogin {
   color: #fff;
   height: 14%;
@@ -150,6 +152,8 @@ section {
   justify-content: center;
   align-items: center;
   background: #666ca3;
+  width: 100%; /* Set the width to 100% to span the entire length */
+  box-sizing: border-box; /* Ensure the padding and border are included in the width */
 }
 
 .inputborder {
@@ -263,6 +267,10 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+}
+
+.admin-title{
+  margin-top: 40px;
 }
 
 p {

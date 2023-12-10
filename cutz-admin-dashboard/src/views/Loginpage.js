@@ -93,7 +93,7 @@ function Loginpage() {
           <img width={200} src={loginpagelogo} alt="" />
         </div>
         <div>
-          <h1>Admin</h1>
+          <h1 className="admin-title">Admin</h1>
         </div>
       </div>
       <div className="line"></div>
@@ -103,7 +103,7 @@ function Loginpage() {
           <h2 className="headlogin"> Welcome</h2>
           <input
             className="d-flex in1"
-            placeholder="email"
+            placeholder=" Email"
             type="Email"
             onChange={(e) => setEmail(e.target.value)}
             onKeyUp={() => setError({ ...error, email: "" })}
@@ -112,7 +112,7 @@ function Loginpage() {
           <input
             className="d-flex in2"
             type="password"
-            placeholder="Password"
+            placeholder=" Password"
             onChange={(e) => setPassword(e.target.value)}
             onKeyUp={() => setError({ ...error, password: "" })}
           />
