@@ -1604,14 +1604,14 @@ pre code {
 .table td {
   padding: 1rem;
   vertical-align: top;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid #3359FF;
 }
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #e9ecef;
+  border-bottom: 2px solid #3359FF;
 }
 .table tbody + tbody {
-  border-top: 2px solid #e9ecef;
+  border-top: 2px solid #3359FF;
 }
 
 .table-sm th,
@@ -1620,11 +1620,11 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #e9ecef;
+  border: 1px solid #3359FF;
 }
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #e9ecef;
+  border: 1px solid #3359FF;
 }
 .table-bordered thead th,
 .table-bordered thead td {
