@@ -21531,4 +21531,12 @@ button:focus,
   margin-right: 10px;
 }
 
+@media (max-width: 768px) {
+  .navbar-search .input-group {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+
 /*# sourceMappingURL=argon-dashboard-react.css.map */

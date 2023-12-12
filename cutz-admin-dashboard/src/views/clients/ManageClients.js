@@ -318,32 +318,32 @@ function ManageClients() {
               <CardHeader className="bg-transparent border-0">
                 <div className="d-flex justify-content-between">
                   <div>
-                    <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                      <FormGroup className="mb-0">
-                        <InputGroup className="input-group-alternative">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="fas fa-search" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="Search"
-                            type="text"
-                            onChange={(e) => {
-                              let s = e.target.value;
-                              let filterData = clientData.filter(
-                                (a) =>
-                                  a.firstName.toLowerCase().includes(s) ||
-                                  a.lastName.toLowerCase().includes(s) ||
-                                  a.email.toLowerCase().includes(s)
-                              );
-                              setClientList(filterData);
-                            }}
-                          />
-                        </InputGroup>
-                        <ResultCounter list={clientList} />
-                      </FormGroup>
-                    </Form>
+                  <Form className="navbar-search navbar-search-dark form-inline mr-3 ml-lg-auto">
+                    <FormGroup className="mb-0">
+                      <InputGroup className="input-group-alternative">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="fas fa-search" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          placeholder="Search"
+                          type="text"
+                          onChange={(e) => {
+                            let s = e.target.value;
+                            let filterData = clientData.filter(
+                              (a) =>
+                                a.firstName.toLowerCase().includes(s) ||
+                                a.lastName.toLowerCase().includes(s) ||
+                                a.email.toLowerCase().includes(s)
+                            );
+                            setClientList(filterData);
+                          }}
+                        />
+                      </InputGroup>
+                      <ResultCounter list={clientList} />
+                    </FormGroup>
+                  </Form>
                   </div>
                   {/* <div>
                     <button className="mainbuttons">Add Admin</button>
