@@ -255,9 +255,9 @@ function Index() {
         <div>
           <h5 className="admin">
             Welcome. <br />
-            Use caution choose your Admin. An Admin is your “most trusted” and
-            the person who has access to your entire account
-            <br /> including deleting and modifications.
+            Chose your organization's admin with caution. An admin is the 
+             most trusted user, and has full access and authorization, 
+            <br /> which includes the ability to view, modify, and delete information.
           </h5>
         </div>
       </div>

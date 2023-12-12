@@ -37,13 +37,13 @@ var routes = [
 			},
 			{
 				path: "/admin/clients/clientschedule",
-				name: "Clients Schedule",
+				name: "Client Schedules",
 				component: <ClientsSchedule />,
 				layout: "/admin",
 			},
 			{
 				path: "/admin/clients/clientrecord",
-				name: "Clients Recorde",
+				name: "Client Records",
 				component: <ClientsRecord />,
 				layout: "/admin",
 			},
@@ -63,13 +63,13 @@ var routes = [
 			},
 			{
 				path: "/admin/vlounteers/volunteerschedule",
-				name: "Volunteers Schedule",
+				name: "Volunteer Schedules",
 				component: <VolunteersSchedule />,
 				layout: "/admin",
 			},
 			{
 				path: "/admin/vlounteers/volunteersrecord",
-				name: "Volunteers Record",
+				name: "Volunteer Records",
 				component: <VolunteersRecord />,
 				layout: "/admin"
 			}
@@ -89,7 +89,7 @@ var routes = [
 			},
 			{
 				path: "/admin/Events/eventrecord",
-				name: "Events Record",
+				name: "Event Records",
 				component: <EventRecord />,
 				layout: "/admin",
 
