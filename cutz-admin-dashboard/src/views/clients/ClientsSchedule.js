@@ -55,73 +55,57 @@ function ClientsSchedule() {
     {
       name: "First Name",
       sortable: true,
-      selector: (row) => row.clientID?.firstName,
+      selector: (row) => row.clientID ? row.clientID.firstName : "N/A",
       width: '200px',
     },
     {
       name: "Last Name",
       sortable: true,
-      selector: (row) => row.clientID?.lastName,
+      selector: (row) => row.clientID ? row.clientID.lastName : "N/A",
       width: '200px',
     },
     {
       name: "Family Size",
       sortable: true,
-      selector: (row) => row.clientID.familySize,
+      selector: (row) => row.clientID ? row.clientID.familySize : "N/A",
       width: '150px',
     },
     {
       name: "Organization",
       sortable: true,
-      selector: (row) => row.eventID?.orgId?.organizationName,
+      selector: (row) => row.eventID?.orgId ? row.eventID.orgId.organizationName : "N/A",
       width: '200px',
     },
     {
       name: "Event",
       sortable: true,
-      selector: (row) => row.eventID?.eventType,
+      selector: (row) => row.eventID ? row.eventID.eventType : "N/A",
       width: '200px',
     },
     {
       name: "Location",
       sortable: true,
-      selector: (row) => row.eventID?.addresses?.[0].place,
+      selector: (row) => row.eventID?.addresses?.[0] ? row.eventID.addresses[0].place : "N/A",
       width: '200px',
     },
-   // {
-     // name: "Reserved Time",
-     // sortable: true,
-     // selector: (row) =>
-     //   moment(row.groupID?.eventStartTime).utc().format("MM/DD/YY"),
-   // },
-    {width: '200px',
+    {
       name: "Check In",
       sortable: true,
-      selector: (row) =>
-        row.checkIN ? row.checkIN: "null",
+      selector: (row) => row.checkIN ? row.checkIN : "N/A",
+      width: '200px',
     },
-    {width: '200px',
+    {
       name: "Check Out",
       sortable: true,
-      selector: (row) =>
-        row.checkOut ? row.checkOut : "null",
+      selector: (row) => row.checkOut ? row.checkOut : "N/A",
+      width: '200px',
     },
-   // {
-    //  name: "Access",
-   //   sortable: true,
-   //   selector: (row) => <td className="text-right">ended at</td>,
-   // },
-   // {
-    //  name: "Status",
-    //  sortable: true,
-    //  selector: (row) => <td className="text-right">present at</td>,
-   // },
     {
       name: "Action",
       sortable: true,
       selector: (row) => <MyActionBtn c={row} />,
     },
-  ];
+  ];  
 
   const MyActionBtn = ({ c }) => (
     <div>
