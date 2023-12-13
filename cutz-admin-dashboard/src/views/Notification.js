@@ -145,49 +145,41 @@ function Notification() {
                   </div>
                 )}
                 <div className="inputborder">
-                  <select
-                    class="form-select pt-3 inputborder"
-                    aria-label="Default select example"
-                    onChange={(e) => {
+                <select
+                  className="form-select pt-3 inputborder"
+                  aria-label="Default select example"
+                  onChange={(e) => {
+                    // Check if the default option is selected
+                    if (e.target.value === "default") {
+                      setSelectedNotificationFields({
+                        ...selectedNotificationFields,
+                        eventType: { eventType: "Select Event Type" },
+                        eventLocation: "Select Location"
+                      });
+                      return;
+                    }
+
+                    // Try parsing the JSON and update state accordingly
+                    try {
                       let event = JSON.parse(e.target.value);
                       setSelectedNotificationFields({
                         ...selectedNotificationFields,
                         eventType: event.eventType,
+                        eventLocation: event.addresses?.[0]?.place || "Select Location"
                       });
-                      setNotificationFields({
-                        ...notificationFields,
-                        eventLocation: event.addresses,
-                      });
-                    }}
-                  >
-                    <option selected>Select Event Type</option>
-                    {notificationFields.events.map((event) => (
-                      <option value={JSON.stringify(event)}>
-                        {event.eventType}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="inputborder">
-                  <select
-                    class="form-select pt-3 inputborder"
-                    aria-label="Default select example"
-                    disabled={
-                      selectedNotificationFields.eventType.eventType ===
-                      "Select Event Type"
+                    } catch (error) {
+                      console.error("Error parsing event type selection:", error);
+                      // Handle the error appropriately (e.g., set an error state or show a notification)
                     }
-                    onChange={(e) =>
-                      setSelectedNotificationFields({
-                        ...selectedNotificationFields,
-                        eventLocation: e.target.value,
-                      })
-                    }
-                  >
-                    <option selected>Select Location</option>
-                    {notificationFields.eventLocation?.map((event) => (
-                      <option value={event.place}>{event.place}</option>
-                    ))}
-                  </select>
+                  }}
+                >
+                  <option value="default" selected>Select Event Type</option>
+                  {notificationFields.events.map((event, index) => (
+                    <option key={index} value={JSON.stringify(event)}>
+                      {event.eventType}
+                    </option>
+                  ))}
+                </select>
                 </div>
               </div>
               <div
