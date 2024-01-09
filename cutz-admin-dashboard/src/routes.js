@@ -18,7 +18,7 @@ import CreateEvent from "./views/events/CreateEvent";
 var routes = [
 	{
 		path: "/index",
-		name: "Admin",
+		name: "Organizations",
 		component: <Index />,
 		layout: "/admin",
 		icon: "fa-solid fa-users-between-lines"
