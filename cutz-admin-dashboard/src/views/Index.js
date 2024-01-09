@@ -300,7 +300,7 @@ function Index() {
                   </div>
                   <div>
                     <button onClick={navigateHome} className="mainbuttons">
-                      Add Admin
+                      Add Organization
                     </button>
                   </div>
                 </div>
