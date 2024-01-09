@@ -264,7 +264,7 @@ function VolunteersSchedule() {
 
       <div className="mb-3 p-4 mb-6 admin">
         <div>
-          <h1 className="admin">Volunteers Schedule</h1>
+          <h1 className="admin">Volunteer Schedules</h1>
         </div>
         <div>
           <h5 className="admin">Welcome to your Volunteers Schedule Manager</h5>

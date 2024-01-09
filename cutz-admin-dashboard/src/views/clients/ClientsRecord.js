@@ -147,7 +147,7 @@ function ClientsRecord() {
 
       <div className="mb-3 p-4 mb-6 admin">
         <div>
-          <h1 className="admin">Clients Record</h1>
+          <h1 className="admin">Client Records</h1>
         </div>
         <div>
           <h5 className="admin">Welcome to your Clients Record Manager</h5>
