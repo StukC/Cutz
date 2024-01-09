@@ -250,7 +250,7 @@ function Index() {
 
       <div className="mb-3 p-4 mb-6 admin">
         <div>
-          <h1 className="admin">Admins Manager</h1>
+          <h1 className="admin">App Owner</h1>
         </div>
         <div>
           <h5 className="admin">
