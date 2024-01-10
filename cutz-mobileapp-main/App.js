@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, LogBox } from "react-native";
 import RootNavigator from "./src/routes/RootNavigator";
+import MainStack from "./src/routes/MainStack";
 import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
@@ -27,7 +28,10 @@ export default function App() {
     <Provider store={store}>
       <RootNavigator />
     </Provider>
-  );
+
+
+  
+    );
 }
 
 const styles = StyleSheet.create({
