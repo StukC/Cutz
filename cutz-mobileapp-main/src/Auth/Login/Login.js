@@ -15,7 +15,7 @@ const Login = ({navigation, route}) => {
 
 
     const [checkUser, setCheckUser] = useState(user ? user : "Client");
-
+    
     console.log("user", user)
 
 

@@ -28,7 +28,7 @@ const LoginBody = ({ user, setCheckUser, checkUser, navigation }) => {
       return async () => {
         setEmail("");
         setPassword("");
-        // setCheckUser("Client")
+        setCheckUser("Client")
         setShowPassword(true);
         setPasswordError("");
         setEmailError("");
