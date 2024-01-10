@@ -5,7 +5,8 @@ import { URLS } from "./Urls";
 import { LoginActions } from "../redux/actions";
 import { GetClientEvent, GetVolunteerEvent } from "./EventClientsApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import Toast from "react-native-root-toast";
+
+
 
 export const ClientSignup = async (
   data,
@@ -40,7 +41,7 @@ export const ClientSignup = async (
           setTimeout(() => {
             navigation.navigate("MainStack", {
               screen: "Welcome",
-              params: { userType: checkUser },
+              params: { userType: 'Client' },
               merge: true,
             });
           }, 1000);
@@ -63,6 +64,9 @@ export const ClientSignup = async (
     return error;
   }
 };
+
+
+
 
 export const VolunteerSignup = async (
   data,
@@ -111,6 +115,8 @@ export const VolunteerSignup = async (
     return error;
   }
 };
+
+
 export const ClientLogin = async (
   data,
   setLoading,
@@ -119,24 +125,28 @@ export const ClientLogin = async (
   dispatch,
   remember
 ) => {
+
+  let clientData = {
+    email: "testclient@gmail.com",
+    password: "123123123"
+  };
+
   const options = {
-    method: "POST",
+    method: "POST", 
     url: `${URLS.BASE_URL}${URLS.CLIENT_LOGIN}`,
+    // url: "http://10.0.0.178:3006/api/v1/client/login",
     headers: { Accept: "application/json" },
-    data: data,
+    // data: data
+    data: clientData
   };
 
   setLoading(true);
-
   try {
-    await axios
-      .request(options)
-      .then(async function (response) {
-        console.log("ClientLogin", response.data);
+    await axios.request(options).then(async function (response) {
         if (response) {
-          // const res = await GetClientEvent(response.data.token);
-          // const data = res?.data;
-          //  console.log("ResData",res?.data)
+          debugger
+          //const res = await GetClientEvent(response.data.token);
+          const data = response?.data;
           if (remember) {
             let CurrentAuth = {
               token: response.data?.token,
@@ -144,7 +154,6 @@ export const ClientLogin = async (
               currentUser: checkUser,
             };
             CurrentAuth={...CurrentAuth,...response.data?.userDetails}
-            console.log("RememberAuth", CurrentAuth);
             await AsyncStorage.setItem(
               "CurrentAuth",
               JSON.stringify(CurrentAuth)
@@ -152,36 +161,42 @@ export const ClientLogin = async (
           }
           data["token"] = response.data?.token;
           data["rememberMe"] = remember;
-          data["currentUser"] = checkUser;
-          data={...data,...response.data?.userDetails}
+          data["currentUser"] = 'Client';
+          //data={...data,...response.data?.userDetails}
+          data["userDetails"] = response.data?.userDetails
           dispatch(LoginActions(data));
           setLoading(false);
-
-          Toast.show("Login successfully");
-
-          setTimeout(() => {
-            navigation.replace("MainStack", {
-              screen: "Welcome",
-              params: { userType: checkUser },
-              merge: true,
-            });
-          }, 1000);
-          console.log("AccountCreates");
-          //   return res
+          Toast.show("Login successfull");
+          // setTimeout(() => { 
+          //   debugger
+          //   navigation.replace("MainStack", {
+          //     screen: "Welcome",
+          //     params: { userType: 'Client' },
+          //     merge: true,
+          //   });
+          // }, 1000);
+          navigation.replace("MainStack", {
+            screen: "Welcome",
+            params: { userType: 'Client' },
+            merge: true,
+          });
         } else {
-          Toast.show("error");
-
-          console.log("AccountExist");
+          setLoading(false);
+          Toast.show("Error in API call");
         }
       })
       .catch((error) => {
         setLoading(false);
-        Toast.show("email or password is incorrect");
+        Toast.show("Email or Password is incorrect");
       });
   } catch (error) {
+    setLoading(false);
     return error;
   }
 };
+
+
+
 
 export const VolunteerLogin = async (
   data,
@@ -242,17 +257,14 @@ export const VolunteerLogin = async (
           //   return res
         } else {
           Toast.show("error");
-
           console.log("AccountExist");
         }
       })
       .catch((error) => {
-        setLoading(false);
         Toast.show("email or password is incorrect");
-
         console.log("SignError=>", error);
       });
   } catch (error) {
-    return error;
+      return error;
   }
 };
