@@ -21,6 +21,8 @@ import loaderAnimation from "../../../assets/Loaders";
 import ConfirmEmail from "../../Auth/ForgetPassword/ConfirmEmail/ConfirmEmail";
 import ConfirmOtp from "../../Auth/ForgetPassword/ConfirmOtp/ConfirmOtp";
 
+import WelcomeScreen from "../../screens/MainScreens/WelcomeScreen/WelcomeScreen";
+
 const RootNavigator = () => {
   const dispatch = useDispatch();
   const AuthData = useSelector((state) => state.authReducers.authState);
@@ -38,6 +40,7 @@ const RootNavigator = () => {
       }
     })();
   }, []);
+  
   const Stack = createStackNavigator();
 
   return loading ? (
@@ -46,6 +49,7 @@ const RootNavigator = () => {
     </>
   ) : (
     <NavigationContainer>
+
       {AuthData?.rememberMe === true ? (
         <Stack.Navigator
           initialRouteName="MainStack"
@@ -65,9 +69,11 @@ const RootNavigator = () => {
           {!AuthData?.rememberMe && (
             <Stack.Navigator
               initialRouteName="login"
+              // initialRouteName="welcome"
               screenOptions={{ headerShown: false }}
             >
               <Stack.Screen name="login" component={Login} />
+              {/* <Stack.Screen name="welcome" component={WelcomeScreen} />  */}
               <Stack.Screen name="signup" component={Signup} />
               <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
               <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
@@ -81,6 +87,7 @@ const RootNavigator = () => {
           )}
         </>
       )}
+
     </NavigationContainer>
   );
 };
