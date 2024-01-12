@@ -127,14 +127,14 @@ export const ClientLogin = async (
 ) => {
 
   let clientData = {
-    email: "jane@cutz.org",
+    email: "testclient@gmail.org",
     password: "123123123"
   };
 
   const options = {
     method: "POST", 
-    url: `${URLS.BASE_URL}${URLS.CLIENT_LOGIN}`,
-    // url: "http://192.168.68.61:3006/api/v1/client/login",
+    //url: `${URLS.BASE_URL}${URLS.CLIENT_LOGIN}`,
+     url: "http://141.215.196.195:3006/api/v1/client/login",
     headers: { Accept: "application/json" },
     // data: data
     data: clientData
