@@ -1,28 +1,30 @@
-import { Platform, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import CustomText from "../../../components/CustomText";
-import CustomTextInput from "../../../components/CustomTextInput";
-import PhoneInput from "react-native-phone-number-input";
-import { colors } from "../../../utils/Colors";
-import { PH20 } from "../../../utils/CommonStyles";
-import { scale, verticalScale } from "react-native-size-matters";
-import { Spacer } from "../../../components/Spacer";
-import SignupBottom from "./SignupBottom";
-import { useSignup } from "../useSignup";
-import { VolunteerSignup } from "../../../services/LoginSignupApi";
-import { useVolunteerSignup } from "../useVolunteerSignup";
-import { useDispatch } from "react-redux";
-import { icons } from "../../../../assets/icons";
-import { useFocusEffect } from "@react-navigation/native";
+// cleaned up imports
+
+import React, { useState } from "react"
+import { StyleSheet, View } from "react-native"
+import { useFocusEffect } from "@react-navigation/native"
+import { scale, verticalScale } from "react-native-size-matters"
+import { useDispatch } from "react-redux"
+
+import { UserSignup } from "../../../services/LoginSignupApi"
+
+import SignupBottom from "./SignupBottom"
+import { useVolunteerSignup } from "../useVolunteerSignup"
+import CustomTextInput from "../../../components/CustomTextInput"
+import { Spacer } from "../../../components/Spacer"
+import { PH20 } from "../../../utils/CommonStyles"
+import { icons } from "../../../../assets/icons"
+
 
 const VolunteerBody = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [familySize, setFamilySize] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(true);
-  const [showPassword1, setShowPassword1] = useState(true);
-  const [phoneRaw, setPhoneRaw] = useState("");
-  const dispatch = useDispatch();
+
+  const dispatch = useDispatch()
+  const [modalVisible, setModalVisible] = useState(false)
+  const [familySize, setFamilySize] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(true)
+  const [showPassword1, setShowPassword1] = useState(true)
+  const [phoneRaw, setPhoneRaw] = useState("")
   const [signupErrors, setSignupError] = useState({
     firstError: "",
     lastError: "",
@@ -34,7 +36,7 @@ const VolunteerBody = (props) => {
     confirmError: "",
     employerError: "",
     organizationError: "",
-  });
+  })
   const [signupValue, setSignupValue] = useState({
     firstName: "",
     lastName: "",
@@ -45,28 +47,27 @@ const VolunteerBody = (props) => {
     confirmPassword: "",
     employer: "",
     organization: "",
-  });
+  })
 
   useFocusEffect(
     React.useCallback(() => {
       return async () => {
         signupValue({})
       
-      };
+      }
     }, [])
-  );
+  )
 
   const SignupData = [
     {
       id: 1,
       placeholder: "Email",
-
       value: signupValue.email,
       editable: false,
       error: signupErrors.emailError,
       onChangeText: (txt) => {
-        setSignupValue({ ...signupValue, email: txt });
-        setSignupError({ ...signupErrors, emailError: "" });
+        setSignupValue({ ...signupValue, email: txt })
+        setSignupError({ ...signupErrors, emailError: "" })
       },
     },
     {
@@ -75,16 +76,13 @@ const VolunteerBody = (props) => {
       error: signupErrors.phoneError,
       value: signupValue.phoneNumber,
       keyboardType: "number-pad",
-
       onChangeText: (txt) => {
-        formatePhone(txt);
+        formatePhone(txt)
       },
       onChangeFormattedText: (txt) => {
-        setSignupError({ ...signupErrors, phoneError: "" });
-        setPhoneRaw(txt);
+        setSignupError({ ...signupErrors, phoneError: "" })
+        setPhoneRaw(txt)
       },
-
-      //   value: signupValues.country,
       editable: false,
     },
     {
@@ -92,13 +90,10 @@ const VolunteerBody = (props) => {
       placeholder: "Address",
       value: signupValue.address,
       error: signupErrors.addressError,
-
       onChangeText: (txt) => {
-        setSignupValue({ ...signupValue, address: txt });
-        setSignupError({ ...signupErrors, addressError: "" });
+        setSignupValue({ ...signupValue, address: txt })
+        setSignupError({ ...signupErrors, addressError: "" })
       },
-
-      //   value: signupValues.country,
       editable: false,
     },
     {
@@ -107,11 +102,9 @@ const VolunteerBody = (props) => {
       value: signupValue.employer,
       error: signupErrors.employerError,
       onChangeText: (txt) => {
-        setSignupValue({ ...signupValue, employer: txt });
-        setSignupError({ ...signupErrors, employerError: "" });
+        setSignupValue({ ...signupValue, employer: txt })
+        setSignupError({ ...signupErrors, employerError: "" })
       },
-
-      //   value: signupValues.country,
       editable: false,
     },
     {
@@ -120,36 +113,26 @@ const VolunteerBody = (props) => {
       value: signupValue.organization,
       error: signupErrors.organizationError,
       onChangeText: (txt) => {
-        setSignupValue({ ...signupValue, organization: txt });
-        setSignupError({ ...signupErrors, organizationError: "" });
+        setSignupValue({ ...signupValue, organization: txt })
+        setSignupError({ ...signupErrors, organizationError: "" })
       },
-
-      //   value: signupValues.country,
       editable: false,
     },
     {
+      //*********** THIS SHOULD BE ID 6? *************/
       id: 7,
       placeholder: "Password",
       error: signupErrors.passwordError,
       secureTextEntry: showPassword,
       rigthIcon: showPassword ? icons.eyeSlash : icons.eye,
-
       onRightPress: () => {
-        setShowPassword(!showPassword);
+        setShowPassword(!showPassword)
       },
-      // {() => {
-      //   if (item.placeholder === "Password")
-      //     setShowPassword(!showPassword);
-      //   else setShowPassword1(!showPassword1);
-      // }}
-
       value: signupValue.password,
       onChangeText: (txt) => {
-        setSignupValue({ ...signupValue, password: txt });
-        setSignupError({ ...signupErrors, passwordError: "" });
+        setSignupValue({ ...signupValue, password: txt })
+        setSignupError({ ...signupErrors, passwordError: "" })
       },
-
-      //   value: signupValues.country,
       editable: false,
     },
     {
@@ -158,29 +141,27 @@ const VolunteerBody = (props) => {
       error: signupErrors.confirmError,
       value: signupValue.confirmPassword,
       rigthIcon: showPassword1 ? icons.eyeSlash : icons.eye,
-
       secureTextEntry: showPassword1,
       onRightPress: () => {
-        setShowPassword1(!showPassword1);
+        setShowPassword1(!showPassword1)
       },
       onChangeText: (txt) => {
-        setSignupValue({ ...signupValue, confirmPassword: txt });
-        setSignupError({ ...signupErrors, confirmError: "" });
+        setSignupValue({ ...signupValue, confirmPassword: txt })
+        setSignupError({ ...signupErrors, confirmError: "" })
       },
-
-      //   value: signupValues.country,
       editable: false,
     },
-  ];
+  ]
 
   const onSubmitSignup = async () => {
-    console.log("nkbk");
+
     const ValidateResponse = useVolunteerSignup(
       signupValue,
       signupErrors,
       setSignupError,
       phoneRaw
-    );
+    )
+
     if (ValidateResponse) {
       const data = {
         firstName: signupValue.firstName,
@@ -193,59 +174,43 @@ const VolunteerBody = (props) => {
         password: signupValue.password,
         confirmPassword: signupValue.confirmPassword,
         volunteerAttandance: "none",
-      };
-      await VolunteerSignup(
-        data,
-        setLoading,
-        props.navigation,
-        props.checkUser,
-        dispatch
-      );
-      // console.log("ResponseData",res?.data)
-    }
+      }
 
-    // navigation.navigate("MainStack", {
-    //   screen: "Welcome",
-    //   params: { userType: props.checkUser },
-    //   merge: true,
-    // });
-  };
+      await UserSignup(data, setLoading, props.navigation, props.checkUser, dispatch)
+    }
+  }
+
   const formatePhone = (phoneNumberString) => {
-    let newText = "";
-    let cleaned = ("", phoneNumberString).replace(/\D/g, "");
+    let newText = ""
+    let cleaned = ("", phoneNumberString).replace(/\D/g, "")
     for (var i = 0; i < cleaned.length; i++) {
       if (i == 0) {
-        newText = "(";
+        newText = "("
       } else if (i == 3) {
-        newText = newText + ") ";
+        newText = newText + ") "
       } else if (i == 6) {
-        newText = newText + "-";
+        newText = newText + "-"
       }
-      newText = newText + cleaned[i];
+      newText = newText + cleaned[i]
     }
-    setSignupValue({ ...signupValue, phoneNumber: newText });
-    setSignupError({ ...signupErrors, phoneError: "" });
-  };
+    setSignupValue({ ...signupValue, phoneNumber: newText })
+    setSignupError({ ...signupErrors, phoneError: "" })
+  }
+
   return (
     <>
-      <View>
+      <View>        
         <Spacer height={20} />
         <PH20>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <CustomTextInput
               placeholder="First"
               paddingLeft={20}
               value={signupValue.firstName}
               error={signupErrors.firstError}
               onChangeText={(txt) => {
-                setSignupValue({ ...signupValue, firstName: txt });
-                setSignupError({ ...signupErrors, firstError: "" });
+                setSignupValue({ ...signupValue, firstName: txt })
+                setSignupError({ ...signupErrors, firstError: "" })
               }}
               alignSelf="center"
               width="45%"
@@ -259,8 +224,8 @@ const VolunteerBody = (props) => {
               value={signupValue.lastName}
               error={signupErrors.lastError}
               onChangeText={(txt) => {
-                setSignupValue({ ...signupValue, lastName: txt });
-                setSignupError({ ...signupErrors, lastError: "" });
+                setSignupValue({ ...signupValue, lastName: txt })
+                setSignupError({ ...signupErrors, lastError: "" })
               }}
               width="45%"
               borderRadius={15}
@@ -268,7 +233,7 @@ const VolunteerBody = (props) => {
           </View>
           <Spacer height={10} />
 
-          {SignupData.map((item) => (
+          { SignupData.map((item) => (
             <>
               <Spacer height={10} />
               <CustomTextInput
@@ -301,9 +266,10 @@ const VolunteerBody = (props) => {
         checkUser={props.checkUser}
       />
     </>
-  );
-};
+  )
+}
 
-export default VolunteerBody;
 
-const styles = StyleSheet.create({});
+export default VolunteerBody
+
+const styles = StyleSheet.create({})

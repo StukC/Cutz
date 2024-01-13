@@ -5,23 +5,30 @@ import { URLS } from "./Urls";
 import { LoginActions } from "../redux/actions";
 import { GetClientEvent, GetVolunteerEvent } from "./EventClientsApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import Toast from "react-native-root-toast";
 
-export const ClientSignup = async (
+
+
+// User login for clients and volunteers
+export const UserLogin = async (
   data,
   setLoading,
   navigation,
   checkUser,
-  dispatch
+  dispatch,
+  remember
 ) => {
+
+  const userURL = (checkUser == 'Client' ? 
+    `${URLS.BASE_URL}${URLS.CLIENT_LOGIN}` :
+    `${URLS.BASE_URL}${URLS.VOLUNTEER_LOGIN}`
+  )
+
   const options = {
     method: "POST",
-    url: `${URLS.BASE_URL}${URLS.CLIENT_SIGNUP}`,
+    url: userURL,
     headers: { Accept: "application/json" },
     data: data,
   };
-
-  console.log("OptionsData", options);
 
   setLoading(true);
 
@@ -29,230 +36,94 @@ export const ClientSignup = async (
     await axios
       .request(options)
       .then(async function (response) {
-        console.log("ClientSignup", response.data);
         if (response) {
-          setLoading(false);
-          Toast.show("Account is created successfully");
-          data={...data,...response.data?.userDetails}
+          if (remember) {
+            let CurrentAuth = {
+              token: response.data?.token,
+              rememberMe: remember,
+              currentUser: checkUser,
+            };
+            CurrentAuth={...CurrentAuth,...response.data?.userDetails}
+            await AsyncStorage.setItem("CurrentAuth", JSON.stringify(CurrentAuth));
+          }
           data["token"] = response.data?.token;
+          data["rememberMe"] = remember;
           data["currentUser"] = checkUser;
+          data={...data, ...response.data?.userDetails}
           dispatch(LoginActions(data));
+          setLoading(false);
+          Toast.show("Login successfully");
+
           setTimeout(() => {
-            navigation.navigate("MainStack", {
+            navigation.replace("MainStack", {
               screen: "Welcome",
               params: { userType: checkUser },
               merge: true,
             });
           }, 1000);
-          console.log("AccountCreates");
-          //   return res
         } else {
-          Toast.show("Account is already exist");
-
-          console.log("AccountExist");
+          Toast.show("error");
         }
       })
       .catch((error) => {
-        setLoading(false);
-        console.log("error",error);
-        Toast.show("Account is already exist"+error);
+        Toast.show("Email or password is incorrect");
       });
-
-    return res;
   } catch (error) {
-    return error;
+      return error;
   }
 };
 
-export const VolunteerSignup = async (
+
+// User signup for clients and volunteers
+export const UserSignup = async (
   data,
   setLoading,
   navigation,
   checkUser,
   dispatch
 ) => {
+
+  const userURL = (checkUser == 'Client' ? 
+    `${URLS.BASE_URL}${URLS.CLIENT_SIGNUP}` :
+    `${URLS.BASE_URL}${URLS.VOLUNTEER_SIGNUP}`
+  )
   const options = {
     method: "POST",
-    url: `${URLS.BASE_URL}${URLS.VOLUNTEER_SIGNUP}`,
+    url: userURL,
     headers: { Accept: "application/json" },
     data: data,
   };
+
   setLoading(true);
 
   try {
     await axios
       .request(options)
       .then(async function (response) {
-        console.log("VolunteerSignup sss", response.data);
         if (response) {
-          setLoading(false);
-          Toast.show("Account is created successfully");
           data={...data,...response.data?.userDetails}
           data["token"] = response.data?.token;
           data["currentUser"] = checkUser;
           dispatch(LoginActions(data));
+          setLoading(false);
+          Toast.show("Account created successfully");
           setTimeout(() => {
             navigation.navigate("login", {checkUser:checkUser});
           }, 1000);
 
-          console.log("AccountCreates");
           //   return res
         } else {
-          Toast.show("Account is already exist");
-
-          console.log("AccountExist");
+          Toast.show("Account already exists");
         }
       })
       .catch((error) => {
         setLoading(false);
-        Toast.show("Account is already exist");
+        Toast.show("Account already exists");
       });
-  } catch (error) {
-    return error;
-  }
-};
-export const ClientLogin = async (
-  data,
-  setLoading,
-  navigation,
-  checkUser,
-  dispatch,
-  remember
-) => {
-  const options = {
-    method: "POST",
-    url: `${URLS.BASE_URL}${URLS.CLIENT_LOGIN}`,
-    headers: { Accept: "application/json" },
-    data: data,
-  };
 
-  setLoading(true);
-
-  try {
-    await axios
-      .request(options)
-      .then(async function (response) {
-        console.log("ClientLogin", response.data);
-        if (response) {
-          // const res = await GetClientEvent(response.data.token);
-          // const data = res?.data;
-          //  console.log("ResData",res?.data)
-          if (remember) {
-            let CurrentAuth = {
-              token: response.data?.token,
-              rememberMe: remember,
-              currentUser: checkUser,
-            };
-            CurrentAuth={...CurrentAuth,...response.data?.userDetails}
-            console.log("RememberAuth", CurrentAuth);
-            await AsyncStorage.setItem(
-              "CurrentAuth",
-              JSON.stringify(CurrentAuth)
-            );
-          }
-          data["token"] = response.data?.token;
-          data["rememberMe"] = remember;
-          data["currentUser"] = checkUser;
-          data={...data,...response.data?.userDetails}
-          dispatch(LoginActions(data));
-          setLoading(false);
-
-          Toast.show("Login successfully");
-
-          setTimeout(() => {
-            navigation.replace("MainStack", {
-              screen: "Welcome",
-              params: { userType: checkUser },
-              merge: true,
-            });
-          }, 1000);
-          console.log("AccountCreates");
-          //   return res
-        } else {
-          Toast.show("error");
-
-          console.log("AccountExist");
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        Toast.show("email or password is incorrect");
-      });
-  } catch (error) {
-    return error;
-  }
-};
-
-export const VolunteerLogin = async (
-  data,
-  setLoading,
-  navigation,
-  checkUser,
-  dispatch,
-  remember
-) => {
-  const options = {
-    method: "POST",
-    url: `${URLS.BASE_URL}${URLS.VOLUNTEER_LOGIN}`,
-    headers: { Accept: "application/json" },
-    data: data,
-  };
-
-  setLoading(true);
-
-  try {
-    await axios
-      .request(options)
-      .then(async function (response) {
-        console.log("VolunteerLogin", response.data);
-        if (response) {
-
-          //  console.log("ResData",res?.data)
-
-          if (remember) {
-            let CurrentAuth = {
-              token: response.data?.token,
-              rememberMe: remember,
-              currentUser: checkUser,
-            };
-            CurrentAuth={...CurrentAuth,...response.data?.userDetails}
-            console.log("RememberAuth", CurrentAuth);
-            await AsyncStorage.setItem(
-              "CurrentAuth",
-              JSON.stringify(CurrentAuth)
-            );
-          }
-          data["token"] = response.data?.token;
-          data["rememberMe"] = remember;
-          data["currentUser"] = checkUser;
-          data={...data,...response.data?.userDetails}
-          dispatch(LoginActions(data));
-          setLoading(false);
-
-          Toast.show("Login successfully");
-
-          setTimeout(() => {
-            navigation.replace("MainStack", {
-              screen: "Welcome",
-              params: { userType: checkUser },
-              merge: true,
-            });
-          }, 1000);
-          console.log("AccountCreates");
-          //   return res
-        } else {
-          Toast.show("error");
-
-          console.log("AccountExist");
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        Toast.show("email or password is incorrect");
-
-        console.log("SignError=>", error);
-      });
-  } catch (error) {
+    //return res;
+  } 
+  catch (error) {
     return error;
   }
 };
