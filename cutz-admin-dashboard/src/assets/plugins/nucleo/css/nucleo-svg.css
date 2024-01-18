@@ -15,12 +15,12 @@ Icon colors
 
 .icon use {
   /* icon secondary color - fill */
-  fill: #7ea6f6;
+  fill: #2484C6;
 }
 
 .icon.icon-outline use {
   /* icon secondary color - stroke */
-  stroke: #7ea6f6;
+  stroke: #2484C6;
 }
 
 /* --------------------------------
