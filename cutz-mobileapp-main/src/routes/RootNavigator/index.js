@@ -1,47 +1,42 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import AuthStack from "../AuthStack/AuthStack";
-import MainStack from "../MainStack";
-import { useIsFocused } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  GetClientEvent,
-  GetVolunteerEvent,
-} from "../../services/EventClientsApi";
-import { LoginActions } from "../../redux/actions";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import Login from "../../Auth/Login/Login";
-import Signup from "../../Auth/Signup/Signup";
-import ForgetPassword from "../../Auth/ForgetPassword/ForgetPassword";
-import Loader from "../../utils/Loader";
-import loaderAnimation from "../../../assets/Loaders";
-import ConfirmEmail from "../../Auth/ForgetPassword/ConfirmEmail/ConfirmEmail";
-import ConfirmOtp from "../../Auth/ForgetPassword/ConfirmOtp/ConfirmOtp";
+// cleaned up imports
 
-import WelcomeScreen from "../../screens/MainScreens/WelcomeScreen/WelcomeScreen";
+import React, { useEffect, useState } from "react"
+import { StyleSheet } from "react-native"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import { useDispatch, useSelector } from "react-redux"
+
+import MainStack from "../MainStack"
+import Login from "../../Auth/Login/Login"
+import Signup from "../../Auth/Signup/Signup"
+import ForgetPassword from "../../Auth/ForgetPassword/ForgetPassword"
+import Loader from "../../utils/Loader"
+import loaderAnimation from "../../../assets/Loaders"
+import ConfirmEmail from "../../Auth/ForgetPassword/ConfirmEmail/ConfirmEmail"
+import ConfirmOtp from "../../Auth/ForgetPassword/ConfirmOtp/ConfirmOtp"
+
+import { LoginActions } from "../../redux/actions"
 
 const RootNavigator = () => {
-  const dispatch = useDispatch();
-  const AuthData = useSelector((state) => state.authReducers.authState);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
+  const AuthData = useSelector((state) => state.authReducers.authState)
+  const [loading, setLoading] = useState(false)
 
 
   useEffect(() => {
     (async function () {
-      let user = await AsyncStorage?.getItem("CurrentAuth");
-      let AsyncData = JSON.parse?.(user);
+      let user = await AsyncStorage?.getItem("CurrentAuth")
+      let AsyncData = JSON.parse?.(user)
       if (AsyncData?.token) {
-        setLoading(true);
-        dispatch(LoginActions(AsyncData));
-        setLoading(false);
+        setLoading(true)
+        dispatch(LoginActions(AsyncData))
+        setLoading(false)
       }
     })();
   }, []);
   
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator()
 
   return loading ? (
     <>
@@ -49,49 +44,29 @@ const RootNavigator = () => {
     </>
   ) : (
     <NavigationContainer>
-
       {AuthData?.rememberMe === true ? (
-        <Stack.Navigator
-          initialRouteName="MainStack"
-          screenOptions={{ headerShown: false }}
-        >
-          {/* <Stack.Screen name="AuthStack" component={AuthStack} /> */}
-
+        <Stack.Navigator initialRouteName="MainStack" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="MainStack" component={MainStack} />
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="signup" component={Signup} />
           <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
-
-          {/* <Stack.Screen name="Reservation" component={MakeReservation} /> */}
         </Stack.Navigator>
       ) : (
         <>
           {!AuthData?.rememberMe && (
-            <Stack.Navigator
-              initialRouteName="login"
-              // initialRouteName="welcome"
-              screenOptions={{ headerShown: false }}
-            >
+            <Stack.Navigator initialRouteName="login" screenOptions={{ headerShown: false }}>
               <Stack.Screen name="login" component={Login} />
-              {/* <Stack.Screen name="welcome" component={WelcomeScreen} />  */}
               <Stack.Screen name="signup" component={Signup} />
               <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
               <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
               <Stack.Screen name="ConfirmOtp" component={ConfirmOtp} />
-
-
               <Stack.Screen name="MainStack" component={MainStack} />
-
-              {/* <Stack.Screen name="Reservation" component={MakeReservation} /> */}
             </Stack.Navigator>
           )}
         </>
       )}
-
     </NavigationContainer>
-  );
-};
+  )
+}
 
-export default RootNavigator;
-
-const styles = StyleSheet.create({});
+export default RootNavigator

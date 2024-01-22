@@ -98,7 +98,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
     return (<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
         <Spacer height={20}/>
         <View style={{alignItems: "center"}}>
-            {userType ? (<CustomText
+            {userType == 'Client' ? (<CustomText
                 label={"WELCOME"}
                 color={colors.primary}
                 fontSize={18}

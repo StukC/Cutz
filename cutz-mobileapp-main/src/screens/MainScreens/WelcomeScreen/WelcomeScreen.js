@@ -54,13 +54,11 @@ const WelcomeScreen = ({navigation: {navigate}, route}) => {
             checkIN: "",
             checkOut: "",
         };
-        clientStatus
-        console.log(AuthUser);
+        //clientStatus
         if (AuthUser._id)
             if (AuthUser.clientStatus) {
                 postEventReservationClient(data, AuthUser.token).then((r) => {
                     loaderOff();
-                    console.log('r?.data',r?.data)
                     if (r?.data) navigate("Receipt");
                     else alert("Event already reserved for Client");
                 });
@@ -268,14 +266,16 @@ const WelcomeScreen = ({navigation: {navigate}, route}) => {
                 <AppHeader/>
                 {!ticketVisible ? (
                     <EventDetail
-                        userType={AuthUser?.clientStatus}
+                        // userType={AuthUser?.clientStatus}
+                        userType={AuthUser?.currentUser}
                         handleBookingPress={handleBookingPress}
                         state={state}
                         setState={setState}
                     />
                 ) : (
                     <TicketDetails
-                        userType={AuthUser?.clientStatus}
+                        // userType={AuthUser?.clientStatus}
+                        userType={AuthUser?.currentUser}
                         ticketData={state.ticketData}
                         handleConfirmPress={handleConfirmPress}
                         handleCancelPress={handleCancelPress}
@@ -327,3 +327,4 @@ const styles = StyleSheet.create({
         elevation: 9,
     },
 });
+
