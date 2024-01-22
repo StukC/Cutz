@@ -13,7 +13,7 @@ import { AntDesign } from "@expo/vector-icons";
 import CustomBottomSheet from "../../../components/CustomBottomSheet";
 import SignupBottom from "./SignupBottom";
 import { useSignup } from "../useSignup";
-import { ClientSignup } from "../../../services/LoginSignupApi";
+import { ClientSignup, UserSignup } from "../../../services/LoginSignupApi";
 import { icons } from "../../../../assets/icons";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -84,8 +84,9 @@ const SignupBody = (props) => {
         clientAttandance: "none",
       };
       console.log('wow')
-      await ClientSignup(
-        data,
+      // await ClientSignup(
+      await UserSignup(
+      data,
         setLoading,
         props.navigation,
         props.checkUser,
