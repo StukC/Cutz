@@ -4,7 +4,7 @@ import {
     View, Text, StyleSheet, Platform, ActivityIndicator,
 } from "react-native";
 import {scale, verticalScale} from "react-native-size-matters";
-import Carousel, {Pagination} from "react-native-snap-carousel";
+import Swiper, {Pagination} from "react-native-swiper";
 import {colors} from "./src/utils/Colors";
 import {findAllOccurrences, getDistinctObjectsByKey, getDistinctObjectsByKeyForDates} from "./src/utils/Common";
 import {getEventGroupTimes} from "./src/services/EventGroup";
