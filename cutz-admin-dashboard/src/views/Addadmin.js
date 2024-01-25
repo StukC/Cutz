@@ -63,7 +63,7 @@ function Addadmin() {
 
       <div className="mb-3 p-4 mb-6 admin">
         <div>
-          <h1 className="admin">Create Admin</h1>
+          <h1 className="admin">Create Organization</h1>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ function Addadmin() {
               >
                 <div>
                   <h1 className="text-center d-flex align-item-center justify-content-center">
-                    Add Admin
+                    Add Organization
                   </h1>
                 </div>
               </CardHeader>
