@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 // LastLogin
 // ProfilePicture
 // ClientStatus
-// ClientAttandance
+// ClientAttendance
 const Client = new mongoose.Schema({
   firstName: {
     type: String,
@@ -67,9 +67,9 @@ const Client = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  clientAttandance: {
+  clientAttendance: {
     type: String,
-    required: [true, "ClientAttandance is required"],
+    required: [true, "ClientAttendance is required"],
   },
   clientExists: {
     type: Boolean,

@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
 // LastLogin
 // ProfilePicture
 // VolunteerStatus
-// VolunteerAttandance
+// VolunteerAttendance
 
 const Volunteer = new mongoose.Schema({
   firstName: {
@@ -75,9 +75,9 @@ const Volunteer = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  volunteerAttandance: {
+  volunteerAttendance: {
     type: String,
-    required: [true, "VolunteerAttandance is required"],
+    required: [true, "VolunteerAttendance is required"],
   },
   volunteerExists: {
     type: Boolean,

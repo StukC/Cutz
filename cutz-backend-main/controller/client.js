@@ -39,7 +39,7 @@ const SignUpClient = async (req, res) => {
             familySize: req.body.familySize,
             // activeStatus: req.body.activeStatus,
             // clientStatus: req.body.clientStatus,
-            clientAttandance: req.body.clientAttandance,
+            clientAttendance: req.body.clientAttendance,
           });
           const token = jwt.sign(
             {

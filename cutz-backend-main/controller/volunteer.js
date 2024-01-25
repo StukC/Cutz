@@ -40,7 +40,7 @@ const SignUpVolunteer = async (req, res) => {
             organization: req.body.organization ? req.body.organization : "",
             // activeStatus: req.body.activeStatus,
             // clientStatus: req.body.clientStatus,
-            volunteerAttandance: req.body.volunteerAttandance,
+            volunteerAttendance: req.body.volunteerAttendance,
           });
           const token = jwt.sign(
             {
