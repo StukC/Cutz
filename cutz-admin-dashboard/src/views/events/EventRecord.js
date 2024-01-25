@@ -123,7 +123,7 @@ function EventRecord() {
 
             <div className="mb-3 p-4 mb-6 admin">
                 <div><h1 className="admin">Event Records</h1></div>
-                <div><h5 className="admin">Welcome to your Events Record Manager</h5></div>
+                <div><h5 className="admin">Welcome to your Event Record Manager</h5></div>
             </div>
 
             {/* Page content */}

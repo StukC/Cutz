@@ -304,7 +304,7 @@ function ManageClients() {
         </div>
         <div>
           <h5 className="admin">
-            Welcome to your Clients Manager
+            Welcome to your Client Manager
           </h5>
         </div>
       </div>

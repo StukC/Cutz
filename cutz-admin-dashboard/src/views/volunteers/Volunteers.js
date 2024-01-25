@@ -310,7 +310,7 @@ function Volunteers() {
           <h1 className="admin">Volunteers</h1>
         </div>
         <div>
-          <h5 className="admin">Welcome to your Volunteers Manager</h5>
+          <h5 className="admin">Welcome to your Volunteer's Manager</h5>
         </div>
       </div>
 

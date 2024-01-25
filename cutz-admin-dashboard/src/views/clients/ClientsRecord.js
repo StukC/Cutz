@@ -150,7 +150,7 @@ function ClientsRecord() {
           <h1 className="admin">Client Records</h1>
         </div>
         <div>
-          <h5 className="admin">Welcome to your Clients Record Manager</h5>
+          <h5 className="admin">Welcome to your Client Record Manager</h5>
         </div>
       </div>
 

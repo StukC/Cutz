@@ -317,7 +317,7 @@ function ManageEvent() {
           <h1 className="admin">Events</h1>
         </div>
         <div>
-          <h5 className="admin">Welcome to your Events Manager</h5>
+          <h5 className="admin">Welcome to your Event Manager</h5>
         </div>
       </div>
 

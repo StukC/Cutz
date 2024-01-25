@@ -209,7 +209,7 @@ function ClientsSchedule() {
           <h1 className="admin">Client Schedules</h1>
         </div>
         <div>
-          <h5 className="admin">Welcome to your Clients Schedule Manager</h5>
+          <h5 className="admin">Welcome to your Client Schedule Manager</h5>
         </div>
       </div>
 

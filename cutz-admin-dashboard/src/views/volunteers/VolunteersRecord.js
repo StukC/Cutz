@@ -206,7 +206,7 @@ function VolunteersRecord() {
           <h1 className="admin">Volunteer Records</h1>
         </div>
         <div>
-          <h5 className="admin">Welcome to your Volunteers Record Manager</h5>
+          <h5 className="admin">Welcome to your Volunteer's Record Manager</h5>
         </div>
       </div>
 
