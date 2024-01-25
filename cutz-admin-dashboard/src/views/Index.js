@@ -250,14 +250,13 @@ function Index() {
 
       <div className="mb-3 p-4 mb-6 admin">
         <div>
-          <h1 className="admin">App Owner</h1>
+          <h1 className="admin">Cutz Owner Dashboard</h1>
         </div>
         <div>
           <h5 className="admin">
-            Welcome. <br />
-            Chose your organization's admin with caution. An admin is the 
-             most trusted user, and has full access and authorization, 
-            <br /> which includes the ability to view, modify, and delete information.
+            Welcome! <br />
+            Carefully choose your organization's administrator.
+            <br /> This role has complete access, including the rights to view, edit, and delete information.
           </h5>
         </div>
       </div>
