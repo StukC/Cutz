@@ -1,9 +1,8 @@
 # OSX
 #
 .DS_Store
-
 .env
-
+.expo
 # Xcode
 #
 build/
