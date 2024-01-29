@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {View, Text, StyleSheet, Platform} from "react-native";
 import {scale, verticalScale} from "react-native-size-matters";
-import Swiper, {Pagination} from "react-native-swiper";
+import Carousel, {Pagination} from "react-native-snap-carousel";
 import {colors} from "./src/utils/Colors";
 import {getEvents, getHomeScreenData} from "./src/services/Events";
 import {findAllOccurrences, getDistinctObjectsByKey, getDistinctObjectsByKeyForDates} from "./src/utils/Common";

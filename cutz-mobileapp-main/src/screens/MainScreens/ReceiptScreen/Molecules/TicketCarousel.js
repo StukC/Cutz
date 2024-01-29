@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Image } from "react-native-elements";
 import { scale, verticalScale } from "react-native-size-matters";
-import Swiper, { Pagination } from "react-native-swiper";
+import Carousel, { Pagination } from "react-native-snap-carousel";
 import { icons } from "../../../../../assets/icons";
 import { images } from "../../../../../assets/images";
 import CustomButton from "../../../../components/CustomButton";

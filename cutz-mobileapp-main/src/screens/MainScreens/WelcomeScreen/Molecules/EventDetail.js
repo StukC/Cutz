@@ -5,7 +5,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {Spacer} from "../../../../components/Spacer";
 import CustomText from "../../../../components/CustomText";
 import {colors} from "../../../../utils/Colors";
-import Swiper from "react-native-swiper";
+import Carousel from "react-native-reanimated-carousel";
 import {PH20} from "../../../../utils/CommonStyles";
 import {verticalScale, scale} from "react-native-size-matters";
 import CustomButton from "../../../../components/CustomButton";

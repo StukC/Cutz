@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {View, Text, StyleSheet} from "react-native";
 import {Divider} from "react-native-elements";
 import {scale, verticalScale} from "react-native-size-matters";
-import Swiper, {Pagination} from "react-native-swiper";
+import Carousel, {Pagination} from "react-native-snap-carousel";
 import {colors} from "./src/utils/Colors";
 import moment from "moment";
 

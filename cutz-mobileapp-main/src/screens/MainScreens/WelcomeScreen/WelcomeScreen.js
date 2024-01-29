@@ -6,7 +6,7 @@ import AppHeader from "../../../components/AppHeader";
 import EventDetail from "./Molecules/EventDetail";
 import TicketDetails from "./Molecules/TicketDetails";
 import {useIsFocused} from "@react-navigation/native";
-import Swiper from "react-native-swiper";
+import Carousel from "react-native-reanimated-carousel";
 import {useSelector} from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getEventById, getEvents, getHomeScreenData} from "../../../services/Events";
