@@ -61,16 +61,30 @@ nav,
 section {
   display: block;
 }
+/*updated to have a fixed starting point to not cover logo*/
 .line {
   position: absolute;
-  width: 88%;
   height: 5px;
-  left: 17%;
   top: 98.5px;
   background: #666ca3;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0px 5px 5px 0px;
+
+  left: 210px; 
 }
+
+@media (max-width: 767px) {
+  .line {
+    right: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .line {
+    right: 0;
+  }
+}
+
 .loginhearder {
   width: 35%;
   height: auto;    /*changed*/
@@ -129,10 +143,10 @@ section {
 }
 
 .loginpara {
-  position: relative; /* Change position to relative */
-  width: auto; /* Adjust width as needed */
+  position: relative; 
+  width: auto;
   height: 21px;
-  margin: 10px auto; /* Center the paragraph horizontally */
+  margin: 10px auto; 
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
