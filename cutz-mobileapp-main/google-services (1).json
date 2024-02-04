@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "177469560885",
+    "project_id": "cutz-androidsetup",
+    "storage_bucket": "cutz-androidsetup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177469560885:android:b6ab4844db9ee8123ff97c",
+        "android_client_info": {
+          "package_name": "com.codewithtalha.cutz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCrz3-Fftag4jQ4AtLM8baMF4VDwTG1N4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
