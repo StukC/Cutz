@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cutz-androidsetup",
+  "private_key_id": "90eba772cfd91015d5935af97f61b7e397dc3966",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCYICV7I+Asl6cI\npuekHlX3pgZ0GdR7CbyxaZHjqh1AZh1WV/aUryx/IVRKLRvL2qjwQiIr+xFo8VTb\nn3WKH3I+/ogHPWXyEEDbhYbyuGd1hSzaCiS24fNWR/RjCTntlI1kuFpVSqkMwco+\nd1yRajyqhV9fJyRzZmsQlw6ZGGzIXRYHexxiuirNIdGdEzv+vGWtWp/QaqJQMlDz\nSwZSjquBfubv7Inw/8lwC6btaOe+B6zpH5yOpB8ntwp4sCUeEIfXtMpmMNrMpSI0\nq5qFDU9u8UefdGFLrDVgmK7MWmksdcCFBjyLJs0L1vP5gVNnAyv2RAGoUW8otNNK\nHWwznObtAgMBAAECggEADo/aAD0BgxZyBv7+SRSD6cFuK4QjD2Zxz8QpeR/AmxIe\nfs3+xmIAu86mveiUssfXyHl1we+cZzpEUDc/munCfhgC6qAZXey2Xw0bsaiuc25v\n46zfsaEhZPUp7KaZpMD4/Yo0HQ2ZIj9IRJoYz1Nz3GYJKH4CHDw4+KaTePSaMF4R\nPznE77AuaHDb3QNgmV7FmMXmk6MDalM4DpiC5G6Kdd8jl5O7npfxERNxkVCG4RF2\nIP9JMys/v5ehbJxnQ8kOoybVXEKXS/mYeretV1TXsLMq6hGAo2D69rIOERbV6p0e\nZJB65Ik1nHCfHrPgPCecf4FNYObtDbn3IG96yDZmNQKBgQDV10N8YfF6/N4+Lj+v\nI5ait7ptZKu+2pebMRtMgneeR7MToO1cg4SvfKUVn2uRZuGCbFBev9liRC09pr8Y\nUCGhagD1G4eSDV01sUyGpRfm6IwwrT4ie3DM5ePJVyyWXzgOxGrdu1rsXoONYlwk\njP/MKwlWzczjM2I5jraYZZJd/wKBgQC2Hg6yabX3+eJ1aYUPpTOYt9TdY6ylQ3eZ\npmG2CVMsWl5YYE1W+O/hicVP4EV+KyDxWMz26k1bYeLuNwtgMLsMrkwjMFWdZBKz\nbWs8XQiN3a3dWW/o5xmEGDSVaZ5Db5AAknvOxyQfD6U2cvtoOa4C8czV31QoyVTq\ni+84fzoTEwKBgQDL+9AQco2buGN4BT4Sn2wuQ/y+JW3/XR2JmMplrX7VqaeVbcl+\nmqaTj98aRTyjMvSjKRdxiqifKFHPoaRgWO/7vdaz+VLVa5IiicJqHkoyplo0hM3k\nrsPncNRdV57cwnADBjK62OHe4Dm1QMKMy0OnStZZy29Ku9VS+mQL87gvmQKBgF3b\nCbn67tPYjVPzSKbyfa/T9bkO+FfHeGjQLYUyMxIllH+5ScJr0ryKUwzCSS4nrfeT\nyzXpNGrG/LvF1HADTTLQ1N5Bt63AeD7OQji+vXzXZRYxVJJUH3tLOjZSU0Tvxuf0\nlifPy5bSalOwWE6zgzFzShxi1y2Z7NBfw657KwPPAoGAf3WmdmoYc/uwMt0Uq0BB\nQz4ZjzrWX3pXt4uAsMaqagyY+bbE/raveny+Rm8vasm/6b+Njk9rbkDzzYfbym9C\n7uVHAduoRrQMuQENBDlQELPlXb6y37WDjsO+kRKN7Xm9N7XvRLvEtTyunDO6fMUo\nvkZFj3z9dHGeX+CF6cSHctc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-6cpkt@cutz-androidsetup.iam.gserviceaccount.com",
+  "client_id": "116005510534878467716",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-6cpkt%40cutz-androidsetup.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
