@@ -199,13 +199,12 @@ const getHomeScreenData = async (req, res) => {
       });
       let groups = [];
       for (const key of eventGroup) {
-        const count =
-          (await EventReservationClient.count({
-            eventID: key.eventID,
-            eventGroupID: key._id,
-          })) || 0;
+        const count = await EventReservationClient.countDocuments({
+          eventID: key.eventID,
+          eventGroupID: key._id,
+        }) || 0;
         groups.push({ ...key._doc, count: count });
-      }
+      }      
       times[i] = {
         ...times[i]._doc,
         timeGroup: groups,
