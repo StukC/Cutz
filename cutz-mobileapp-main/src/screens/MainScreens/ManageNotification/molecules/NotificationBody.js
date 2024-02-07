@@ -107,9 +107,18 @@ async function registerForPushNotificationsAsync() {
     // provide some notification ID
     const notificationID = "65c3ee26c33b778fa36e30c1";
 
+    console.log("before (get) fetch");
+
     // Fetch notification data from your backend
-    const response = await fetch(`http://localhost:3006/api/v1/notification/${notificationID}`);
-    const notificationText = await response.json();
+    const response = await fetch(`http://141.215.198.23:3006/api/v1/notification/${notificationID}`);
+    const notificationData = await response.json();
+
+    // Extract the notification text from the response data
+    const notificationText = notificationData.notificationText;
+
+    console.log("notificationText = ", notificationText);
+
+    console.log("after (get) fetch");
 
     const messaage = {
       to:expoPushToken,
@@ -117,6 +126,9 @@ async function registerForPushNotificationsAsync() {
       title: "My first Notfication!",
       body: notificationText,
     };
+
+    console.log(messaage);
+
     await fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
       headers: {
