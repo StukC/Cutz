@@ -108,7 +108,7 @@ async function registerForPushNotificationsAsync() {
     const notificationID = "65c3ee26c33b778fa36e30c1";
 
     // Fetch notification data from your backend
-    const response = await fetch(`https://api/v1/notification/${notificationId}`);
+    const response = await fetch(`http://localhost:3006/api/v1/notification/${notificationID}`);
     const notificationText = await response.json();
 
     const messaage = {
