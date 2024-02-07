@@ -100,14 +100,22 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-  //testing button
+  // testing button
   const handleTestNotification = async () => {
     console.log("Testing notification...");
+
+    // provide some notification ID
+    const notificationID = "65c3ee26c33b778fa36e30c1";
+
+    // Fetch notification data from your backend
+    const response = await fetch(`https://api/v1/notification/${notificationId}`);
+    const notificationText = await response.json();
+
     const messaage = {
       to:expoPushToken,
       sound: "default",
       title: "My first Notfication!",
-      body:"first notfication made in expo: yippie",
+      body: notificationText,
     };
     await fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",

@@ -25,4 +25,5 @@ export const URLS = {
   ORGANIZATION:"api/v1/organization",
   TIMING:"api/v1/timing",
   GOOGL_MAP_API:"AIzaSyCpr_ajK9YsgNa184_UyE0e3BXmiPPXFZ8",
+  GET_NOTIFICATION:"api/v1/notification/:id"
 }
