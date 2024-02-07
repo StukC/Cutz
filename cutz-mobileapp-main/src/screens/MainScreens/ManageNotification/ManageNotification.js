@@ -22,7 +22,7 @@ const ManageNotification = ({ modalVisible, setModalVisible }) => {
   const profileData = [
     {
       id: 1,
-      name: "Push Notification",
+      name: "Push Notification$%",
       img: icons.person,
       //   onPress: () => navigation.navigate("PersonalScreen"),
     },

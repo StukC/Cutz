@@ -15,7 +15,20 @@ import SepratorLine from "../../../../components/SepratorLine";
 import { Spacer } from "../../../../components/Spacer";
 import ProfileBody from "../../ProfileScreen/molecules/ProfileBody";
 import NotificationContainer from "./NotificationContainer";
+import { useState, useEffect, useRef } from 'react';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
+
+//noftication page shown
 const NotificationBody = ({ setModalVisible }) => {
   const profileData = [
     {
@@ -24,8 +37,92 @@ const NotificationBody = ({ setModalVisible }) => {
       img: icons.person,
       //   onPress: () => navigation.navigate("PersonalScreen"),
     },
+
+    
     
   ];
+
+  const [expoPushToken, setExpoPushToken] = useState('');
+
+  useEffect(() => {
+    console.log("sending push notfications...");
+    registerForPushNotificationsAsync().then(token => {
+      console.log("token: " , token);
+      setExpoPushToken(token);
+    }).catch((err) => console.log(err));
+
+
+
+  }, []);
+  
+async function schedulePushNotification() {
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: "You've got mail! 📬",
+      body: 'Here is the notification body',
+      data: { data: 'goes here' },
+    },
+    trigger: { seconds: 2 },
+  });
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    // Learn more about projectId:
+    // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
+    token = (await Notifications.getExpoPushTokenAsync({ projectId: "55e5ea50-e263-4d2d-9078-415cf6eb7c8e" })).data;
+    console.log(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  return token;
+}
+
+  //testing button
+  const handleTestNotification = async () => {
+    console.log("Testing notification...");
+    const messaage = {
+      to:expoPushToken,
+      sound: "default",
+      title: "My first Notfication!",
+      body:"first notfication made in expo: yippie",
+    };
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        host: "exp.host",
+        accept: "application/json",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(messaage),
+    });
+    // Add your notification testing logic here
+  };
+
+
   return (
     <>
       <PH10>
@@ -74,6 +171,8 @@ const NotificationBody = ({ setModalVisible }) => {
       </PH10>
       <SepratorLine backgroundColor={"#C9C9C9"} />
 
+      
+
       {profileData.map((item) => {
         return (
           <>
@@ -88,9 +187,32 @@ const NotificationBody = ({ setModalVisible }) => {
           </>
         );
       })}
+
+      {/*for testing button */}
+      <TouchableOpacity onPress={handleTestNotification} style={styless.testButton}>
+        <CustomText
+          color={colors.primary}
+          fontSize={18}
+          fontFamily="medium"
+          label="Test Notification"
+        />
+      </TouchableOpacity>
+      
     </>
   );
 };
+
+//for testing button
+const styless = StyleSheet.create({
+  testButton: {
+    backgroundColor: colors.secondary, // Change to your desired color
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+});
 
 export default NotificationBody;
 
