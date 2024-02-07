@@ -180,7 +180,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
                 })}
             </ScrollView>) : (<View style={{alignSelf: "center"}}>
                 {dataLoader ? (<ActivityIndicator color={colors.primary} size={"large"}/>) : (
-                    <Text style={{fontSize: 22, color: "#000"}}>Not Found</Text>)}
+                    <Text style={{fontSize: 22, color: "#000"}}></Text>)}
             </View>)}
         </PH20>
         <Spacer height={20}/>
