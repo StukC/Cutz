@@ -123,6 +123,7 @@ async function registerForPushNotificationsAsync() {
     const messaage = {
       to:expoPushToken,
       sound: "default",
+      icon:"./assets/icons/appIconNav.png",
       title: "My first Notfication!",
       body: notificationText,
     };
