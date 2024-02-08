@@ -150,7 +150,7 @@ function ManageEvent() {
             <button
               className="edit"
               type="submit"
-              position="center"
+              position="fixed"
               onMouseOver={() => setEventId(e._id)}
             >
               Delete

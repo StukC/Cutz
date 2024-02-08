@@ -27,14 +27,14 @@
     }
 
     i.ni {
-        position: relative;
+        position: fixed;
         top: 2px;
     }
 }
 
 @media (min-width: 992px){
   .nav-item.active-pro {
-      position: absolute;
+      position: fixed;
       width: 100%;
       bottom: 10px;
       background:  $table-head-bg;
