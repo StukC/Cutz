@@ -90,9 +90,6 @@ function EditProfile() {
       .then((r) => {
         setLoading(false);
         alert(r.data.message)
-        // Update local storage values for first and last names
-        localStorage.setItem("firstName", state.firstName);
-        localStorage.setItem("lastName", state.lastName);
         getProfile();
       })
       .catch((e) => {
