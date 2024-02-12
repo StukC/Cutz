@@ -2,15 +2,12 @@ import React, {  useEffect, useId, useState } from "react";
 import axios from "axios";
 import Lottie from "react-lottie";
 import { Card, Container, Row, CardHeader, Input } from "reactstrap";
-
 import { Urls } from "utilities/Urls";
-
 import Header from "components/Headers/Header.js";
 import loaderAnimation from "assets/Loaders";
-
 import "../assets/css/argon-dashboard-react.min.css";
 
-
+// Default options for Lottie animation
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -20,8 +17,10 @@ const defaultOptions = {
   },
 };
 
+// Functional component for editing user profile
 function EditProfile() {
   const [loading, setLoading] = useState(false);
+  // Get userId and token from local storagex
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem('userId');
 
@@ -36,17 +35,21 @@ function EditProfile() {
     organization: "",
   });
 
+  // Fetch user profile info when component mounts
   useEffect(()=>{
     getProfile();
-  },[])
+  },[]);
 
+  // Function to retrieve user information
   const getProfile = async () =>{
     setLoading(true);
+    // Send HTTP request and check token for authentication
     await axios.get(Urls.BaseUrl + `api/v1/admin/${userId}`, {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
+    // Update state with fetch user info
     .then((result)=>{
       setState({...state, 
         firstName: result.data.firstName, 
@@ -65,8 +68,10 @@ function EditProfile() {
     })
   }
 
+  // Function to handle form submission
   const onSubmit = async (id) => {
     setLoading(true);
+    // Prepare data to be submitted
     const data = {
       firstName: state.firstName,
       lastName: state.lastName,
@@ -75,8 +80,9 @@ function EditProfile() {
       address: state.address,
       password: state.password
     }
+    // Send PATCH request to update user profile
     await axios
-      .patch(Urls.BaseUrl + "api/v1/admin/"+userId, data, {
+      .patch(Urls.BaseUrl + `api/v1/admin/${userId}`, data, {
         headers:{
           Authorization:"Bearer "+token
         }
@@ -84,6 +90,9 @@ function EditProfile() {
       .then((r) => {
         setLoading(false);
         alert(r.data.message)
+        // Update local storage values for first and last names
+        localStorage.setItem("firstName", state.firstName);
+        localStorage.setItem("lastName", state.lastName);
         getProfile();
       })
       .catch((e) => {
