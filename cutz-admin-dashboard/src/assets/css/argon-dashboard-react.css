@@ -1932,7 +1932,7 @@ pre code {
 .table-dark th,
 .table-dark td,
 .table-dark thead th {
-  border-color: #.table th,
+  border-color: #ffff;.table th,
 .table td {
   padding: 1rem;
   vertical-align: top;
@@ -17370,7 +17370,7 @@ textarea[resize="horizontal"] {
 
 @media (min-width: 992px) {
   .nav-item.active-pro {
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 10px;
     background: #f6f9fc;
@@ -17435,7 +17435,7 @@ textarea[resize="horizontal"] {
 }
 @media (prefers-reduced-motion: reduce) {
   .navbar-horizontal .navbar-nav .nav-link {
-    transition: none;
+    transition: normal;
   }
 }
 .navbar-horizontal .navbar-nav .nav-link .nav-link-inner--text {
