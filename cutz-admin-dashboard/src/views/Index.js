@@ -253,11 +253,10 @@ function Index() {
           <h1 className="admin">Cutz Owner Dashboard</h1>
         </div>
         <div>
-          <h5 className="admin">
-            Welcome! <br />
-            Carefully choose your organization's administrator.
-            <br /> This role has complete access, including the rights to view, edit, and delete information.
-          </h5>
+          <h3 className="admin">
+          Welcome Michele!
+            <br /> 
+          </h3>
         </div>
       </div>
 
