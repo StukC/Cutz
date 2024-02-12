@@ -38,7 +38,6 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
                   }}
                 />
               </TouchableOpacity>
-              <Spacer width={10} />
             </>
           ) : (
             <></>
@@ -60,14 +59,6 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
           ) : (
             <></>
           )}
-          <Image
-            source={icons.bell}
-            resizeMode={"contain"}
-            style={{
-              height: 40,
-              width: 40,
-            }}
-          />
         </View>
       </View>
 

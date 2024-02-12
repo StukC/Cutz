@@ -1,6 +1,5 @@
 export const icons={
     back:require("./back.png"),
-    bell:require("./bell.png"),
     appIconNav:require("./appIconNav.png"),
     search:require("./search.png"),
     home:require("./home.png"),
