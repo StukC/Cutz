@@ -345,10 +345,6 @@ function ManageClients() {
                     </FormGroup>
                   </Form>
                   </div>
-                  {/* <div>
-                    <button className="mainbuttons">Add Admin</button>
-
-                  </div> */}
                 </div>
               </CardHeader>
               <DataTable
