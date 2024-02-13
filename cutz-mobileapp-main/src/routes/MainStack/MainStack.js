@@ -78,7 +78,7 @@ const MainStack = ({ route }) => {
       // initialRouteName={"Receipt"}
     >
       <Tab.Screen name="Welcome" component={WelcomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
+      
       <Tab.Screen name="Receipt" component={ReceiptScreen} />
       <Tab.Screen name="Profile" component={ProfileStack} />
       <Tab.Screen
