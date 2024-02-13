@@ -10,6 +10,8 @@ import {
 import React from "react";
 import CustomText from "../../../components/CustomText";
 import commonStyles, { PH20 } from "../../../utils/CommonStyles";
+// NOTE! Copy of NotificationBody.js
+
 import { icons } from "../../../../assets/icons";
 import { colors } from "../../../utils/Colors";
 import SepratorLine from "../../../components/SepratorLine";

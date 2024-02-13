@@ -119,7 +119,7 @@ function ManageEvent() {
         width: '200px',
     },
     {
-      name: "Action",
+      name: "Delete",
       sortable: true,
       selector: (row) => <MyActionBtn e={row} />,
     },
@@ -172,7 +172,6 @@ function ManageEvent() {
             background: "rgba(0, 0, 0, 0.7)",
           }}
         >
-          // Content of the confirmation dialog
           {(close) => (
             <div>
               <h2 className="text-center d-flex justfy-content-center align-item-center readyreadeem">

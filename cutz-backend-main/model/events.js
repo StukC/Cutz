@@ -97,7 +97,7 @@ const Event = new mongoose.Schema({
   },
   numberOfGroups: {
     type: Number,
-    required: [true, "numberOfGroups is required"],
+    required: true,
   },
   checkInCode: {
     type: Number,
