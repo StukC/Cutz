@@ -46,14 +46,6 @@ const MakeReservation = ({ navigation }) => {
         ) : (
           <></>
         )}
-        <Image
-          source={icons.bell}
-          resizeMode={"contain"}
-          containerStyle={{
-            height: 40,
-            width: 40,
-          }}
-        />
       </View>
     </View>
   );
