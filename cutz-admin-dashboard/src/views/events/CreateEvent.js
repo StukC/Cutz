@@ -181,7 +181,7 @@ function CreateEvent() {
                       onChange={(e) => setSelectedOrg(e.target.value)}
                     >
                       {adminOrgList.map((org) => (
-                        <option value={org.organization}>
+                        <option key={org.id} value={org.organization}>
                           {org.organization}
                         </option>
                       ))}

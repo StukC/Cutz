@@ -60,7 +60,7 @@ const AdminNavbar = (props) => {
 
         {/* Render envelope icon for navigation to home page */}
         <span
-          class="fas fa-envelope mr-2"
+          className="fas fa-envelope mr-2"
           onClick={navigateNotification}
           alt="asdf"
         ></span>

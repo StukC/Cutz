@@ -9,20 +9,22 @@ const {
 const Timing = require("../model/timing");
 const EventReservationClient = require("../model/eventreservationclient");
 
+// Controller function to create an event
 const CreateEvent = async (req, res) => {
   const data = req.body;
   const customIds = await CustomId.find();
   // res.json(customIds)
 
   try {
+    // Generate array of alphabets for groups
     const alpha = Array.from(Array(26)).map((e, i) => i + 65);
     const alphabet = alpha.map((x) => String.fromCharCode(x));
 
+    // Calculate number of groups based on event time and service period
     let eventPeriod = Math.floor(
       (data.eventEndTime - data.eventStartTime) / 3600
     );
     let eventPeriodRemaining = (data.eventEndTime - data.eventStartTime) % 3600;
-
     let numberOfGroups;
 
     if (data.groupServicePeriod === "30 min") {
@@ -42,6 +44,7 @@ const CreateEvent = async (req, res) => {
     //   }
     // }
 
+    // Create new event
     const event = await Event.create({
       event_id: customIds[0].eventId + 1,
       orgId: data.orgId,
@@ -77,6 +80,8 @@ const CreateEvent = async (req, res) => {
       // date: data.date ? data.date : null,
       // monthYear: data.monthYear ? data.monthYear : null,
     });
+
+    // Calculate group capacities and create event groups
     let firstGroupCapacity = 0;
     const remainder = data.eventCapacity % numberOfGroups;
     if (remainder !== 0) {
@@ -103,7 +108,10 @@ const CreateEvent = async (req, res) => {
       });
     }
 
+    // Update custom ID for the next event
     await CustomId.updateOne({}, { eventId: customIds[0].eventId + 1 });
+
+    // Send success response
     res.status(201).json({
       message: "Event added successfully",
       id: event._id,
@@ -115,6 +123,7 @@ const CreateEvent = async (req, res) => {
   }
 };
 
+// Controller function to retrieve all events
 const GetEvents = async (req, res) => {
   try {
     const events = await Event.find().populate({
@@ -128,8 +137,10 @@ const GetEvents = async (req, res) => {
   }
 };
 
+// Controller function to retrieve a single event
 const GetSingleEvent = async (req, res) => {
   try {
+    // Retrieve event based on event ID
     const event = await Event.findOne({ _id: req.params.id });
     if (!event) {
       return res.status(404).json({ msg: `No event with id ${req.params.id}` });
@@ -142,12 +153,15 @@ const GetSingleEvent = async (req, res) => {
   }
 };
 
+// Controller function to update an event
 const UpdateEvent = async (req, res) => {
+  // Construct new object with updated data
   const newObj = {};
   for (let i = 0; i < Object.keys(req.body).length; i++) {
     newObj[Object.keys(req.body)[i]] = Object.values(req.body)[i];
   }
   try {
+    // Update event based on event ID
     const event = await Event.findOneAndUpdate({ _id: req.params.id }, newObj);
     if (!event) {
       return res.status(404).json({ msg: `No event with id ${req.params.id}` });
@@ -160,8 +174,10 @@ const UpdateEvent = async (req, res) => {
   }
 };
 
+// Controller function to delete an event
 const DeleteEvent = async (req, res) => {
   try {
+    // Delete event based on event ID
     const event = await Event.findOneAndDelete({ _id: req.params.id });
     if (!event) {
       return res.status(404).json({ msg: `No event with id ${req.params.id}` });
@@ -174,52 +190,73 @@ const DeleteEvent = async (req, res) => {
   }
 };
 
+// Controller function to retrieve data for the home screen
 const getHomeScreenData = async (req, res) => {
-  // try {
-  let events = await Event.find({ orgId: req.params.id });
-  events = getDistinctObjectsByKey(
-    events.map((o, index) => ({
-      index: index,
-      id: o._id,
-      title: o.eventType,
-    })),
-    "title"
-  );
-  let timing = await Timing.find().populate({
-    path: "eventId",
-  });
+  try {
+    // Retrieve events based on the organization ID
+    let events = await Event.find({ orgId: req.params.id });
 
-  for (let i = 0; i < events.length; i++) {
-    let times = await timing.filter((time) => {
-      return time.eventId?.eventType === events[i].title;
+    // Extract distinct event types from the retrieved events
+    events = getDistinctObjectsByKey(
+      events.map((o, index) => ({
+        index: index,
+        id: o._id,
+        title: o.eventType,
+      })),
+      "title"
+    );
+
+    // Retrieve timing data for events and populate with event details
+    let timing = await Timing.find().populate({
+      path: "eventId",
     });
-    for (let i = 0; i < times.length; i++) {
-      const eventGroup = await EventGroup.find({
-        eventID: times[i].eventId?._id,
+
+    // Iterate over each event to gather timing information
+    for (let i = 0; i < events.length; i++) {
+      let times = await timing.filter((time) => {
+        return time.eventId?.eventType === events[i].title;
       });
-      let groups = [];
-      for (const key of eventGroup) {
-        const count = await EventReservationClient.countDocuments({
-          eventID: key.eventID,
-          eventGroupID: key._id,
-        }) || 0;
-        groups.push({ ...key._doc, count: count });
-      }      
-      times[i] = {
-        ...times[i]._doc,
-        timeGroup: groups,
+
+      // Iterate over each timing entry to fetch event group details
+      for (let i = 0; i < times.length; i++) {
+        const eventGroup = await EventGroup.find({
+          eventID: times[i].eventId?._id,
+        });
+
+        // Iterate over each event group to gather reservation counts
+        let groups = [];
+        for (const key of eventGroup) {
+          const count = await EventReservationClient.countDocuments({
+            eventID: key.eventID,
+            eventGroupID: key._id,
+          }) || 0;
+          groups.push({ ...key._doc, count: count });
+        }    
+        
+        // Update timing entry with event group details
+        times[i] = {
+          ...times[i]._doc,
+          timeGroup: groups,
+        };
+      }
+
+      // Update event entry with timing information
+      events[i] = {
+        ...events[i],
+        times: times,
       };
     }
-    events[i] = {
-      ...events[i],
-      times: times,
-    };
-  }
 
-  if (!events) {
-    return res.status(404).json({ msg: `No event with id ${req.params.id}` });
+    // Check if events were successfully retrieved
+    if (!events) {
+      return res.status(404).json({ msg: `No event with id ${req.params.id}` });
+    }
+    res.status(200).json({ events });
+  } catch (err) {
+    res.status(500).json({
+      error: err,
+    });
   }
-  res.status(200).json({ events });
 };
 
 module.exports = {
