@@ -345,7 +345,7 @@ function ManageEvent() {
               <CardHeader className="bg-transparent border-0">
                 <div className="d-flex justify-content-between">
                   <div>
-                    <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                    <Form className="navbar-search navbar-search-dark form-inline mr-3 ml-lg-auto">
                       <FormGroup className="mb-0">
                         <InputGroup className="input-group-alternative">
                           <InputGroupAddon addonType="prepend">
@@ -386,7 +386,7 @@ function ManageEvent() {
                 customStyles={{
                   headRow: {
                     style: {
-                      backgroundColor: "#F07E2B",
+                      backgroundColor: "#FF6B1D",
                       color: "white",
                       fontWeight: "bold",
                     },
