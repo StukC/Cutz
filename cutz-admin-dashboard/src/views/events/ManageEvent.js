@@ -43,7 +43,6 @@ import { MyBottomTabs } from "components/MyBottomTabs";
 function ManageEvent() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-
   const [eventData, setEventData] = useState([]);
   const [eventList, setEventList] = useState([]);
   const [eventId, setEventId] = useState("");
@@ -57,6 +56,7 @@ function ManageEvent() {
   const organization = localStorage.getItem("organization");
   const isSuperAdmin = localStorage.getItem("isSuperAdmin");
 
+  // Define columns in the Manage Events table
   const columns = [
     {
       name: "ID",
@@ -123,27 +123,31 @@ function ManageEvent() {
       sortable: true,
       selector: (row) => <MyActionBtn e={row} />,
     },
-    {
-      name: "Report",
-      sortable: true,
-      selector: (row) => (
-        <div className="d-flex">
-          <div onClick={() => addEventRecord(row)}>
-            <img
-              width={30}
-              src={require("../../assets/img/imges/Group (2).png")}
-              alt=""
-              style={{ color: "black" }}
-            />
-          </div>
-        </div>
-      ),
-    },
+    // Comment out for report column in Manage Clients
+    // No functionality to support reporting admins
+    // {
+    //   name: "Report",
+    //   sortable: true,
+    //   selector: (row) => (
+    //     <div className="d-flex">
+    //       <div onClick={() => addEventRecord(row)}>
+    //         <img
+    //           width={30}
+    //           src={require("../../assets/img/imges/Group (2).png")}
+    //           alt=""
+    //           style={{ color: "black" }}
+    //         />
+    //       </div>
+    //     </div>
+    //   ),
+    // },
   ];
 
+  // Function component for rendering delete action button
   const MyActionBtn = ({ e }) => (
     <div className="">
       <div>
+        {/* Popup component for confirmation dialog */}
         <Popup
           className="popup"
           trigger={
@@ -157,6 +161,7 @@ function ManageEvent() {
             </button>
           }
           modal
+          // Close the popup when clicking outside
           closeOnDocumentClick
           contentStyle={{
             maxWidth: "300px",
@@ -167,12 +172,12 @@ function ManageEvent() {
             background: "rgba(0, 0, 0, 0.7)",
           }}
         >
+          // Content of the confirmation dialog
           {(close) => (
             <div>
               <h2 className="text-center d-flex justfy-content-center align-item-center readyreadeem">
                 Are you sure you want to delete this item
               </h2>
-              {/* <p>Are you sure you want to proceed?</p> */}
               <div
                 style={{
                   display: "flex",
@@ -193,8 +198,10 @@ function ManageEvent() {
                   type="submit"
                   onClick={() => {
                     close();
+                    // Call the delEvent function to delete the event
                     delEvent(eventId)
                       .then(() => {
+                        // Reload the page after deletion
                         window.location.reload();
                       })
                       .catch((e) => {
@@ -213,6 +220,7 @@ function ManageEvent() {
   );
 
   useEffect(() => {
+    // Redirect to login page if token is not available
     if (!token) {
       navigate("/");
     }
@@ -220,10 +228,12 @@ function ManageEvent() {
     getEvent()
       .then((events) => {
         getOrganizations()
+          // Fetch organization data
           .then((orgs) => {
             axios
               .get(`${Urls.BaseUrl}${Urls.TIMING}`)
               .then((groups) => {
+                // Set state variables with fetched data
                 setEvents(events.data);
                 setOrgs(orgs.data);
                 setGroups(groups.data);
@@ -244,16 +254,19 @@ function ManageEvent() {
       });
   }, []);
 
+  // Merge organization data with event data
   const mergeOrgData = () => {
     let data = [];
     events.map((event) => {
+      // Find corresponding organization and group data for each event
       let org = orgs.find((o) => o._id === event.orgId);
       let group = groups.find((g) => g.eventId?._id === event._id);
+      // Push the merged data into the 'data' array
       data.push({ ...event, org, group });
     });
 
+    // Filter data based on user's role (super admin or not)
     let filterData;
-
     if (isSuperAdmin === "0") {
       filterData = data.filter(
         (item) => item.orgId.organizationName === organization
@@ -264,6 +277,7 @@ function ManageEvent() {
     setEventData(filterData);
   };
 
+  // Effect hook to call mergeOrgData function when 'orgs' state variable changes
   useEffect(() => {
     mergeOrgData();
   }, [orgs]);
@@ -273,6 +287,7 @@ function ManageEvent() {
     navigate("/admin/createvent");
   };
 
+  // Function to add an event record
   const addEventRecord = async (row) => {
     console.log("row data", row);
     let data = {
@@ -297,6 +312,7 @@ function ManageEvent() {
       groupSize: Math.floor(row.eventCapacity / 8),
     };
 
+    // Send a POST request to create the event record
     await axios
       .post(Urls.BaseUrl + "api/v1/eventRecord", data)
       .then((result) => {
@@ -330,7 +346,7 @@ function ManageEvent() {
               <CardHeader className="bg-transparent border-0">
                 <div className="d-flex justify-content-between">
                   <div>
-                    <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                    <Form className="navbar-search navbar-search-dark form-inline mr-3 ml-lg-auto">
                       <FormGroup className="mb-0">
                         <InputGroup className="input-group-alternative">
                           <InputGroupAddon addonType="prepend">
@@ -371,7 +387,7 @@ function ManageEvent() {
                 customStyles={{
                   headRow: {
                     style: {
-                      backgroundColor: "#F07E2B",
+                      backgroundColor: "#FF6B1D",
                       color: "white",
                       fontWeight: "bold",
                     },

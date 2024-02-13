@@ -345,17 +345,13 @@ function ManageClients() {
                     </FormGroup>
                   </Form>
                   </div>
-                  {/* <div>
-                    <button className="mainbuttons">Add Admin</button>
-
-                  </div> */}
                 </div>
               </CardHeader>
               <DataTable
                 customStyles={{
                   headRow: {
                     style: {
-                      backgroundColor: "#F07E2B",
+                      backgroundColor: "#FF6B1D",
                       color: "white",
                       fontWeight: "bold",
                     },

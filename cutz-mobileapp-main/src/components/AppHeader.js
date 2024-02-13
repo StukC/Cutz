@@ -38,6 +38,7 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
                   }}
                 />
               </TouchableOpacity>
+              <Spacer width={0} />
             </>
           ) : (
             <></>
