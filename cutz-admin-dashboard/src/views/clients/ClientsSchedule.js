@@ -260,7 +260,7 @@ function ClientsSchedule() {
                 customStyles={{
                   headRow: {
                     style: {
-                      backgroundColor: "#F07E2B",
+                      backgroundColor: "#FF6B1D",
                       color: "white",
                       fontWeight: "bold",
                     },
