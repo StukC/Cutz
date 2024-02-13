@@ -5687,7 +5687,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 1.25rem 1.5rem;
-  background-color: #f07e2b;
+  background-color: #FF6B1D;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -20011,7 +20011,7 @@ textarea[resize="horizontal"] {
 
 .navbar-vertical .navbar-nav .nav-link.active {
   position: relative;
-  background-color: #f07e2b;
+  background-color: #FF6B1D;
   color: #fff !important;
 }
 

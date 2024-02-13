@@ -197,7 +197,7 @@ function ManageClients() {
               type="submit"
               position="center"
               onMouseOver={() => setClientId(c._id)}
-              style={{backgroundColor:c.activeStatus? '':"#F07E2B"}}
+              style={{backgroundColor:c.activeStatus? '':"#FF6B1D"}}
             >
              {c.activeStatus?  "Ban":"unBan"}
             </button>

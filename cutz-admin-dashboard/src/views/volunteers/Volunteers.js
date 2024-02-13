@@ -212,7 +212,7 @@ function Volunteers() {
               type="submit"
               position="center"
               onMouseOver={() => setVolunteerId(v._id)}
-              style={{backgroundColor:v.activeStatus? '':"#F07E2B"}}
+              style={{backgroundColor:v.activeStatus? '':"#FF6B1D"}}
               >
                {v.activeStatus?  "Ban":"unBan"}
             </button>
