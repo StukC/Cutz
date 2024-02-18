@@ -97,6 +97,7 @@ const ProfileScreen = ({ navigation, route }) => {
           return (
             <>
               <ProfileBody
+                key={item.id}
                 name={item.name}
                 img={item.img}
                 onPress={item.onPress}
