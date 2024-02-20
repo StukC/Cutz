@@ -1,3 +1,4 @@
+// Import necessary modules and components from React and React Native
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -7,6 +8,8 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
+
+// Import additional components and utilities
 import { Image } from "react-native-elements";
 import { scale, verticalScale } from "react-native-size-matters";
 import Carousel, { Pagination } from "react-native-snap-carousel";
@@ -23,17 +26,20 @@ import { useSelector } from "react-redux";
 
 
 const { width } = Dimensions.get("window");
+
+// Define TicketCarousel component
 const TicketCarousel = ({
   handleCancelPress,
-  handleProceedPress,
+  handleViewDetailsPress,
   tickets,
   state,
   setState,
 }) => {
+  // Define state variables
   const [activeSlide, setActiveSlide] = useState(0);
   const AuthUser = useSelector((state) => state.authReducers.authState);
 
-
+  // Helper function to render each ticket card
   const renderItem = ({ item, index }) => (
     <View style={styles.cardStyle} key={index}>
       <Image
@@ -44,6 +50,7 @@ const TicketCarousel = ({
 
       <Spacer height={10} />
 
+      {/* Organization Name */}
       <View
         style={{
           paddingHorizontal: scale(50),
@@ -62,20 +69,20 @@ const TicketCarousel = ({
       </View>
       
       <Spacer height={20} />
-      
+
+      {/* Date and Time */}
       <View>
         <View style={{ flexDirection: "row" }}>
+          {/* Calendar Icon */}
           <Spacer width={15} />
-
           <Image
             source={icons.calender}
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
           />
-
           <Spacer width={10} />
-
           <View>
+            {/* Event Date */}
             <CustomText
               label={
 
@@ -91,6 +98,7 @@ const TicketCarousel = ({
               fontSize={14}
             />
             
+            {/* Event Group Hour */}
             {AuthUser.clientStatus ? (
               <CustomText
                 label={item.eventGroupID?.groupHour}
@@ -116,6 +124,7 @@ const TicketCarousel = ({
 
         <Spacer height={25} />
 
+        {/* Event Location */}
         <View style={{ flexDirection: "row" }}>
           <Spacer width={10} />
 
@@ -149,8 +158,10 @@ const TicketCarousel = ({
           </View>
         </View>
       </View>
+      
       <Spacer height={15} />
-
+      
+      {/* Event Type */}
       <View style={{ flexDirection: "row" }}>
         <Spacer width={10} />
 
@@ -174,7 +185,8 @@ const TicketCarousel = ({
           />
         </View>
       </View>
-
+      
+      {/* Footer Image */}
       <Image
         source={images.cardBottom}
         containerStyle={{
@@ -189,6 +201,7 @@ const TicketCarousel = ({
     </View>
   );
 
+  // Text above card
   const InfoText = () => (
     <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20 }}>
       <CustomText
@@ -196,27 +209,35 @@ const TicketCarousel = ({
         color={colors.secondary}
         fontFamily={"semiBold"}
         textAlign="center"
+        fontSize={10}
       />
     </View>
   );
 
+  // Text below card
   const InfoText2 = () => (
     <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20}}>
       <CustomText
         label={"Ensure that you follow proper event procedure. \n View event details and protocol via the \"View Details\" button."}
         color={colors.secondary}
         fontFamily={"semiBold"}
-        fontSize={9}
-        textAlign="center" // Set text alignment to center
+        fontSize={10}
+        textAlign="center"
       />
     </View>
   );
 
+
   return (
+    // Main container view
     <View style={styles.container}>
       <Spacer height={20} />
+
       <InfoText />
+
       <Spacer height={20} />
+      
+      {/* Card */}
       {tickets.length ? (
         <Carousel
           data={tickets}
@@ -232,14 +253,17 @@ const TicketCarousel = ({
           }} // update the active slide index
         />
       ) : (
+        // Display message if no tickets are available
         <View style={{ alignSelf: "center" }}>
-          <Text style={{ fontSize: 22, color: "#000" }}>Not Found</Text>
+          <Text style={{ fontSize: 22, color: "#000" }}>No Reservations Yet</Text>
         </View>
       )}
 
-      <View style={{ alignSelf: "center" ,width:90}}>
-        <Spacer height={15} />
+      {/* Scrolling dots */}
+      <View style={{ alignSelf: "center", width: 60}}>
+        <Spacer height={5} />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {/* Display pagination dots */}
           {tickets.map((item, index) => (
             <View
               style={{
@@ -256,46 +280,48 @@ const TicketCarousel = ({
       <InfoText2 />
 
       <Spacer height={20} />
-
+      
+      {/* Button row */}
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
-      <CustomButton
-        title={"View Details"}
-        fontFamily="bold"
-        btnStyle={{
-          shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
-          shadowRadius: 2,
-          elevation: 5,
-          shadowOpacity: 0.4,
-          shadowOffset: { width: -1, height: 3 },
-        }}
-        width={"40%"}
-        borderRadius={15}
-        onPress={() => {
-          handleProceedPress(tickets[activeSlide]);
-        }}
-      />
+        {/* View Details button */}
+        <CustomButton
+          title={"View Details"}
+          fontFamily="bold"
+          btnStyle={{
+            shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
+            shadowRadius: 2,
+            elevation: 5,
+            shadowOpacity: 0.4,
+            shadowOffset: { width: -1, height: 3 },
+          }}
+          width={"40%"}
+          borderRadius={15}
+          onPress={() => {
+            handleViewDetailsPress(tickets[activeSlide]);
+          }}
+        />
 
-      <Spacer width={20} />
+        <Spacer width={20} />
 
-      <CustomButton
-        title={"Cancel"}
-        fontFamily="bold"
-        btnStyle={{
-          shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
-          shadowRadius: 2,
-          elevation: 5,
-          shadowOpacity: 0.4,
-          inputMarginTop:-20,
-          shadowOffset: { width: -1, height: 3 },
-        }}
-        width={"37%"}
-        backgroundColor={colors.gray2}
-        color={colors.secondary}
-        borderRadius={15}
-        onPress={handleCancelPress}
-      />
-    </View>
-
+        {/* Cancel button */}
+        <CustomButton
+          title={"Cancel"}
+          fontFamily="bold"
+          btnStyle={{
+            shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
+            shadowRadius: 2,
+            elevation: 5,
+            shadowOpacity: 0.4,
+            inputMarginTop:-20,
+            shadowOffset: { width: -1, height: 3 },
+          }}
+          width={"40%"}
+          backgroundColor={colors.gray2}
+          color={colors.secondary}
+          borderRadius={15}
+          onPress={() => handleCancelPress(activeSlide)}
+        />
+      </View>
     </View>
   );
 };
@@ -306,10 +332,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   pagination: {
-    // position: "absolute",
-    // bottom: 0,
+    position: "absolute",
+    bottom: 0,
     paddingVertical: 10,
     width: width / 8,
     overflow: "hidden",
@@ -318,7 +343,6 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    // backgroundColor: colors.black,
     marginHorizontal: 10,
   },
   inactiveDot: {
@@ -329,7 +353,6 @@ const styles = StyleSheet.create({
   },
   cardStyle: {
     width: width / 1.3,
-    // height: "65%",
     alignSelf: "center",
     borderRadius: 10,
     backgroundColor: colors.white,
@@ -340,7 +363,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 5,
-
     elevation: 9,
   },
 });
