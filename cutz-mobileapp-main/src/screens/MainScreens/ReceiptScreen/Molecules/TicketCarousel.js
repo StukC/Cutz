@@ -41,7 +41,9 @@ const TicketCarousel = ({
         containerStyle={{ width: "100%", height: 40 }}
         resizeMode={"stretch"}
       />
+
       <Spacer height={10} />
+
       <View
         style={{
           paddingHorizontal: scale(50),
@@ -58,16 +60,21 @@ const TicketCarousel = ({
           fontSize={14}
         />
       </View>
+      
       <Spacer height={20} />
+      
       <View>
         <View style={{ flexDirection: "row" }}>
           <Spacer width={15} />
+
           <Image
             source={icons.calender}
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
           />
+
           <Spacer width={10} />
+
           <View>
             <CustomText
               label={
@@ -83,6 +90,7 @@ const TicketCarousel = ({
               color={colors.secondary}
               fontSize={14}
             />
+            
             {AuthUser.clientStatus ? (
               <CustomText
                 label={item.eventGroupID?.groupHour}
@@ -105,15 +113,20 @@ const TicketCarousel = ({
             )}
           </View>
         </View>
+
         <Spacer height={25} />
+
         <View style={{ flexDirection: "row" }}>
           <Spacer width={10} />
+
           <Image
             source={icons.marker}
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
           />
+
           <Spacer width={15} />
+          
           <View>
             <CustomText
               label={item.eventID.addresses[0].place}
@@ -140,6 +153,7 @@ const TicketCarousel = ({
 
       <View style={{ flexDirection: "row" }}>
         <Spacer width={10} />
+
         <Image
           source={icons.ticket1}
           resizeMode={"contain"}
@@ -148,7 +162,9 @@ const TicketCarousel = ({
           }}
           containerStyle={{ height: scale(30), width: scale(30) }}
         />
+
         <Spacer width={15} />
+        
         <View>
           <CustomText
             label={item.eventID.eventType}
@@ -174,67 +190,24 @@ const TicketCarousel = ({
   );
 
   const InfoText = () => (
-    <View style={{ alignSelf: "center", alignItems: "center" }}>
+    <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20 }}>
       <CustomText
-        label={"REVIEW RESERVATION THEN"}
+        label={"Swipe between tickets to view your reservations. \n Ready to check in? Press the ticket icon in the top right."}
         color={colors.secondary}
         fontFamily={"semiBold"}
-        
-      />
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <CustomText
-          label={"PROCEED OR CANCEL"}
-          color={colors.secondary}
-          fontFamily={"semiBold"}
-          
-        />
-      </View>
-
-      <Spacer height={15} />
-      <CustomText
-        label={"DO NOT enter the property,"}
-        color={colors.secondary}
-        fontFamily={"semiBold"}
-        
-      />
-      <CustomText
-        label={"until the time of your reservation."}
-        color={colors.secondary}
-        fontFamily={"semiBold"}
-        
+        textAlign="center"
       />
     </View>
   );
 
-  const InfoTextt = () => (
-    <View style={{ alignSelf: "center", alignItems: "center" }}>
+  const InfoText2 = () => (
+    <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20}}>
       <CustomText
-        label={"IF YOU HAVE RESERVED YOUR PLACE IN LINE FOR MULTPLE EVENTS,"}
+        label={"Ensure that you follow proper event procedure. \n View event details and protocol via the \"View Details\" button."}
         color={colors.secondary}
         fontFamily={"semiBold"}
         fontSize={9}
-      />
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <CustomText
-          label={"SLIDE (LEFT/RIGHT) TO VIEW EACH RESERVATION, THEN CLICK THE TICKET"}
-          color={colors.secondary}
-          fontFamily={"semiBold"}
-          fontSize={9}
-        />
-      </View>
-
-      <Spacer height={15} />
-      <CustomText
-        label={"ICON AT THE TOP OF YOUR SCREEN PRIOR TO YOUR RESERVATION TIME"}
-        color={colors.secondary}
-        fontFamily={"semiBold"}
-        fontSize={9}
-      />
-      <CustomText
-        label={"HOLD YOUR SCREEN UP FOR THEM TO ENTER EVENT CODE PRIOR TO ENTERING EVENT"}
-        color={colors.secondary}
-        fontFamily={"semiBold"}
-        fontSize={8}
+        textAlign="center" // Set text alignment to center
       />
     </View>
   );
@@ -251,7 +224,7 @@ const TicketCarousel = ({
           sliderWidth={width}
           itemWidth={width / 1.3}
           layout="default"
-          inactiveSlideScale={0.8} // set inactive slide scale to make items smaller
+          inactiveSlideScale={0.85} // set inactive slide scale to make items smaller
           onSnapToItem={(index) => {
             setActiveSlide(index);
             setState({ ...state, currentTicket: tickets[index] });
@@ -264,7 +237,7 @@ const TicketCarousel = ({
         </View>
       )}
 
-      <View style={{ alignSelf: "center" ,width:100}}>
+      <View style={{ alignSelf: "center" ,width:90}}>
         <Spacer height={15} />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {tickets.map((item, index) => (
@@ -277,68 +250,61 @@ const TicketCarousel = ({
           ))}
         </ScrollView>
       </View>
+
       <Spacer height={20} />
-      <InfoTextt />
+
+      <InfoText2 />
+
       <Spacer height={20} />
-      {/* <View style={{ alignItems: "center" }}>
-        <Spacer height={10} />
-        <Pagination
-          dotsLength={tickets.length}
-          activeDotIndex={activeSlide}
-          containerStyle={styles.pagination}
-          dotStyle={styles.dot}
-          inactiveDotStyle={styles.inactiveDot}
-          inactiveDotOpacity={1}
-          inactiveDotScale={1}
-        />
-      </View> */}
-      <Spacer height={40} />
-      {/*<View style={{ flexDirection: "row", justifyContent: "center" }}>*/}
-      {/*  <CustomButton*/}
-      {/*    title={"PROCEED"}*/}
-      {/*    fontFamily="bold"*/}
-      {/*    btnStyle={{*/}
-      {/*      shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,*/}
-      {/*      shadowRadius: 2,*/}
-      {/*      elevation: 5,*/}
-      {/*      shadowOpacity: 0.4,*/}
-      {/*      // inputMarginTop:-20,*/}
-      {/*      shadowOffset: { width: -1, height: 3 },*/}
-      {/*    }}*/}
-      {/*    width={"37%"}*/}
-      {/*    borderRadius={15}*/}
-      {/*    onPress={() => {*/}
-      {/*      handleProceedPress(tickets[activeSlide]);*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*  <Spacer width={20} />*/}
-      {/*  <CustomButton*/}
-      {/*    title={"Cancel"}*/}
-      {/*    fontFamily="bold"*/}
-      {/*    btnStyle={{*/}
-      {/*      shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,*/}
-      {/*      shadowRadius: 2,*/}
-      {/*      elevation: 5,*/}
-      {/*      shadowOpacity: 0.4,*/}
-      {/*      // inputMarginTop:-20,*/}
-      {/*      shadowOffset: { width: -1, height: 3 },*/}
-      {/*    }}*/}
-      {/*    width={"37%"}*/}
-      {/*    backgroundColor={colors.gray2}*/}
-      {/*    color={colors.secondary}*/}
-      {/*    borderRadius={15}*/}
-      {/*    onPress={handleCancelPress}*/}
-      {/*  />*/}
-      {/*</View>*/}
+
+      <View style={{ flexDirection: "row", justifyContent: "center" }}>
+      <CustomButton
+        title={"View Details"}
+        fontFamily="bold"
+        btnStyle={{
+          shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
+          shadowRadius: 2,
+          elevation: 5,
+          shadowOpacity: 0.4,
+          shadowOffset: { width: -1, height: 3 },
+        }}
+        width={"40%"}
+        borderRadius={15}
+        onPress={() => {
+          handleProceedPress(tickets[activeSlide]);
+        }}
+      />
+
+      <Spacer width={20} />
+
+      <CustomButton
+        title={"Cancel"}
+        fontFamily="bold"
+        btnStyle={{
+          shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
+          shadowRadius: 2,
+          elevation: 5,
+          shadowOpacity: 0.4,
+          inputMarginTop:-20,
+          shadowOffset: { width: -1, height: 3 },
+        }}
+        width={"37%"}
+        backgroundColor={colors.gray2}
+        color={colors.secondary}
+        borderRadius={15}
+        onPress={handleCancelPress}
+      />
+    </View>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   pagination: {
@@ -349,11 +315,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   dot: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     borderRadius: 5,
     // backgroundColor: colors.black,
-    marginHorizontal: 8,
+    marginHorizontal: 10,
   },
   inactiveDot: {
     width: 8,
