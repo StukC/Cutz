@@ -120,7 +120,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
         </View>
 
         <Spacer height={30}/>
-        <CompaniesCarousel
+        <MyCarousel
             data={state.companyData}
             setSelectedOrganizationId={setSelectedOrganizationId}
             selectedOrganizationIndex={selectedOrganizationId}

@@ -59,7 +59,7 @@ const MyCarousel = ({
         return (<View style={[styles.item, isFocused && styles.focusedItem]}>
             <Text
                 style={[styles.itemText, {
-                    color: isFocused ? colors.blue1 : colors.black, fontSize: scale(20),
+                    color: isFocused ? colors.white : colors.black, fontSize: scale(20),
                 },]}
             >
                 {item.title}
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         // paddingVertical:10,
         fontFamily: "bold",
     }, focusedItem: {
-        backgroundColor: "#F8E1C8",
+        backgroundColor: "#FF6B1D",
 
         shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
         shadowRadius: 2,
