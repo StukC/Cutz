@@ -69,7 +69,7 @@ const Client = new mongoose.Schema({
   },
   clientAttendance: {
     type: String,
-    required: [true, "ClientAttendance is required"],
+    required: false,
   },
   clientExists: {
     type: Boolean,

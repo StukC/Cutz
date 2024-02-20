@@ -1,10 +1,9 @@
 import axios from "axios";
 import Toast from "react-native-root-toast";
-import { client } from "./client";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { URLS } from "./Urls";
 import { LoginActions } from "../redux/actions";
-import { GetClientEvent, GetVolunteerEvent } from "./EventClientsApi";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -27,7 +26,10 @@ export const UserLogin = async (
     method: "POST",
     url: userURL,
     headers: { Accept: "application/json" },
-    data: data,
+    data: {
+      ...data,
+      email: data.email.toLowerCase(),
+    },
   };
 
   setLoading(true);
@@ -75,6 +77,7 @@ export const UserLogin = async (
 
 
 // User signup for clients and volunteers
+// Email check is case-insensitive
 export const UserSignup = async (
   data,
   setLoading,
@@ -91,7 +94,10 @@ export const UserSignup = async (
     method: "POST",
     url: userURL,
     headers: { Accept: "application/json" },
-    data: data,
+    data: {
+      ...data,
+      email: data.email.toLowerCase(),
+    },
   };
 
   setLoading(true);

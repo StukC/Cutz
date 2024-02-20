@@ -237,6 +237,7 @@ const VolunteerBody = (props) => {
             <>
               <Spacer height={10} />
               <CustomTextInput
+                key={item.id}
                 placeholder={item.placeholder}
                 paddingLeft={20}
                 error={item.error}

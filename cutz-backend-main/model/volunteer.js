@@ -77,7 +77,7 @@ const Volunteer = new mongoose.Schema({
   },
   volunteerAttendance: {
     type: String,
-    required: [true, "VolunteerAttendance is required"],
+    required: false,
   },
   volunteerExists: {
     type: Boolean,
