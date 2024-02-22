@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         // paddingVertical:10,
         fontFamily: "bold",
     }, focusedItem: {
-        backgroundColor: "#FF6B1D",
+        backgroundColor: "#efbc84",
 
         shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
         shadowRadius: 2,
