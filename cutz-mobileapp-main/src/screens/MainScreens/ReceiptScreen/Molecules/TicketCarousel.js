@@ -42,13 +42,9 @@ const TicketCarousel = ({
   // Helper function to render each ticket card
   const renderItem = ({ item, index }) => (
     <View style={styles.cardStyle} key={index}>
-      <Image
-        source={images.cardHeader}
-        containerStyle={{ width: "100%", height: 40 }}
-        resizeMode={"stretch"}
-      />
-
-      <Spacer height={10} />
+      
+      
+      <Spacer height={30} />
 
       {/* Organization Name */}
       <View
@@ -181,22 +177,12 @@ const TicketCarousel = ({
             label={item.eventID.eventType}
             fontFamily={"bold"}
             color={colors.secondary}
-            fontSize={16}
+            fontSize={14}
           />
         </View>
       </View>
       
-      {/* Footer Image */}
-      <Image
-        source={images.cardBottom}
-        containerStyle={{
-          width: "100%",
-          height: 40,
-          position: "absolute",
-          bottom: 0,
-        }}
-        resizeMode={"stretch"}
-      />
+      
       <Spacer height={40} />
     </View>
   );
@@ -296,6 +282,7 @@ const TicketCarousel = ({
           }}
           width={"40%"}
           borderRadius={15}
+          fontSize={14} 
           onPress={() => {
             handleViewDetailsPress(tickets[activeSlide]);
           }}
@@ -319,6 +306,7 @@ const TicketCarousel = ({
           backgroundColor={colors.gray2}
           color={colors.secondary}
           borderRadius={15}
+          fontSize={14} 
           onPress={() => handleCancelPress(activeSlide)}
         />
       </View>

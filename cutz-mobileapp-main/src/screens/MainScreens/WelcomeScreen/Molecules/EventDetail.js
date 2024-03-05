@@ -98,28 +98,40 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
     return (<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
         <Spacer height={20}/>
         <View style={{alignItems: "center"}}>
-            {userType == 'Client' ? (<CustomText
-                label={"WELCOME"}
-                color={colors.primary}
-                fontSize={18}
-                fontFamily={"semiBold"}
-            />) : (<>
-                <CustomText
-                    label={"WELCOME VOLUNTEER"}
-                    color={colors.primary}
-                    fontSize={18}
-                    fontFamily={"semiBold"}
-                />
-                <CustomText
-                    label={"CHOOSE AN ORGANIZATION & DATE"}
-                    color={colors.primary}
-                    fontSize={14}
-                    fontFamily={"semiBold"}
-                />
-            </>)}
+            {userType === 'Client' ? (
+                <>
+                    <CustomText
+                        label={"WELCOME"}
+                        color={colors.primary}
+                        fontSize={20}
+                        fontFamily={"semiBold"}
+                    />
+                    
+                </>
+            ) : (
+                <>
+                    <CustomText
+                        label={"WELCOME VOLUNTEER"}
+                        color={colors.primary}
+                        fontSize={18}
+                        fontFamily={"semiBold"}
+                    />
+                   
+                </>
+            )}
         </View>
 
-        <Spacer height={30}/>
+
+        <Spacer height={20}/>
+        <View style={{alignItems: "center"}}>
+            <CustomText
+                label={"CHOOSE AN ORGANIZATION"}            
+                color={colors.blue1}
+                fontSize={11}
+                fontFamily={"semiBold"}
+            />
+        </View>
+        <Spacer height={10}/>
         <MyCarousel
             data={state.companyData}
             setSelectedOrganizationId={setSelectedOrganizationId}

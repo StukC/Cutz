@@ -183,15 +183,15 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
 
                 <Spacer height={80}/>
                 <View style={styles.card}>
-                    <View style={styles.whiteCircle}/>
-                    <View style={{alignItems: "center", marginTop: -10}}>
+                    <View style={{alignItems: "center", marginTop: 40}}>
                         <CustomButton
-                            title={state.checkIN ? "Be Sure To Check Out Before You Leave" : "This The Time You Can Get in the Line!"}
+                            title={state.checkIN ? "Be Sure To Check Out Before You Leave" : "Event Time"}
                             width={"95%"}
-                            height={40}
+                            height={45}
                             activeOpacity={1}
-                            fontSize={14}
+                            fontSize={25}
                             fontFamily={"bold"}
+                            borderRadius={9}
                         />
                         <Spacer height={10}/>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -199,13 +199,13 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                                 label={"EVENT ID: "}
                                 color={colors.white}
                                 fontFamily={"bold"}
-                                fontSize={15}
+                                fontSize={23}
                             />
                             <CustomText
                                 label={state?.eventID?.event_id}
                                 color={colors.white}
                                 fontFamily={"bold"}
-                                fontSize={15}
+                                fontSize={23}
                             />
                         </View>
                         <Spacer height={5}/>
@@ -220,14 +220,14 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                         <View style={{marginVertical: -30}}>
                             <View
                                 style={{
-                                    position: "absolute", top: verticalScale(72), left: verticalScale(-65),
+                                    position: "absolute", top: verticalScale(72), left: verticalScale(-75),
                                 }}
                             >
                                 <CustomText
                                     label={"GROUP"}
                                     color={colors.white}
                                     fontFamily={"bold"}
-                                    fontSize={12}
+                                    fontSize={20}
                                 />
                             </View>
                             <CustomText
@@ -237,11 +237,12 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                                 fontSize={120}
                             />
                         </View>
+                        <Spacer height={20}/>
                         <CustomText
                             label={(state.eventGroupID?.groupCapacity || "20") + " People"}
                             color={colors.white}
                             fontFamily={"bold"}
-                            fontSize={27}
+                            fontSize={40}
                         />
                     </View>
                     <Spacer height={20}/>
