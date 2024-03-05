@@ -199,13 +199,13 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                                 label={"EVENT ID: "}
                                 color={colors.white}
                                 fontFamily={"bold"}
-                                fontSize={23}
+                                fontSize={25}
                             />
                             <CustomText
                                 label={state?.eventID?.event_id}
                                 color={colors.white}
                                 fontFamily={"bold"}
-                                fontSize={23}
+                                fontSize={25}
                             />
                         </View>
                         <Spacer height={5}/>
