@@ -46,9 +46,9 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                 <View style={styles.voucherHeader}>
                     <CustomText
                         label={"Check In"}
-                        color={colors.white}
+                        color={colors.black}
                         fontFamily={"semiBold"}
-                        fontSize={16}
+                        fontSize={20}
                     />
                     <TouchableOpacity
                         onPress={modelClose}
@@ -60,7 +60,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                                 height: verticalScale(12), width: verticalScale(12),
                             }}
                         />
-                    </TouchableOpacity>
+                    </TouchableOpacity>                            
                 </View>
 
                 <View style={{alignItems: "center"}}>
