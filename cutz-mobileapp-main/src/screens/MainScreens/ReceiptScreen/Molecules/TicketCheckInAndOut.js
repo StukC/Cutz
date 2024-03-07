@@ -48,7 +48,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                         label={"Check In"}
                         color={colors.black}
                         fontFamily={"semiBold"}
-                        fontSize={20}
+                        fontSize={40}
                     />
                     <TouchableOpacity
                         onPress={modelClose}
@@ -66,7 +66,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                 <View style={{alignItems: "center"}}>
                     <Spacer height={20}/>
                     <CustomText
-                        label={"Admin — Enter Code"}
+                        label={" Enter Code"}
                         color={colors.secondary}
                         fontFamily={"regular"}
                         fontSize={16}
@@ -147,7 +147,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                 <CustomText
                     label={`Thank you for attending this event. Gratitude and smiles!`}
                     color={colors.secondary}
-                    fontFamily={"regular"}
+                    fontFamily={"Arial"}
                     fontSize={16}
                     textAlign={"center"}
                 />
@@ -155,7 +155,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                 <CustomText
                     label={`:)`}
                     color={colors.secondary}
-                    fontFamily={"regular"}
+                    fontFamily={"Arial"}
                     fontSize={50}
                 />
                 <Spacer height={20}/>
@@ -180,31 +180,44 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                 >
                     <ModalContent/>
                 </Modal>
-
-                <Spacer height={80}/>
-                <View style={styles.card}>
-                    <View style={{alignItems: "center", marginTop: 40}}>
-                        <CustomButton
-                            title={state.checkIN ? "Be Sure To Check Out Before You Leave" : "Event Time"}
-                            width={"95%"}
+                <View style={{alignItems: "center", marginTop: 0}}>      
+   <CustomButton
+                            title={state.checkIN ? " " : " ITS TIME TO GET IN LINE"}
+                            width={"90%"}
                             height={45}
                             activeOpacity={1}
                             fontSize={25}
-                            fontFamily={"bold"}
-                            borderRadius={9}
+                            fontFamily={"Arial"}
+                            borderRadius={1}
                         />
-                        <Spacer height={10}/>
+                <CustomText
+                                label={"Be Sure To Check Out "}
+                                color={colors.darkOrange}
+                                fontFamily={"Arial"}
+                                fontSize={18 }
+                            /> 
+                            <Spacer height={2}/><CustomText
+                                label={" Before You Leave "}
+                                color={colors.darkOrange}
+                                fontFamily={"Arial"}
+                                fontSize={18 }
+                            /> 
+                            <Spacer height={20}/>
+                            </View> 
+   <View style={styles.card}>
+                     <View style={{alignItems: "center", marginTop: 40}}>                      
+                     <Spacer height={10}/>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
                             <CustomText
                                 label={"EVENT ID: "}
                                 color={colors.white}
-                                fontFamily={"bold"}
+                                fontFamily={"Arial"}
                                 fontSize={25}
                             />
                             <CustomText
                                 label={state?.eventID?.event_id}
                                 color={colors.white}
-                                fontFamily={"bold"}
+                                fontFamily={"Arial"}
                                 fontSize={25}
                             />
                         </View>
@@ -213,10 +226,10 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                             label={moment(state?.time?.eventStartTime).utc().format("MM/DD/YY") + " @ " + state.eventGroupID?.groupHour}
                             // label={"2/12/23 @ 2PM"}
                             color={colors.white}
-                            fontFamily={"bold"}
+                            fontFamily={"Arial"}
                             fontSize={23}
                         />
-                        <Spacer height={5}/>
+                        <Spacer height={30}/>
                         <View style={{marginVertical: -30}}>
                             <View
                                 style={{
@@ -226,28 +239,28 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                                 <CustomText
                                     label={"GROUP"}
                                     color={colors.white}
-                                    fontFamily={"bold"}
+                                    fontFamily={"Arial"}
                                     fontSize={20}
                                 />
                             </View>
-                            <CustomText
+                            <Spacer height={10}/><CustomText
                                 label={state?.eventGroupID?.groupLetter?.toUpperCase() || "A"}
                                 color={colors.white}
-                                fontFamily={"Righteous"}
-                                fontSize={120}
+                                fontFamily={"Arial"}
+                                fontSize={150}
                             />
                         </View>
-                        <Spacer height={20}/>
+                        <Spacer height={30}/>
                         <CustomText
                             label={(state.eventGroupID?.groupCapacity || "20") + " People"}
                             color={colors.white}
-                            fontFamily={"bold"}
-                            fontSize={40}
+                            fontFamily={"Arial"}
+                            fontSize={30}
                         />
                     </View>
-                    <Spacer height={20}/>
+                    <Spacer height={10}/>
                 </View>
-                <Spacer height={40}/>
+                <Spacer height={30}/>
                 <View style={{alignItems: "center"}}>
                     <CustomButton
                         btnStyle={{
@@ -260,7 +273,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                         title={state?.checkIN ? "Check Out" : "Check In"}
                         width={"50%"}
                         borderRadius={10}
-                        fontFamily={"bold"}
+                        fontFamily={"Arial"}
                         onPress={() => {
                             navigation.navigate("TicketOtp", {
                                 state: state, navigation: navigation,

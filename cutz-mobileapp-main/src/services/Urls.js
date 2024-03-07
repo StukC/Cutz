@@ -3,7 +3,7 @@ export const URLS = {
   //BASE_URL:'https://cutz-production.up.railway.app/',
   //BASE_URL:'https://cutz-final-production.up.railway.app/',
   //BASE_URL:'http://166.87.249.65:3006/',
-  BASE_URL:'http://192.168.0.66:3006/',
+  BASE_URL:'http://192.168.0.157:3006/',
   //BASE_URL:'http://141.215.192.216:3006/',
   CLIENT_SIGNUP:'api/v1/client/signup',
   CLIENT_LOGIN:'api/v1/client/login',
