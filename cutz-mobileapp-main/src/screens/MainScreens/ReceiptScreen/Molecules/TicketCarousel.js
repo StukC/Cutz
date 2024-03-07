@@ -7,6 +7,7 @@ import {
   Dimensions,
   ActivityIndicator,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 
 // Import additional components and utilities
@@ -23,9 +24,13 @@ import moment from "moment";
 import { getOrganizationById } from "../../../../services/Organization";
 import { getTimingBy } from "../../../../services/Timing";
 import { useSelector } from "react-redux";
+import * as Clipboard from 'expo-clipboard';
+
 
 
 const { width } = Dimensions.get("window");
+
+
 
 // Define TicketCarousel component
 const TicketCarousel = ({
@@ -39,6 +44,15 @@ const TicketCarousel = ({
   const [activeSlide, setActiveSlide] = useState(0);
   const AuthUser = useSelector((state) => state.authReducers.authState);
 
+  const copyToClipboard = async (address) => {
+    const addressString = `${address.place}, ${address.house}, ${address.zip}`;
+    await Clipboard.setStringAsync(addressString);
+  };
+
+  
+  
+
+ 
   // Helper function to render each ticket card
   const renderItem = ({ item, index }) => (
     <View style={[styles.cardStyle, { backgroundColor: '#ffffff' }]} key={index}>
@@ -131,14 +145,18 @@ const TicketCarousel = ({
           />
 
           <Spacer width={15} />
+         
           
           <View>
+
+            <Spacer width={15} />
             <CustomText
               label={item.eventID.addresses[0].place}
               fontFamily={"semiBold"}
               color={colors.secondary}
               fontSize={14}
             />
+            
             <CustomText
               label={item.eventID.addresses[0].house}
               fontFamily={"semiBold"}
@@ -151,9 +169,20 @@ const TicketCarousel = ({
               color={colors.perFectDark}
               fontSize={11}
             />
+
+              <TouchableOpacity onPress={() => copyToClipboard(item.eventID.addresses[0])}>
+                <Image
+                  source={icons.marker}
+                  resizeMode={"contain"}
+                  style={{ height: scale(30), width: scale(30) }}
+                />
+              </TouchableOpacity>
+
           </View>
         </View>
       </View>
+
+      
       
       <Spacer height={15} />
       
