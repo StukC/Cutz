@@ -39,13 +39,14 @@ const TicketOtp = ({ route: { params } }) => {
 
   return (
     <ImageBackground source={images.ticketBackground} style={styles.container}>
-      <View style={styles.voucherContainer}>
+       <View style={[styles.voucherContainer, { width: "110%" }]}>
         <View style={styles.voucherBody}>
           <View style={styles.voucherHeader}>
+          
             <CustomText
-              label={state.currentTicket?.checkIN ?"Check Out":"Check In"}
+              label={state.currentTicket?.checkIN ?"Check Out":"Check In Code"}
               color={colors.white}
-              fontFamily={"Arial"}
+              fontFamily={"semiBold"}
               fontSize={16}
             />
             <TouchableOpacity
@@ -67,7 +68,7 @@ const TicketOtp = ({ route: { params } }) => {
             <CustomText
               label={"  Enter Code"}
               color={colors.secondary}
-              fontFamily={"Arial"}
+              fontFamily={"regular"}
               fontSize={16}
             />
             <Spacer height={20} />
@@ -80,7 +81,7 @@ const TicketOtp = ({ route: { params } }) => {
                   placeholderTextColor={colors.perFectDark}
                   keyboardType={"number-pad"}
                   maxLength={1}
-                  style={styles.inputStyle}
+                  style={[styles.inputStyle, { padding: 10 }]} 
                   value={pin1}
                   onChangeText={(v) => {
                     // console.log(v)
@@ -96,7 +97,7 @@ const TicketOtp = ({ route: { params } }) => {
                   placeholderTextColor={colors.perFectDark}
                   keyboardType={"number-pad"}
                   maxLength={1}
-                  style={styles.inputStyle}
+                  style={[styles.inputStyle, { padding: 10 }]} 
                   value={pin2}
                   onChangeText={(v) => {
                     setPin2(v);
@@ -111,7 +112,8 @@ const TicketOtp = ({ route: { params } }) => {
                   placeholderTextColor={colors.perFectDark}
                   keyboardType={"number-pad"}
                   maxLength={1}
-                  style={styles.inputStyle}
+                  style={[styles.inputStyle, { padding: 10 }]} 
+                  
                   value={pin3}
                   onChangeText={(v) => {
                     setPin3(v);
@@ -126,7 +128,7 @@ const TicketOtp = ({ route: { params } }) => {
                   placeholderTextColor={colors.perFectDark}
                   keyboardType={"number-pad"}
                   maxLength={1}
-                  style={styles.inputStyle}
+                  style={[styles.inputStyle, { padding: 10 }]} 
                   value={pin4}
                   onChangeText={(v) => {
                     setPin4(v);
