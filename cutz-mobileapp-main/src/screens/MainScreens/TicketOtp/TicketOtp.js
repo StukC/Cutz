@@ -45,7 +45,7 @@ const TicketOtp = ({ route: { params } }) => {
             <CustomText
               label={state.currentTicket?.checkIN ?"Check Out":"Check In"}
               color={colors.white}
-              fontFamily={"semiBold"}
+              fontFamily={"Arial"}
               fontSize={16}
             />
             <TouchableOpacity
@@ -65,9 +65,9 @@ const TicketOtp = ({ route: { params } }) => {
           <View style={{ alignItems: "center" }}>
             <Spacer height={20} />
             <CustomText
-              label={"Admin — Enter Code"}
+              label={"  Enter Code"}
               color={colors.secondary}
-              fontFamily={"regular"}
+              fontFamily={"Arial"}
               fontSize={16}
             />
             <Spacer height={20} />
@@ -141,7 +141,7 @@ const TicketOtp = ({ route: { params } }) => {
         <CustomButton
           title={state.currentTicket?.checkIN ?"Next":"All Set"}
           width={scale(160)}
-          fontFamily={"bold"}
+          fontFamily={"Arial"}
           btnStyle={{
             shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
             shadowRadius: 2,
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     fontSize: 40,
-    fontFamily: "bold",
+    fontFamily: "Arial",
     //   color: colors.perFectDark,
     // backgroundColor: colors.gray1,
     // paddingHorizontal: 10,
