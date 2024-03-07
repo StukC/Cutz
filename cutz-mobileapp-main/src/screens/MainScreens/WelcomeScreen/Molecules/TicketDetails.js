@@ -82,14 +82,14 @@ const TicketDetails = ({
             label={"CONFIRM OR CANCEL"}
             color={colors.secondary}
             fontSize={13}
-            fontFamily={"semiBold"}
+            fontFamily={"Arial"}
           />
            <Spacer height={20}/>
           <CustomText
             label={"DO NOT ENTER THE PROPERTY,"}
             color={colors.secondary}
             fontSize={13}
-            fontFamily={"semiBold"}
+            fontFamily={"Arial"}
           />
            <CustomText
             label={"UNTIL THE TIME OF YOUR RESERVATION."}
@@ -112,20 +112,29 @@ const TicketDetails = ({
         <InfoText />
         <Spacer height={userType === "Client" ? 20 : !check ? 35 : 20} />
         <View style={styles.cardStyle}>
+<<<<<<< Updated upstream
           
           <Spacer height={10} />
+=======
+          <Image
+            source={images.cardHeader}
+            containerStyle={{ width: "100%", height: 40 }}
+            resizeMode={"stretch"}
+          />
+          <Spacer height={0} />
+>>>>>>> Stashed changes
           <View
             style={{
-              paddingHorizontal: scale(50),
-              paddingVertical: verticalScale(5),
-              backgroundColor: colors.darkOrange,
+              paddingHorizontal: scale(0),
+              paddingVertical: verticalScale(0),
+              backgroundColor: colors.Blue,
               alignSelf: "center",
-              borderRadius: 5,
+              borderRadius: 0,
             }}
           >
             <CustomText
               label={ticketData?.organization}
-              fontFamily={"semiBold"}
+              fontFamily={"Arial"}
               color={colors.white}
               fontSize={14}
             />
@@ -149,13 +158,13 @@ const TicketDetails = ({
                     " " +
                     moment(ticketData?.eventStartTime).utc().format("DD")
                   }
-                  fontFamily={"semiBold"}
+                  fontFamily={"Arial"}
                   color={colors.secondary}
-                  fontSize={14}
+                  fontSize={18}
                 />
                 <CustomText
                   label={ticketData?.groupHour}
-                  fontFamily={"semiBold"}
+                  fontFamily={"Arial"}
                   color={colors.perFectDark}
                   fontSize={11}
                 />
@@ -173,19 +182,19 @@ const TicketDetails = ({
               <View>
                 <CustomText
                   label={ticketData?.addresses[0].place}
-                  fontFamily={"semiBold"}
+                  fontFamily={"Arial"}
                   color={colors.secondary}
-                  fontSize={14}
+                  fontSize={18}
                 />
                 <CustomText
                   label={ticketData?.addresses[0].house}
-                  fontFamily={"semiBold"}
+                  fontFamily={"Arial"}
                   color={colors.perFectDark}
                   fontSize={11}
                 />
                 <CustomText
                   label={ticketData?.addresses[0].zip}
-                  fontFamily={"semiBold"}
+                  fontFamily={"Arial"}
                   color={colors.perFectDark}
                   fontSize={11}
                 />
@@ -208,7 +217,7 @@ const TicketDetails = ({
             <View>
               <CustomText
                 label={ticketData?.eventType}
-                fontFamily={"bold"}
+                fontFamily={"Arial"}
                 color={colors.secondary}
                 fontSize={14}
               />
@@ -229,7 +238,7 @@ const TicketDetails = ({
         >
           <CustomButton
             title={cardBtnText}
-            fontFamily="bold"
+            fontFamily="Arial"
             btnStyle={{
               shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
               shadowRadius: 2,
@@ -245,7 +254,7 @@ const TicketDetails = ({
           <Spacer width={20} />
           <CustomButton
             title={"Cancel"}
-            fontFamily="bold"
+            fontFamily="Arial"
             btnStyle={{
               shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
               shadowRadius: 2,
