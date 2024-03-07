@@ -181,31 +181,33 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                     <ModalContent/>
                 </Modal>
                 <View style={{alignItems: "center", marginTop: 0}}>      
-   <CustomButton
+                        <CustomButton
                             title={state.checkIN ? " " : " ITS TIME TO GET IN LINE"}
-                            width={"90%"}
+                            width={"85%"}
                             height={45}
                             activeOpacity={1}
                             fontSize={25}
                             fontFamily={"Arial"}
                             borderRadius={1}
                         />
-                <CustomText
+                        <Spacer height={5}/>
+                         <CustomText
                                 label={"Be Sure To Check Out "}
                                 color={colors.darkOrange}
                                 fontFamily={"Arial"}
                                 fontSize={18 }
                             /> 
-                            <Spacer height={2}/><CustomText
+                            <Spacer height={5}/>
+                            <CustomText
                                 label={" Before You Leave "}
                                 color={colors.darkOrange}
                                 fontFamily={"Arial"}
                                 fontSize={18 }
                             /> 
-                            <Spacer height={20}/>
+                            <Spacer height={5}/>
                             </View> 
    <View style={styles.card}>
-                     <View style={{alignItems: "center", marginTop: 40}}>                      
+                     <View style={{alignItems: "center", marginTop: 30}}>                      
                      <Spacer height={10}/>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
                             <CustomText
@@ -229,11 +231,11 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                             fontFamily={"Arial"}
                             fontSize={23}
                         />
-                        <Spacer height={30}/>
+                        <Spacer height={10}/>
                         <View style={{marginVertical: -30}}>
                             <View
                                 style={{
-                                    position: "absolute", top: verticalScale(72), left: verticalScale(-75),
+                                    position: "absolute", top: verticalScale(95), left: verticalScale(-75),
                                 }}
                             >
                                 <CustomText
@@ -250,7 +252,7 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                                 fontSize={150}
                             />
                         </View>
-                        <Spacer height={30}/>
+                        <Spacer height={10}/>
                         <CustomText
                             label={(state.eventGroupID?.groupCapacity || "20") + " People"}
                             color={colors.white}

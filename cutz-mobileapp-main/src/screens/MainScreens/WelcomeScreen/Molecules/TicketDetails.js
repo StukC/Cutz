@@ -112,11 +112,7 @@ const TicketDetails = ({
         <InfoText />
         <Spacer height={userType === "Client" ? 20 : !check ? 35 : 20} />
         <View style={styles.cardStyle}>
-          <Image
-            source={images.cardHeader}
-            containerStyle={{ width: "100%", height: 40 }}
-            resizeMode={"stretch"}
-          />
+         
           <Spacer height={10} />
           <View
             style={{
@@ -128,7 +124,7 @@ const TicketDetails = ({
             }}
           >
             <CustomText
-              label={ticketData?.organization}
+              label={ticketData?.oranization}
               fontFamily={"Arial"}
               color={colors.white}
               fontSize={14}
@@ -219,16 +215,7 @@ const TicketDetails = ({
             </View>
           </View>
 
-          <Image
-            source={images.cardBottom}
-            containerStyle={{
-              width: "100%",
-              height: 40,
-              position: "absolute",
-              bottom: 0,
-            }}
-            resizeMode={"stretch"}
-          />
+         
           <Spacer height={40} />
         </View>
 

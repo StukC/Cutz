@@ -191,7 +191,7 @@ const TicketCarousel = ({
   const InfoText = () => (
     <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20 }}>
       <CustomText
-        label={"Swipe between tickets to view your reservations. \n Ready to check in? Press the ticket icon in the top right."}
+        label={"Swipe to view your reservations. \n Ready to check in? Press the ticket icon in the top right."}
         color={colors.secondary}
         fontFamily={"semiBold"}
         textAlign="center"
@@ -275,9 +275,9 @@ const TicketCarousel = ({
           fontFamily="bold"
           btnStyle={{
             shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
-            shadowRadius: 2,
+            shadowRadius: 3,
             elevation: 5,
-            shadowOpacity: 0.4,
+            shadowOpacity: 2,
             shadowOffset: { width: -1, height: 3 },
           }}
           width={"40%"}
@@ -344,13 +344,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     backgroundColor: colors.white,
-    shadowColor: "#000",
+    shadowColor: "#F15B27",
     shadowOffset: {
       width: 0,
       height: 5,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
+    shadowOpacity: 1,
+    shadowRadius: 10,
     elevation: 9,
   },
 });
