@@ -82,14 +82,14 @@ const TicketDetails = ({
             label={"CONFIRM OR CANCEL"}
             color={colors.secondary}
             fontSize={13}
-            fontFamily={"Arial"}
+            fontFamily={"semiBold"}
           />
            <Spacer height={20}/>
           <CustomText
             label={"DO NOT ENTER THE PROPERTY,"}
             color={colors.secondary}
             fontSize={13}
-            fontFamily={"Arial"}
+            fontFamily={"semiBold"}
           />
            <CustomText
             label={"UNTIL THE TIME OF YOUR RESERVATION."}
@@ -112,24 +112,19 @@ const TicketDetails = ({
         <InfoText />
         <Spacer height={userType === "Client" ? 20 : !check ? 35 : 20} />
         <View style={styles.cardStyle}>
-<<<<<<< Updated upstream
-          
-          <Spacer height={10} />
-=======
           <Image
             source={images.cardHeader}
             containerStyle={{ width: "100%", height: 40 }}
             resizeMode={"stretch"}
           />
-          <Spacer height={0} />
->>>>>>> Stashed changes
+          <Spacer height={10} />
           <View
             style={{
-              paddingHorizontal: scale(0),
-              paddingVertical: verticalScale(0),
-              backgroundColor: colors.Blue,
+              paddingHorizontal: scale(50),
+              paddingVertical: verticalScale(5),
+              backgroundColor: colors.darkOrange,
               alignSelf: "center",
-              borderRadius: 0,
+              borderRadius: 5,
             }}
           >
             <CustomText
@@ -219,12 +214,21 @@ const TicketDetails = ({
                 label={ticketData?.eventType}
                 fontFamily={"Arial"}
                 color={colors.secondary}
-                fontSize={14}
+                fontSize={18}
               />
             </View>
           </View>
 
-        
+          <Image
+            source={images.cardBottom}
+            containerStyle={{
+              width: "100%",
+              height: 40,
+              position: "absolute",
+              bottom: 0,
+            }}
+            resizeMode={"stretch"}
+          />
           <Spacer height={40} />
         </View>
 
