@@ -41,7 +41,7 @@ const TicketCarousel = ({
 
   // Helper function to render each ticket card
   const renderItem = ({ item, index }) => (
-    <View style={styles.cardStyle} key={index}>
+    <View style={[styles.cardStyle, { backgroundColor: '#ffffff' }]} key={index}>
       
       
       <Spacer height={30} />
