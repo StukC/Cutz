@@ -183,21 +183,21 @@ const TicketCheckInAndOut = ({setState, state, profilePicture}) => {
                 <View style={{alignItems: "center", marginTop: 0}}>      
                         <CustomButton
                             title={state.checkIN ? " " : " ITS TIME TO GET IN LINE"}
-                            width={"85%"}
+                            width={"90%"}
                             height={45}
                             activeOpacity={1}
                             fontSize={25}
                             fontFamily={"Arial"}
                             borderRadius={1}
                         />
-                        <Spacer height={5}/>
+                        <Spacer height={3}/>
                          <CustomText
                                 label={"Be Sure To Check Out "}
                                 color={colors.darkOrange}
                                 fontFamily={"Arial"}
                                 fontSize={18 }
                             /> 
-                            <Spacer height={5}/>
+                            <Spacer height={2}/>
                             <CustomText
                                 label={" Before You Leave "}
                                 color={colors.darkOrange}
