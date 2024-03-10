@@ -35,6 +35,7 @@ import loaderAnimation from "../../../../assets/Loaders";
 import {getTimingBy, getTimingByEventId, getTimings} from "../../../services/Timing";
 import {getOrganizationById} from "../../../services/Organization";
 import moment from "moment";
+import { URLS } from "../../../services/Urls";
 
 const currentDate = new Date().toString();
 
@@ -90,8 +91,32 @@ const ReceiptScreen = ({navigation: {navigate}, route}) => {
         });
 
     };
-    const handleCancelPress = () => {
+    const handleViewDetailsPress = async (index) => {
         navigate("Welcome");
+    };
+    const handleCancelPress = async (index) => {
+        try {
+            const reservationId = state.tickets[index].reservationId;
+            const userType = AuthUser.clientStatus ? 'Client' : 'Volunteer'; // Determine user type
+            const userURL = userType === 'Client' ? `${URLS.BASE_URL}${URLS.EVENTS_RESERVATION_CLIENT}` : `${URLS.BASE_URL}${URLS.EVENTS_RESERVATION_VOLUNTEER}`;
+            // Construct URL based on user type
+            const response = await fetch(`${userURL}/DeleteEventReservation/${reservationId}`, { // Use userURL
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Add any necessary authentication headers
+                },
+            });
+            if (!response.ok) {
+                throw new Error("Failed to cancel reservation");
+            }
+    
+            const updatedTickets = state.tickets.filter((ticket, i) => i !== index);
+            setState({...state, tickets: updatedTickets});
+        } catch (error) {
+            console.error("Error canceling reservation:", error);
+            // Handle error
+        }
     };
 
 
@@ -109,6 +134,7 @@ const ReceiptScreen = ({navigation: {navigate}, route}) => {
                     state={state}
                     setState={setState}
                     handleCancelPress={handleCancelPress}
+                    handleViewDetailsPress={handleViewDetailsPress}
                     handleProceedPress={handleProceedPress}
                 />
             </>) : AuthUser.clientStatus ? (<>

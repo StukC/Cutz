@@ -7,9 +7,11 @@ export const icons={
     user:require("./user.png"),
     receipt:require("./receipt.png"),
     marker:require("./marker.png"),
+    marker2:require("./marker2.png"),
     calender:require("./calender.png"),
     ticket1:require("./ticket1.png"),
     ticket2:require("./ticket2.png"),
+    ticket3:require("./ticket3.png"),
     cameraPlus:require("./cameraPlus.png"),
     close:require("./close.png"),
     thumb:require("./thumb.png"),
@@ -26,6 +28,7 @@ export const icons={
     searchSome:require("./searchSome.png"),
     eye:require("./eye.png"),
     eyeSlash:require("./hidden.png"),
+    copy:require("./copy.png"),
 
 
 

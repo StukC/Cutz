@@ -38,6 +38,7 @@ const ProfileScreen = ({ navigation, route }) => {
     {
       id: 1,
       name: "Personal",
+      family: "semiBold",
       img: icons.person,
       onPress: () =>
         navigation.navigate("PersonalScreen", { AuthUser: AuthUser }),
@@ -45,19 +46,21 @@ const ProfileScreen = ({ navigation, route }) => {
     {
       id: 2,
       name: "Edit Profile",
+      family: "semiBold",
       img: icons.editProfile,
       onPress: () => navigation.navigate("EditProfile", { AuthUser: AuthUser }),
     },
     {
       id: 3,
       name: "Manage Notifications",
+      family: "semiBold",
       img: icons.manage,
       onPress: () => setModalVisible(true),
     },
     {
       id: 4,
       name: "How to Use Cutz",
-      family: "semiBoldItalic",
+      family: "semiBold",
       img: icons.howuse,
       onPress: () =>
         navigation.navigate("AppDescription", { AuthUser: AuthUser }),

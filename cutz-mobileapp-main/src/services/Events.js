@@ -1,5 +1,4 @@
 import axios from "axios";
-import Toast from "react-native-root-toast";
 import { URLS } from "./Urls";
 
 export const getEvents = async () => {

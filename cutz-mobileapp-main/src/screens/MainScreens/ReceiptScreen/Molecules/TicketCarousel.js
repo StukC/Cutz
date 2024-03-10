@@ -25,12 +25,9 @@ import { getOrganizationById } from "../../../../services/Organization";
 import { getTimingBy } from "../../../../services/Timing";
 import { useSelector } from "react-redux";
 import * as Clipboard from 'expo-clipboard';
-
-
+import Toast from "react-native-root-toast";
 
 const { width } = Dimensions.get("window");
-
-
 
 // Define TicketCarousel component
 const TicketCarousel = ({
@@ -47,24 +44,20 @@ const TicketCarousel = ({
   const copyToClipboard = async (address) => {
     const addressString = `${address.place}, ${address.house}, ${address.zip}`;
     await Clipboard.setStringAsync(addressString);
+    Toast.show("Address copied");
   };
 
-  
-  
-
- 
   // Helper function to render each ticket card
   const renderItem = ({ item, index }) => (
-    <View style={[styles.cardStyle, { backgroundColor: '#ffffff' }]} key={index}>
-      
-      
+    <View style={styles.cardStyle} key={index}>
+
       <Spacer height={30} />
 
       {/* Organization Name */}
       <View
         style={{
           paddingHorizontal: scale(50),
-          paddingVertical: verticalScale(5),
+          paddingVertical: verticalScale(6),
           backgroundColor: colors.darkOrange,
           alignSelf: "center",
           borderRadius: 5,
@@ -78,7 +71,7 @@ const TicketCarousel = ({
         />
       </View>
       
-      <Spacer height={20} />
+      <Spacer height={25} />
 
       {/* Date and Time */}
       <View>
@@ -136,16 +129,15 @@ const TicketCarousel = ({
 
         {/* Event Location */}
         <View style={{ flexDirection: "row" }}>
-          <Spacer width={10} />
+          <Spacer width={13} />
 
           <Image
-            source={icons.marker}
+            source={icons.marker2}
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
           />
 
           <Spacer width={15} />
-         
           
           <View>
 
@@ -170,33 +162,31 @@ const TicketCarousel = ({
               fontSize={11}
             />
 
-              <TouchableOpacity onPress={() => copyToClipboard(item.eventID.addresses[0])}>
-                <Image
-                  source={icons.marker}
-                  resizeMode={"contain"}
-                  style={{ height: scale(30), width: scale(30) }}
-                />
-              </TouchableOpacity>
-
           </View>
+
+          <TouchableOpacity onPress={() => copyToClipboard(item.eventID.addresses[0])}>
+                <Image
+                  source={icons.copy}
+                  resizeMode={"contain"}
+                  style={{ height: scale(25), width: scale(60) }}
+                />
+          </TouchableOpacity>
         </View>
       </View>
-
       
-      
-      <Spacer height={15} />
+      <Spacer height={25} />
       
       {/* Event Type */}
       <View style={{ flexDirection: "row" }}>
-        <Spacer width={10} />
+        <Spacer width={13} />
 
         <Image
-          source={icons.ticket1}
+          source={icons.ticket3}
           resizeMode={"contain"}
           style={{
             tintColor: colors.secondary,
           }}
-          containerStyle={{ height: scale(30), width: scale(30) }}
+          containerStyle={{ height: scale(30), width: scale(30)}}
         />
 
         <Spacer width={15} />
@@ -211,8 +201,7 @@ const TicketCarousel = ({
         </View>
       </View>
       
-      
-      <Spacer height={40} />
+      <Spacer height={30} />
     </View>
   );
 
@@ -269,26 +258,38 @@ const TicketCarousel = ({
         />
       ) : (
         // Display message if no tickets are available
-        <View style={{ alignSelf: "center" }}>
-          <Text style={{ fontSize: 22, color: "#000" }}>No Reservations Yet</Text>
+        <View style={{ alignSelf: "center", marginTop: 170, marginBottom: 170 }}>
+          <Text
+            style={{
+              fontSize: 22,
+              color: colors.secondary,
+              fontFamily: "semiBold"
+            }}
+          >
+            No Reservations Yet
+          </Text>
         </View>
       )}
 
       {/* Scrolling dots */}
-      <View style={{ alignSelf: "center", width: 60}}>
+      <View style={{ alignSelf: "center", width: "100%", alignItems: "center" }}>
         <Spacer height={5} />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {/* Display pagination dots */}
-          {tickets.map((item, index) => (
-            <View
-              style={{
-                ...styles.dot,
-                backgroundColor: activeSlide === index ? "black" : "grey",
-              }}
+          {tickets.length > 0 && (
+            <Pagination
+              dotsLength={tickets.length}
+              activeDotIndex={activeSlide}
+              containerStyle={{ paddingVertical: 0 }}
+              dotStyle={{ width: 10, height: 10, borderRadius: 5, marginHorizontal: 8, backgroundColor: 'black' }}
+              inactiveDotStyle={{ backgroundColor: 'grey' }}
+              inactiveDotOpacity={1}
+              inactiveDotScale={0.8}
             />
-          ))}
+          )}
         </ScrollView>
       </View>
+
 
       <Spacer height={20} />
 
@@ -306,15 +307,15 @@ const TicketCarousel = ({
             shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
             shadowRadius: 3,
             elevation: 5,
-            shadowOpacity: 2,
+            shadowOpacity: 0.4,
             shadowOffset: { width: -1, height: 3 },
           }}
           width={"40%"}
+          backgroundColor={colors.primary}
+          color={colors.white}
           borderRadius={15}
-          fontSize={14} 
-          onPress={() => {
-            handleViewDetailsPress(tickets[activeSlide]);
-          }}
+          fontSize={14}
+          onPress={() => handleViewDetailsPress(activeSlide)}
         />
 
         <Spacer width={20} />
@@ -325,7 +326,7 @@ const TicketCarousel = ({
           fontFamily="bold"
           btnStyle={{
             shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
-            shadowRadius: 2,
+            shadowRadius: 3,
             elevation: 5,
             shadowOpacity: 0.4,
             inputMarginTop:-20,
@@ -348,6 +349,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    // backgroundColor: colors.primary,
   },
   pagination: {
     position: "absolute",
@@ -372,14 +374,15 @@ const styles = StyleSheet.create({
     width: width / 1.3,
     alignSelf: "center",
     borderRadius: 10,
-    backgroundColor: colors.white,
-    shadowColor: "#F15B27",
+    marginTop: 8,  // keep ticket from being cut off on top
+    backgroundColor: colors.gray2,
+    shadowColor: "grey",
     shadowOffset: {
       width: 0,
       height: 5,
     },
     shadowOpacity: 1,
-    shadowRadius: 10,
+    shadowRadius: 7,
     elevation: 9,
   },
 });

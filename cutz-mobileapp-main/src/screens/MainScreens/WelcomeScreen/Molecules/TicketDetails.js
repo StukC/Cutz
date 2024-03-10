@@ -114,6 +114,8 @@ const TicketDetails = ({
         <View style={styles.cardStyle}>
          
           <Spacer height={10} />
+          
+          {/* Organization Name */}
           <View
             style={{
               paddingHorizontal: scale(50),
@@ -124,12 +126,13 @@ const TicketDetails = ({
             }}
           >
             <CustomText
-              label={ticketData?.oranization}
-              fontFamily={"Arial"}
+              label={ticketData?.organization}
+              fontFamily={"semiBold"}
               color={colors.white}
               fontSize={14}
             />
           </View>
+          
           <Spacer height={20} />
           <View>
             <View style={{ flexDirection: "row" }}>
@@ -149,13 +152,13 @@ const TicketDetails = ({
                     " " +
                     moment(ticketData?.eventStartTime).utc().format("DD")
                   }
-                  fontFamily={"Arial"}
+                  fontFamily={"semiBold"}
                   color={colors.secondary}
                   fontSize={18}
                 />
                 <CustomText
                   label={ticketData?.groupHour}
-                  fontFamily={"Arial"}
+                  fontFamily={"semiBold"}
                   color={colors.perFectDark}
                   fontSize={11}
                 />
@@ -173,19 +176,19 @@ const TicketDetails = ({
               <View>
                 <CustomText
                   label={ticketData?.addresses[0].place}
-                  fontFamily={"Arial"}
+                  fontFamily={"semiBold"}
                   color={colors.secondary}
                   fontSize={18}
                 />
                 <CustomText
                   label={ticketData?.addresses[0].house}
-                  fontFamily={"Arial"}
+                  fontFamily={"semiBold"}
                   color={colors.perFectDark}
                   fontSize={11}
                 />
                 <CustomText
                   label={ticketData?.addresses[0].zip}
-                  fontFamily={"Arial"}
+                  fontFamily={"semiBold"}
                   color={colors.perFectDark}
                   fontSize={11}
                 />
@@ -208,14 +211,13 @@ const TicketDetails = ({
             <View>
               <CustomText
                 label={ticketData?.eventType}
-                fontFamily={"Arial"}
+                fontFamily={"semiBold"}
                 color={colors.secondary}
                 fontSize={18}
               />
             </View>
           </View>
 
-         
           <Spacer height={40} />
         </View>
 
@@ -229,7 +231,7 @@ const TicketDetails = ({
         >
           <CustomButton
             title={cardBtnText}
-            fontFamily="Arial"
+            fontFamily="semiBold"
             btnStyle={{
               shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
               shadowRadius: 2,
