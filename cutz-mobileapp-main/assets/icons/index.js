@@ -12,6 +12,7 @@ export const icons={
     ticket1:require("./ticket1.png"),
     ticket2:require("./ticket2.png"),
     ticket3:require("./ticket3.png"),
+    ticket4:require("./ticket4.png"),
     cameraPlus:require("./cameraPlus.png"),
     close:require("./close.png"),
     thumb:require("./thumb.png"),

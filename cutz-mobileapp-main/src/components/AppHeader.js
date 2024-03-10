@@ -30,7 +30,7 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
             <>
               <TouchableOpacity onPress={onPressTicket}>
                 <Image
-                  source={icons.ticket2}
+                  source={icons.ticket4}
                   resizeMode={"contain"}
                   style={{
                     height: 40,
@@ -38,7 +38,7 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
                   }}
                 />
               </TouchableOpacity>
-              <Spacer width={0} />
+              <Spacer width={10} />
             </>
           ) : (
             <></>
