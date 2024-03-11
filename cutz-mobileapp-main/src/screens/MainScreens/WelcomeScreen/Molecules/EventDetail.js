@@ -23,6 +23,7 @@ import {getEventGroupTimes} from "../../../../services/EventGroup";
 import {findAllOccurrences, getDistinctObjectsByKey} from "../../../../utils/Common";
 
 
+
 const EventDetail = ({handleBookingPress, userType, state, setState}) => {
     const AuthUser = useSelector((state) => state.authReducers.authState);
 
@@ -271,7 +272,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
         <Spacer height={20}/>
         <View style={{alignItems: "center"}}>
             <CustomButton
-                title={userType ? "Make My Reservation" : "Yes, I Will Volunteer!"}
+               title={AuthUser.clientStatus ? 'Make My Reservation' : 'Yes, I Will Volunteer!'}
                 width={"80%"}
                 fontFamily={"bold"}
                 btnStyle={{
@@ -283,6 +284,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
                 }}
                 borderRadius={15}
                 onPress={() => {
+                    
                     let timeDetails = "";
                     if (AuthUser.clientStatus) {
 

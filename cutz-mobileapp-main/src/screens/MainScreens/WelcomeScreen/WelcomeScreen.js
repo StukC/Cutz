@@ -151,6 +151,8 @@ const WelcomeScreen = ({navigation: {navigate}, route}) => {
                     alert("Select Timing");
                 }
             } else {
+                console.log("Event Types:", state.eventTypes);
+                console.log("Timings:", state.timings); 
                 alert("Select Event Type");
             }
         }
