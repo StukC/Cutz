@@ -154,6 +154,8 @@ const ClientEditProfile = ({
     }
     setSignupValue({ ...signupValue, phoneNumber: newText });
     setSignupError({ ...signupErrors, phoneError: "" });
+
+    
   };
   return (
     <>
@@ -277,6 +279,46 @@ const ClientEditProfile = ({
           color={colors.red}
         />
       )}
+      <Spacer height={30} />
+    
+     
+      <CustomText
+          label="Input Card number :"
+          marginRight={15}
+          fontSize={15}
+          color={colors.secondary}
+        />
+              <Spacer height={30} />
+
+      <CustomInputs
+        placeholder="Card Name"
+        paddingLeft={20}
+        alignSelf="center"
+        width="100%"
+        //value={signupValue.email}
+       // error={signupErrors.emailError}
+        //onChangeText={(txt) => {
+         // setSignupValue({ ...signupValue, email: txt });
+        //  setSignupError({ ...signupErrors, emailError: "" });
+       // }}
+      />
+            <Spacer height={30} />
+
+      <CustomInputs
+        placeholder="Card Number"
+        paddingLeft={20}
+        alignSelf="center"
+        width="100%"
+        keyboardType={"number-pad"}
+
+        //value={signupValue.email}
+       // error={signupErrors.emailError}
+        //onChangeText={(txt) => {
+         // setSignupValue({ ...signupValue, email: txt });
+        //  setSignupError({ ...signupErrors, emailError: "" });
+       // }}
+      />
+
       <Spacer height={30} />
       <CustomInputs
         placeholder="Password"
