@@ -36,6 +36,8 @@ const TicketCarousel = ({
   tickets,
   state,
   setState,
+  navigation,
+  route,
 }) => {
   // Define state variables
   const [activeSlide, setActiveSlide] = useState(0);
@@ -315,7 +317,11 @@ const TicketCarousel = ({
           color={colors.white}
           borderRadius={15}
           fontSize={14}
-          onPress={() => handleViewDetailsPress(activeSlide)}
+          onPress={() => {if (navigation) {
+            navigation.navigate("ReservationDetails");
+          } else {
+            console.log("Navigation prop is not available.");
+          }}}
         />
 
         <Spacer width={20} />
