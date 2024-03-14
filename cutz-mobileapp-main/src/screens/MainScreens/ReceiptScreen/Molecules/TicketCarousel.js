@@ -167,12 +167,24 @@ const TicketCarousel = ({
           </View>
 
           <TouchableOpacity onPress={() => copyToClipboard(item.eventID.addresses[0])}>
+              <View style={{ alignItems: 'center' }}>
                 <Image
                   source={icons.copy}
-                  resizeMode={"contain"}
+                  resizeMode={'contain'}
                   style={{ height: scale(25), width: scale(60) }}
                 />
+                <Spacer height={3} />
+
+                <CustomText
+                  label={'Copy'}
+                  color={colors.secondary}
+                  fontFamily={'semiBold'}
+                  textAlign="center"
+                  fontSize={10}
+                />
+              </View>
           </TouchableOpacity>
+
         </View>
       </View>
       
@@ -319,7 +331,7 @@ const TicketCarousel = ({
           fontSize={14}
           onPress={() => {if (navigation) {
             navigation.navigate("ReservationDetails");
-          } else {
+          } else {   
             console.log("Navigation prop is not available.");
           }}}
         />
