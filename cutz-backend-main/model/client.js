@@ -79,6 +79,11 @@ const Client = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  cardNumber: {
+    type: String,
+    required: [true, "Card number is required"],
+  },
+
 });
 
 module.exports = mongoose.model("Client", Client);

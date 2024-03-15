@@ -28,6 +28,7 @@ const SignUpClient = async (req, res) => {
               error: "password and confirm password didn't match",
             });
           }
+
           const user = await Client.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -37,8 +38,7 @@ const SignUpClient = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             address: req.body.address,
             familySize: req.body.familySize,
-            // activeStatus: req.body.activeStatus,
-            // clientStatus: req.body.clientStatus,
+            cardNumber: req.body.cardNumber, // Save card details to the user document
             clientAttendance: req.body.clientAttendance,
           });
           const token = jwt.sign(
@@ -64,6 +64,7 @@ const SignUpClient = async (req, res) => {
     });
   }
 };
+ 
 
 const LoginClient = async (req, res) => {
   try {
