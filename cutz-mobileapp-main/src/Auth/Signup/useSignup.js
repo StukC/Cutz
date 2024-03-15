@@ -53,6 +53,11 @@ export const useSignup = (signupValue, signupErrors, setSignupError ) => {
 
     return;
   }
+  if (!signupValue.cardNumber) {
+    setSignupError({ ...signupErrors, cardNumberError: "card number is required" });
+
+    return;
+  }
   if (!signupValue.password) {
     setSignupError({ ...signupErrors,passwordError : "password is required" });
 

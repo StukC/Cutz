@@ -32,6 +32,7 @@ const SignupBody = (props) => {
     addressError: "",
     sizeError: "",
     passwordError: "",
+    cardNumberError:"",
     confirmError: "",
   });
   const [signupValue, setSignupValue] = useState({
@@ -43,6 +44,7 @@ const SignupBody = (props) => {
     familySize: "",
     password: "",
     confirmPassword: "",
+    cardNumber:"",
   });
 
   useFocusEffect(
@@ -79,6 +81,7 @@ const SignupBody = (props) => {
         phoneNumber: signupValue.phoneNumber,
         address: signupValue.address,
         familySize: Number(signupValue.familySize),
+        cardNumber: signupValue.cardNumber,
         password: signupValue.password,
         confirmPassword: signupValue.confirmPassword,
         clientAttandance: "none",
@@ -180,7 +183,7 @@ const SignupBody = (props) => {
           />
           <Spacer height={20} />
           <CustomTextInput
-            placeholder="Phone Number"
+            placeholder="Phone Number!!"
             paddingLeft={20}
             alignSelf="center"
             keyboardType="number-pad"
@@ -256,6 +259,21 @@ const SignupBody = (props) => {
               color={colors.red}
             />
           )}
+
+          <CustomTextInput
+            placeholder="Card Number"
+            paddingLeft={20}
+            alignSelf="center"
+            width="100%"
+          
+
+            value={signupValue.cardNumber}
+            error={signupErrors.cardNumberError}
+            onChangeText={(txt) => {
+              setSignupValue({ ...signupValue, cardNumber: txt });
+                setSignupError({ ...signupErrors, cardNumberError: "" });
+            }}
+          />
 
           <Spacer height={15} />
           <CustomTextInput

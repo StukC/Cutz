@@ -253,7 +253,7 @@ const TicketCarousel = ({
 
       <InfoText />
 
-      <Spacer height={20} />
+      <Spacer height={10} />
       
       {/* Card */}
       {tickets.length ? (
