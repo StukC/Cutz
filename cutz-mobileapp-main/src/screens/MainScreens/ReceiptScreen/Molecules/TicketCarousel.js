@@ -175,7 +175,7 @@ const TicketCarousel = ({
                 <Image
                   source={icons.copy}
                   resizeMode={"contain"}
-                  style={{ height: scale(25), width: scale(40), tintColor: colors.secondary }}  // copy color
+                  style={{ height: scale(25), width: scale(30), tintColor: colors.secondary }}  // copy color
                 />
                 <Text style={styles.copyText}>Copy</Text>
                 </View>

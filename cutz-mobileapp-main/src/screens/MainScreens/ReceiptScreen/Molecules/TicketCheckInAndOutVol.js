@@ -65,7 +65,7 @@ const TicketCheckInAndOutVol = ({ state, setState,  }) => {
             <Spacer width={15} />
             <View>
               <CustomText
-                label={"Friday, January 20"}
+                label={"Tuesday, Feburary 20"}
                 fontFamily={"semiBold"}
                 color={colors.secondary}
                 fontSize={14}
