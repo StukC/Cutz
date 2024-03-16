@@ -169,6 +169,8 @@ const TicketCarousel = ({
             />
 
           </View>
+          
+          <Spacer width={6} />
 
           <TouchableOpacity onPress={() => copyToClipboard(item.eventID.addresses[0])}>
                 <View style={{ alignItems: 'center' }}>
@@ -387,7 +389,7 @@ const styles = StyleSheet.create({
     color: colors.secondary,
   },
   cardStyle: {
-    width: width / 1.3,
+    width: width / 1.28,
     alignSelf: "center",
     borderRadius: 10,
     marginTop: 8,  // keep ticket from being cut off on top
