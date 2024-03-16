@@ -183,19 +183,20 @@ const TicketCarousel = ({
         </View>
       </View>
       
-      <Spacer height={20} />
+      <Spacer height={18} />
       
       {/* Event Type */}
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row" , alignItems: "center" }}>
         <Spacer width={13} />
 
         <Image
-          source={icons.ticket3}
+          source={icons.ticket2f}
           resizeMode={"contain"}
           style={{
             tintColor: colors.secondary,  // ticket color
+            height: scale(30),
+            width: scale(30)
           }}
-          containerStyle={{ height: scale(30), width: scale(30)}}
         />
 
         <Spacer width={15} />
@@ -305,7 +306,7 @@ const TicketCarousel = ({
 
       <InfoText2 />
 
-      <Spacer height={40} />
+      <Spacer height={20} />
       
       {/* Button row */}
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
