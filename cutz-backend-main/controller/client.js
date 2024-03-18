@@ -46,8 +46,10 @@ const SignUpClient = async (req, res) => {
           if (req.body.cardNumber) {
             userFields.cardName = req.body.cardName;
             userFields.cardNumber = req.body.cardNumber;
-            userFields.cardName2 = req.body.cardName2;
-            userFields.cardName3 = req.body.cardName3;
+            userFields.cardNameTwo = req.body.cardNameTwo;
+            userFields.cardNumberTwo = req.body.cardNumberTwo;
+            userFields.cardNameThree = req.body.cardNameThree;
+            userFields.cardNumberThree = req.body.cardNumberThree;
           }
 
           // Create user with userFields
