@@ -38,6 +38,9 @@ const SignUpClient = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             address: req.body.address,
             familySize: req.body.familySize,
+            cardName: req.body.cardName, // Save Name details to the user document
+            cardNameTwo: req.body.cardNameTwo,
+            cardNameThree: req.body.cardNameThree,
             cardNumber: req.body.cardNumber, // Save card details to the user document
             cardNumberTwo: req.body.cardNumberTwo,
             cardNumberThree: req.body.cardNumberThree,

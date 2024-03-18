@@ -79,6 +79,18 @@ const Client = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  cardName: {
+    type: String,
+    required: [true, "Card Name is required"],
+  },
+  cardNameTwo: {
+    type: String,
+    required: [true, "Card Name Two is required"],
+  },
+  cardNameThree: {
+    type: String,
+    required: [true, "Card Name Three is required"],
+  },
   cardNumber: {
     type: String,
     required: [true, "Card number is required"],
