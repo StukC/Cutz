@@ -55,6 +55,7 @@ const ClientEditProfile = ({
     sizeError: "",
     passwordError: "",
     cardNumberError:"",
+    cardNameError: "",
     confirmError: "",
   });
   const [signupValue, setSignupValue] = useState({
@@ -67,6 +68,7 @@ const ClientEditProfile = ({
     password: "empty1111",
     confirmPassword: "empty1111",
     cardNumber: AuthUser?.cardNumber,
+    cardName: AuthUser?.cardName,
   });
   const onSubmitUpdate = async () => {
     console.log("nkbk");
@@ -85,6 +87,7 @@ const ClientEditProfile = ({
         address: signupValue.address,
         familySize: Number(signupValue.familySize),
         cardNumber: signupValue.cardNumber,
+        cardName: signupValue.cardName,
         // password: signupValue.password,
         // confirmPassword: signupValue.confirmPassword,
       };
@@ -291,21 +294,22 @@ const ClientEditProfile = ({
           fontSize={15}
           color={colors.secondary}
         />
-              <Spacer height={30} />
 
-      <CustomInputs
-        placeholder="Card Name"
-        paddingLeft={20}
-        alignSelf="center"
-        width="100%"
-        //value={signupValue.email}
-       // error={signupErrors.emailError}
-        //onChangeText={(txt) => {
-         // setSignupValue({ ...signupValue, email: txt });
-        //  setSignupError({ ...signupErrors, emailError: "" });
-       // }}
-      />
             <Spacer height={30} />
+            <CustomInputs
+          placeholder="Card Name"
+          paddingLeft={20}
+          alignSelf="center"
+          width="100%"
+        
+
+          value={signupValue.cardName}
+          error={signupErrors.cardNameError}
+          onChangeText={(txt) => {
+            setSignupValue({ ...signupValue, cardName: txt });
+              setSignupError({ ...signupErrors, cardName: "" });
+          }}
+        />
 
       <CustomInputs
         placeholder="Card Number"
