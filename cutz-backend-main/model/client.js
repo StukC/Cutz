@@ -83,7 +83,14 @@ const Client = new mongoose.Schema({
     type: String,
     required: [true, "Card number is required"],
   },
-
+  cardNumberTwo: {
+    type: String,
+    required: [true, "Card number Two is required"],
+  },
+  cardNumberThree: {
+    type: String,
+    required: [true, "Card number Three is required"],
+  },
 });
 
 module.exports = mongoose.model("Client", Client);

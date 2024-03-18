@@ -39,6 +39,8 @@ const SignUpClient = async (req, res) => {
             address: req.body.address,
             familySize: req.body.familySize,
             cardNumber: req.body.cardNumber, // Save card details to the user document
+            cardNumberTwo: req.body.cardNumberTwo,
+            cardNumberThree: req.body.cardNumberThree,
             clientAttendance: req.body.clientAttendance,
           });
           const token = jwt.sign(
