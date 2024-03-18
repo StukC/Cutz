@@ -36,8 +36,6 @@ const TicketCarousel = ({
   tickets,
   state,
   setState,
-  navigation,
-  route,
 }) => {
   // Define state variables
   const [activeSlide, setActiveSlide] = useState(0);
@@ -60,7 +58,7 @@ const TicketCarousel = ({
         style={{
           paddingHorizontal: scale(50),
           paddingVertical: verticalScale(6),
-          backgroundColor: colors.darkOrange,
+          backgroundColor: colors.primary,   // organization box color
           alignSelf: "center",
           borderRadius: 5,
         }}
@@ -68,7 +66,7 @@ const TicketCarousel = ({
         <CustomText
           label={item?.eventID.orgId?.organizationName}
           fontFamily={"semiBold"}
-          color={colors.white}
+          color={colors.white}  // organization color
           fontSize={14}
         />
       </View>
@@ -84,6 +82,9 @@ const TicketCarousel = ({
             source={icons.calender}
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
+            style={{
+              tintColor: colors.secondary,  // calendar color
+            }}
           />
           <Spacer width={10} />
           <View>
@@ -99,7 +100,7 @@ const TicketCarousel = ({
 
               }
               fontFamily={"semiBold"}
-              color={colors.secondary}
+              color={colors.secondary}    // date & time color
               fontSize={14}
             />
             
@@ -108,7 +109,7 @@ const TicketCarousel = ({
               <CustomText
                 label={item.eventGroupID?.groupHour}
                 fontFamily={"semiBold"}
-                color={colors.perFectDark}
+                color={colors.gray5}
                 fontSize={11}
               />
             ) : (
@@ -134,9 +135,12 @@ const TicketCarousel = ({
           <Spacer width={13} />
 
           <Image
-            source={icons.marker2}
+            source={icons.marker2}  
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
+            style={{
+              tintColor: colors.secondary,  // marker color
+            }}
           />
 
           <Spacer width={15} />
@@ -147,60 +151,54 @@ const TicketCarousel = ({
             <CustomText
               label={item.eventID.addresses[0].place}
               fontFamily={"semiBold"}
-              color={colors.secondary}
+              color={colors.secondary}    // address color
               fontSize={14}
             />
             
             <CustomText
               label={item.eventID.addresses[0].house}
               fontFamily={"semiBold"}
-              color={colors.perFectDark}
+              color={colors.gray5}
               fontSize={11}
             />
             <CustomText
               label={item.eventID.addresses[0].zip}
               fontFamily={"semiBold"}
-              color={colors.perFectDark}
+              color={colors.gray5}
               fontSize={11}
             />
 
           </View>
+          
+          <Spacer width={6} />
 
           <TouchableOpacity onPress={() => copyToClipboard(item.eventID.addresses[0])}>
-              <View style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center' }}>
                 <Image
                   source={icons.copy}
-                  resizeMode={'contain'}
-                  style={{ height: scale(25), width: scale(60) }}
+                  resizeMode={"contain"}
+                  style={{ height: scale(25), width: scale(30), tintColor: colors.secondary }}  // copy color
                 />
-                <Spacer height={3} />
-
-                <CustomText
-                  label={'Copy'}
-                  color={colors.secondary}
-                  fontFamily={'semiBold'}
-                  textAlign="center"
-                  fontSize={10}
-                />
-              </View>
+                <Text style={styles.copyText}>Copy</Text>
+                </View>
           </TouchableOpacity>
-
         </View>
       </View>
       
-      <Spacer height={25} />
+      <Spacer height={18} />
       
       {/* Event Type */}
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row" , alignItems: "center" }}>
         <Spacer width={13} />
 
         <Image
-          source={icons.ticket3}
+          source={icons.ticket2f}
           resizeMode={"contain"}
           style={{
-            tintColor: colors.secondary,
+            tintColor: colors.secondary,  // ticket color
+            height: scale(30),
+            width: scale(30)
           }}
-          containerStyle={{ height: scale(30), width: scale(30)}}
         />
 
         <Spacer width={15} />
@@ -208,14 +206,15 @@ const TicketCarousel = ({
         <View>
           <CustomText
             label={item.eventID.eventType}
-            fontFamily={"bold"}
-            color={colors.secondary}
+            fontFamily={"semiBold"}
+            color={colors.secondary}    // event type color
             fontSize={14}
           />
         </View>
       </View>
       
       <Spacer height={30} />
+
     </View>
   );
 
@@ -223,7 +222,7 @@ const TicketCarousel = ({
   const InfoText = () => (
     <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20 }}>
       <CustomText
-        label={"Swipe to view your reservations. \n Ready to check in? Press the ticket icon in the top right."}
+        label={"Swipe to view your reservations. \n Ready to check in? \n Press the ticket icon in the top right."}
         color={colors.secondary}
         fontFamily={"semiBold"}
         textAlign="center"
@@ -236,7 +235,7 @@ const TicketCarousel = ({
   const InfoText2 = () => (
     <View style={{ alignSelf: "center", alignItems: "center", marginHorizontal: 20}}>
       <CustomText
-        label={"Ensure that you follow proper event procedure. \n View event details and protocol via the \"View Details\" button."}
+        label={"Ensure that you follow proper event procedures. \n View event details and protocol via \n the \"View Details\" button."}
         color={colors.secondary}
         fontFamily={"semiBold"}
         fontSize={10}
@@ -253,7 +252,7 @@ const TicketCarousel = ({
 
       <InfoText />
 
-      <Spacer height={20} />
+      <Spacer height={10} />
       
       {/* Card */}
       {tickets.length ? (
@@ -272,7 +271,7 @@ const TicketCarousel = ({
         />
       ) : (
         // Display message if no tickets are available
-        <View style={{ alignSelf: "center", marginTop: 170, marginBottom: 170 }}>
+        <View style={{ alignSelf: "center", marginTop: 177, marginBottom: 177 }}>
           <Text
             style={{
               fontSize: 22,
@@ -329,11 +328,7 @@ const TicketCarousel = ({
           color={colors.white}
           borderRadius={15}
           fontSize={14}
-          onPress={() => {if (navigation) {
-            navigation.navigate("ReservationDetails");
-          } else {   
-            console.log("Navigation prop is not available.");
-          }}}
+          onPress={() => handleViewDetailsPress(activeSlide)}
         />
 
         <Spacer width={20} />
@@ -351,7 +346,7 @@ const TicketCarousel = ({
             shadowOffset: { width: -1, height: 3 },
           }}
           width={"40%"}
-          backgroundColor={colors.gray2}
+          backgroundColor={colors.gray2}  // cancel button color
           color={colors.secondary}
           borderRadius={15}
           fontSize={14} 
@@ -388,12 +383,17 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: "grey",
   },
+  copyText: {
+    fontFamily: "semiBold",
+    fontSize: 12,
+    color: colors.secondary,
+  },
   cardStyle: {
-    width: width / 1.3,
+    width: width / 1.28,
     alignSelf: "center",
     borderRadius: 10,
     marginTop: 8,  // keep ticket from being cut off on top
-    backgroundColor: colors.gray2,
+    backgroundColor: colors.gray2,   // card color
     shadowColor: "grey",
     shadowOffset: {
       width: 0,

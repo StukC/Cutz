@@ -54,6 +54,7 @@ const ClientEditProfile = ({
     addressError: "",
     sizeError: "",
     passwordError: "",
+    cardNumberError:"",
     confirmError: "",
   });
   const [signupValue, setSignupValue] = useState({
@@ -65,6 +66,7 @@ const ClientEditProfile = ({
     familySize: AuthUser?.familySize,
     password: "empty1111",
     confirmPassword: "empty1111",
+    cardNumber: AuthUser?.cardNumber,
   });
   const onSubmitUpdate = async () => {
     console.log("nkbk");
@@ -82,6 +84,7 @@ const ClientEditProfile = ({
         phoneNumber: signupValue.phoneNumber,
         address: signupValue.address,
         familySize: Number(signupValue.familySize),
+        cardNumber: signupValue.cardNumber,
         // password: signupValue.password,
         // confirmPassword: signupValue.confirmPassword,
       };
@@ -309,14 +312,14 @@ const ClientEditProfile = ({
         paddingLeft={20}
         alignSelf="center"
         width="100%"
-        keyboardType={"number-pad"}
+       
 
-        //value={signupValue.email}
-       // error={signupErrors.emailError}
-        //onChangeText={(txt) => {
-         // setSignupValue({ ...signupValue, email: txt });
-        //  setSignupError({ ...signupErrors, emailError: "" });
-       // }}
+        value={signupValue.cardNumber}
+        error={signupErrors.cardNumberError}
+        onChangeText={(txt) => {
+          setSignupValue({ ...signupValue, cardNumber: txt });
+            setSignupError({ ...signupErrors, cardNumberError: "" });
+        }}
       />
 
       <Spacer height={30} />

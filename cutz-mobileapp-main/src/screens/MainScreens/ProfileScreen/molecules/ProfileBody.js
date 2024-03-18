@@ -20,7 +20,7 @@ const ProfileBody = (props) => {
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Image
           resizeMode="contain"
-          style={{ width: scale(27), height: scale(27) }}
+          style={{ width: scale(25), height: scale(25) }}
           source={props.img}
         />
         <CustomText

@@ -30,7 +30,7 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
             <>
               <TouchableOpacity onPress={onPressTicket}>
                 <Image
-                  source={icons.ticket4}
+                  source={icons.ticket1f}
                   resizeMode={"contain"}
                   style={{
                     height: 40,
@@ -64,7 +64,7 @@ const AppHeader = ({ ticket, backButton, onPressTicket, onPressBack }) => {
       </View>
 
       <SepratorLine
-        height={1}
+        height={2}
         backgroundColor={colors.gray1}
         style={{
           shadowColor: Platform.OS == "ios" ? colors.gray : colors.black,

@@ -11,6 +11,8 @@ export const icons={
     calender:require("./calender.png"),
     ticket1:require("./ticket1.png"),
     ticket2:require("./ticket2.png"),
+    ticket1f:require("./ticket1f.png"),
+    ticket2f:require("./ticket2f.png"),
     ticket3:require("./ticket3.png"),
     ticket4:require("./ticket4.png"),
     cameraPlus:require("./cameraPlus.png"),
