@@ -29,7 +29,8 @@ const SignUpClient = async (req, res) => {
             });
           }
 
-          const user = await Client.create({
+          // Create user fields object
+          const userFields = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
@@ -38,14 +39,21 @@ const SignUpClient = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             address: req.body.address,
             familySize: req.body.familySize,
-            cardName: req.body.cardName, // Save Name details to the user document
-            cardNameTwo: req.body.cardNameTwo,
-            cardNameThree: req.body.cardNameThree,
-            cardNumber: req.body.cardNumber, // Save card details to the user document
-            cardNumberTwo: req.body.cardNumberTwo,
-            cardNumberThree: req.body.cardNumberThree,
             clientAttendance: req.body.clientAttendance,
-          });
+          };
+
+          // Conditionally include cardNumber if provided in request body
+          if (req.body.cardNumber) {
+            userFields.cardName = req.body.cardName;
+            userFields.cardNumber = req.body.cardNumber;
+            userFields.cardName2 = req.body.cardName2;
+            userFields.cardName3 = req.body.cardName3;
+          }
+
+          // Create user with userFields
+          const user = await Client.create(userFields);
+
+          // Generate JWT token
           const token = jwt.sign(
             {
               email: user.email,
@@ -53,6 +61,8 @@ const SignUpClient = async (req, res) => {
             },
             process.env.JWT_KEY
           );
+
+          // Send response with token and user details
           res.status(201).json({
             message: "User created successfully",
             token,
@@ -69,6 +79,7 @@ const SignUpClient = async (req, res) => {
     });
   }
 };
+
  
 
 const LoginClient = async (req, res) => {

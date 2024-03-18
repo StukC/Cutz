@@ -81,27 +81,27 @@ const Client = new mongoose.Schema({
   },
   cardName: {
     type: String,
-    required: [true, "Card Name is required"],
+    required: false,
   },
   cardNameTwo: {
     type: String,
-    required: [true, "Card Name Two is required"],
+    required: false,
   },
   cardNameThree: {
     type: String,
-    required: [true, "Card Name Three is required"],
+    required: false,
   },
   cardNumber: {
     type: String,
-    required: [true, "Card number is required"],
+    required: false,
   },
   cardNumberTwo: {
     type: String,
-    required: [true, "Card number Two is required"],
+    required: false,
   },
   cardNumberThree: {
     type: String,
-    required: [true, "Card number Three is required"],
+    required: false,
   },
 });
 
