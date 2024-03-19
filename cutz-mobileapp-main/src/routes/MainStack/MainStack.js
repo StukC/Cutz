@@ -17,6 +17,7 @@ import EditProfile from "../../screens/MainScreens/EditProfile/EditProfile";
 import ManageNotification from "../../screens/MainScreens/ManageNotification/ManageNotification";
 import ProfileStack from "../ProfileStack/ProfileStack";
 import TicketOtp from "../../screens/MainScreens/TicketOtp/TicketOtp";
+import ViewDetails from "../../screens/MainScreens/ViewDetails/ViewDetails";
 
 const Tab = createBottomTabNavigator();
 
@@ -78,7 +79,11 @@ const MainStack = ({ route }) => {
       // initialRouteName={"Receipt"}
     >
       <Tab.Screen name="Welcome" component={WelcomeScreen} />
-      
+      <Tab.Screen
+        name="ViewDetails"
+        component={ViewDetails}
+        options={{ tabBarButton: () => null }} // Hide tab button for ViewDetails
+      />
       <Tab.Screen name="Receipt" component={ReceiptScreen} />
       <Tab.Screen name="Profile" component={ProfileStack} />
       <Tab.Screen

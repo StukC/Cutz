@@ -92,7 +92,7 @@ const ReceiptScreen = ({navigation: {navigate}, route}) => {
 
     };
     const handleViewDetailsPress = async (index) => {
-        navigate("Welcome");
+        navigate("ViewDetails");
     };
     const handleCancelPress = async (index) => {
         try {
