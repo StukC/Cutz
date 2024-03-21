@@ -1,13 +1,14 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, StyleSheet, Button } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
 import AppHeader from "../../../components/AppHeader";
 import { colors } from "../../../utils/Colors";
 
 const ViewDetails = ({ navigation }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {/* Pass the required props to AppHeader, such as backButton */}
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
+      {/* Adding back button functionality explicitly */}
       <AppHeader backButton onPressBack={() => navigation.goBack()} />
+      
       <ScrollView style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.headerText}>EH Event</Text>
@@ -17,10 +18,11 @@ const ViewDetails = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
   },
   content: {
     padding: 20,
@@ -29,11 +31,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    alignSelf: 'center',
+    paddingHorizontal: 20,
   },
-  text: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
+  // ... other styles
 });
 
 export default ViewDetails;
