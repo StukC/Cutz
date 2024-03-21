@@ -6,7 +6,8 @@ const jwt = require("jsonwebtoken");
 const EventReservationClient = require("../model/eventreservationclient");
 
 const SignUpClient = async (req, res) => {
-  const checkclient = await Client.find({ email: req.body.email });
+  const emailLowercase = req.body.email.toLowerCase();
+  const checkclient = await Client.find({ email: emailLowercase });
   if (checkclient.length) {
     await Client.findOneAndUpdate(
       { email: req.body.email },
@@ -50,6 +51,7 @@ const SignUpClient = async (req, res) => {
             userFields.cardNumberTwo = req.body.cardNumberTwo;
             userFields.cardNameThree = req.body.cardNameThree;
             userFields.cardNumberThree = req.body.cardNumberThree;
+            userFields.email = emailLowercase;
           }
 
           // Create user with userFields
@@ -86,7 +88,8 @@ const SignUpClient = async (req, res) => {
 
 const LoginClient = async (req, res) => {
   try {
-    const user = await Client.findOne({ email: req.body.email });
+    const emailLowercase = req.body.email.toLowerCase();
+    const user = await Client.findOne({ email: emailLowercase });
     if (!user) {
       return res.status(401).json({
         message: "Auth Failed",
