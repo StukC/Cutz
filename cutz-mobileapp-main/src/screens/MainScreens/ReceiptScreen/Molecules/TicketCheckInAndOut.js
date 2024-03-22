@@ -178,7 +178,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                     </Modal>
                     <View style={{ alignItems: "center", marginTop: 0 }}>
                         <CustomButton
-                            title={state.checkIN ? " " : " ITS TIME TO GET IN LINE"}
+                            title={state.checkIN ? " " : " IT'S TIME TO GET IN LINE"}
                             width={"90%"}
                             height={45}
                             activeOpacity={1}
@@ -236,7 +236,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                     label={state?.eventGroupID?.groupLetter?.toUpperCase() || "A"}
                                     color={colors.white}
                                     fontFamily={"semiBold"}
-                                    fontSize={150}
+                                    fontSize={120}
                                 />
                             </View>
                             <Spacer height={10} />

@@ -443,7 +443,7 @@ const ClientEditProfile = ({
           justifyContent: "space-between",
           paddingHorizontal: 5,
         }}
-      >
+      >    
         <CustomButton
           title="Update"
           fontFamily={"bold"}

@@ -7,7 +7,10 @@ const ViewDetails = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       {/* Adding back button functionality explicitly */}
-      <AppHeader backButton onPressBack={() => navigation.goBack()} />
+      <View style={{ marginTop: 30 }}> 
+        <AppHeader backButton onPressBack={() => navigation.goBack()} />
+      </View>
+
       
       <ScrollView style={styles.container}>
         <View style={styles.content}>
@@ -38,3 +41,4 @@ const styles = StyleSheet.create({
 });
 
 export default ViewDetails;
+3
