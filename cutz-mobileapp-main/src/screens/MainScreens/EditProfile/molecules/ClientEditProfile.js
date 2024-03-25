@@ -38,8 +38,8 @@ const ClientEditProfile = ({
   const [newConfirmError, setNewConfirmError] = useState("");
   const dispatch = useDispatch();
   const [phoneRaw, setPhoneRaw] = useState("");
-  const [cards, setCards] = useState("");
-  
+  const [cards, setCards] = useState(false);
+
 
   const AuthUser = useSelector((state) => state.authReducers.authState);
 
@@ -141,7 +141,7 @@ const ClientEditProfile = ({
   };
 
   const addCard = () => {
-    
+    setCards(true);
   };
 
 
@@ -341,7 +341,9 @@ const ClientEditProfile = ({
         }}
       />
 
-<Spacer height={30} />
+        {cards && (
+          <>
+          <Spacer height={30} />
 
               <CustomInputs
           placeholder="Card Name 2"
@@ -373,8 +375,8 @@ const ClientEditProfile = ({
             setSignupError({ ...signupErrors, cardNumberTwoError: "" });
         }}
       />
-    
-       
+      </>
+      )}
 
       <Spacer height={30} />
 
@@ -441,7 +443,7 @@ const ClientEditProfile = ({
           justifyContent: "space-between",
           paddingHorizontal: 5,
         }}
-      >
+      >    
         <CustomButton
           title="Update"
           fontFamily={"bold"}
