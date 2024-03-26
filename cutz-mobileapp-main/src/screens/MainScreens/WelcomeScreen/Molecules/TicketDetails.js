@@ -154,7 +154,7 @@ const TicketDetails = ({
                   }
                   fontFamily={"semiBold"}
                   color={colors.secondary}
-                  fontSize={18}
+                  fontSize={14}
                 />
                 <CustomText
                   label={ticketData?.groupHour}
@@ -178,7 +178,7 @@ const TicketDetails = ({
                   label={ticketData?.addresses[0].place}
                   fontFamily={"semiBold"}
                   color={colors.secondary}
-                  fontSize={18}
+                  fontSize={14}
                 />
                 <CustomText
                   label={ticketData?.addresses[0].house}
@@ -213,7 +213,7 @@ const TicketDetails = ({
                 label={ticketData?.eventType}
                 fontFamily={"semiBold"}
                 color={colors.secondary}
-                fontSize={18}
+                fontSize={14}
               />
             </View>
           </View>
