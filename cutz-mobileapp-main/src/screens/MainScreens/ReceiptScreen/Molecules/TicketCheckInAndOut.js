@@ -270,6 +270,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                             }}
                         />
                     </View>
+                   
                 </>
             )}
         </View>
