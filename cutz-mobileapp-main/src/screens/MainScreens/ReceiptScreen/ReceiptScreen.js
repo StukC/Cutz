@@ -91,9 +91,12 @@ const ReceiptScreen = ({navigation: {navigate}, route}) => {
         });
 
     };
+    
     const handleViewDetailsPress = async (index) => {
-        navigate("ViewDetails");
+        const ticketData = state.tickets[index];
+        navigate("ViewDetails", { ticket: ticketData });
     };
+
     const handleCancelPress = async (index) => {
         try {
             const reservationId = state.tickets[index].reservationId;
