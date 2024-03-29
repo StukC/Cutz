@@ -1,8 +1,14 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AppHeader from "../../../components/AppHeader";
 import { colors } from "../../../utils/Colors";
 import { icons } from "../../../../assets/icons";
+import CustomText from "../../../components/CustomText";
+import { Spacer } from "../../../components/Spacer";
+import { Image } from "react-native-elements";
+import { scale, verticalScale } from "react-native-size-matters";
+
+
 
 const ViewDetails = ({ navigation, route }) => {
   const { ticket } = route.params; 
@@ -14,30 +20,104 @@ const ViewDetails = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <AppHeader backButton onPressBack={() => navigation.goBack()} />
+    <AppHeader backButton onPressBack={() => navigation.goBack()} />
+  
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.eventLabel}>{ticket.eventID.eventAbbreviation}</Text>
+      <Spacer height={10} />
+      
+         <View style={{ flexDirection: "row" }}>
+              <Spacer width={10} />
+              <Image
+                source={icons.calender}
+                resizeMode={"contain"}
+                containerStyle={{ height: scale(30), width: scale(30) }}
+              />
+              <Spacer width={10} />
+              <View>
+                <CustomText
+                  label={formatDate(ticket.time.eventStartTime)}
+                  fontFamily={"semiBold"}
+                  color={colors.secondary}
+                  fontSize={15}
+                />
+                            
+              </View>
+            </View>
+      <Spacer height={20} />
+      <View style={{ flexDirection: "row" }}>
+              <Spacer width={10} />
+              <Image
+                source={icons.marker2}
+                resizeMode={"contain"}
+                containerStyle={{ height: scale(30), width: scale(30) }}
+              />
+              <Spacer width={15} />
+              <View>
+                <CustomText
+                  label={ticket.eventID.addresses[0].place}
+                  fontFamily={"semiBold"}
+                  color={colors.secondary}
+                  fontSize={15}
+                />
+                <CustomText
+                  label={ticket.eventID.addresses[0].house}
+                  fontFamily={"semiBold"}
+                  color={colors.gray5}
+                  fontSize={11}
+                />
+                <CustomText
+                  label={ticket.eventID.addresses[0].zip}
+                  fontFamily={"semiBold"}
+                  color={colors.gray5}
+                  fontSize={11}
+                />
+              </View>
+            </View>
 
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.eventLabel}>{ticket.eventID.eventAbbreviation}</Text>
-        <Text style={styles.eventDate}>{formatDate(ticket.time.eventStartTime)}</Text>
-        <Text style={styles.eventLocation}>{ticket.eventID.addresses[0].place}</Text>
-        <Text style={styles.eventLocation}>{ticket.eventID.addresses[0].house}, {ticket.eventID.addresses[0].zip}</Text>
-        <Text style={styles.sectionTitle}>Event Type</Text>
-        <Text style={styles.sectionContent}>{ticket.eventID.eventType}</Text>
-        <Text style={styles.sectionTitle}>Additional Details</Text>
-        <Text style={styles.sectionContent}>{ticket.additionalDetails}</Text>
-      </ScrollView>
-      {}
-      <View style={styles.navBar}>
-        {/* Navigation icons go here */}
-      </View>
-    </SafeAreaView>
+      <Spacer height={20} />
+      <View style={{ flexDirection: "row" }}>
+            <Spacer width={10} />
+            <Image
+              source={icons.ticket2f}
+              resizeMode={"contain"}
+            style={{
+            tintColor: colors.secondary,  // ticket color
+            height: scale(30),
+            width: scale(30) }}
+            />
+            <Spacer width={15} />
+            <View>
+              <CustomText
+                label={ticket.eventID.eventType}
+                fontFamily={"semiBold"}
+                color={colors.secondary}
+                fontSize={15}
+              />
+            </View>
+          </View>
+          <Spacer height={20} />
+
+      <CustomText
+        label={"Additional Details:"}
+        fontFamily={"semiBold"}
+        color={colors.secondary}    // address color
+        fontSize={15}
+      />
+      <Text style={styles.sectionContent}>{ticket.additionalDetails}</Text>
+    </ScrollView>
+    {/* Navigation icons go here */}
+    <View style={styles.navBar}></View>
+  </SafeAreaView>
+  
   );
 };
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.white,
+    paddingTop: 32,
   },
   container: {
     paddingHorizontal: 16,
@@ -73,7 +153,7 @@ const styles = StyleSheet.create({
   },
   navBar: {
     borderTopWidth: 1,
-    borderColor: colors.lightGray,
+    borderColor: colors.white,
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 10,

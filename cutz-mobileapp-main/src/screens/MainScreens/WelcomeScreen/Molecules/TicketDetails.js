@@ -168,7 +168,7 @@ const TicketDetails = ({
             <View style={{ flexDirection: "row" }}>
               <Spacer width={10} />
               <Image
-                source={icons.marker}
+                source={icons.marker2}
                 resizeMode={"contain"}
                 containerStyle={{ height: scale(30), width: scale(30) }}
               />
@@ -200,7 +200,7 @@ const TicketDetails = ({
           <View style={{ flexDirection: "row" }}>
             <Spacer width={10} />
             <Image
-              source={icons.ticket1}
+              source={icons.ticket2f}
               resizeMode={"contain"}
               style={{
                 tintColor: colors.secondary,
