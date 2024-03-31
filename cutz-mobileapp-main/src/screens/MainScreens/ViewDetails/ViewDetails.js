@@ -97,13 +97,29 @@ const ViewDetails = ({ navigation, route }) => {
             </View>
           </View>
           <Spacer height={20} />
-
-      <CustomText
-        label={"Additional Details:"}
-        fontFamily={"semiBold"}
-        color={colors.secondary}    // address color
-        fontSize={15}
-      />
+          <Spacer height={20} />
+      <View style={{ flexDirection: "row" }}>
+            <Spacer width={10} />
+            <Image
+              source={icons.ticket1}
+              resizeMode={"contain"}
+            style={{
+            tintColor: colors.secondary,  // ticket color
+            height: scale(30),
+            width: scale(30) }}
+            />
+            <Spacer width={15} />
+            <View>
+            <CustomText
+            label={"Additional Details:"}
+            fontFamily={"semiBold"}
+            color={colors.secondary}    // address color
+            fontSize={15}
+          />
+            </View>
+          </View>
+          <Spacer height={20} />
+      
       <Text style={styles.sectionContent}>{ticket.additionalDetails}</Text>
     </ScrollView>
     {/* Navigation icons go here */}
