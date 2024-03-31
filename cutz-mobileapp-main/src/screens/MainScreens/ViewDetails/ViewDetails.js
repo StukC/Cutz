@@ -23,7 +23,18 @@ const ViewDetails = ({ navigation, route }) => {
     <AppHeader backButton onPressBack={() => navigation.goBack()} />
   
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.eventLabel}>{ticket.eventID.eventAbbreviation}</Text>
+
+    <View style={{alignItems: "center"}}>
+        <CustomText
+            label={"EVENT DETAILS"}
+            color={colors.primary}
+            fontSize={20}
+            fontFamily={"semiBold"}
+        />
+                    
+    </View>
+      <Text style={styles.eventLabel}>{ticket.eventID.eventLabel}</Text> 
+    
       <Spacer height={10} />
       
          <View style={{ flexDirection: "row" }}>
@@ -101,7 +112,7 @@ const ViewDetails = ({ navigation, route }) => {
       <View style={{ flexDirection: "row" }}>
             <Spacer width={10} />
             <Image
-              source={icons.ticket1}
+              source={icons.information}
               resizeMode={"contain"}
             style={{
             tintColor: colors.secondary,  // ticket color
