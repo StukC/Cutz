@@ -96,6 +96,7 @@ const NotificationBody = ({ setModalVisible }) => {
       console.log("before (get) fetch");
 
       // Fetch notification data from your backend
+      //adjust url to check its working on ur end
       const response = await fetch(`http://192.168.0.116:3006/api/v1/notification/${notificationID}`);
       const notificationData = await response.json();
 
