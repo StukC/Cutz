@@ -44,10 +44,10 @@ const TicketOtp = ({ route: { params } }) => {
           <View style={styles.voucherHeader}>
           
             <CustomText
-              label={state.currentTicket?.checkIN ?"Check Out":"Check In Code"}
+              label={state.currentTicket?.checkIN ?"Check Out":"Check In"}
               color={colors.white}
               fontFamily={"semiBold"}
-              fontSize={16}
+              fontSize={20}
             />
             <TouchableOpacity
               onPress={() => navigation.navigate("Receipt")}
@@ -69,7 +69,7 @@ const TicketOtp = ({ route: { params } }) => {
               label={"  Enter Code"}
               color={colors.secondary}
               fontFamily={"regular"}
-              fontSize={16}
+              fontSize={20}
             />
             <Spacer height={20} />
             {/* OTP */}

@@ -65,7 +65,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                             label={" Enter Code"}
                             color={colors.secondary}
                             fontFamily={"regular"}
-                            fontSize={16}
+                            fontSize={30}
                         />
                         <Spacer height={20} />
                         <OTP state={pins} setState={setPins} />
@@ -204,7 +204,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                     label={"EVENT ID: "}
                                     color={colors.white}
                                     fontFamily={"semiBold"}
-                                    fontSize={25}
+                                    fontSize={30}
                                 />
                                 <CustomText
                                     label={state?.eventID?.event_id}
@@ -212,7 +212,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
 
                                     color={colors.white}
                                     fontFamily={"semiBold"}
-                                    fontSize={25}
+                                    fontSize={30}
                                 />
                             </View>
                             <Spacer height={5} />
@@ -222,11 +222,11 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
 
                                 color={colors.white}
                                 fontFamily={"semiBold"}
-                                fontSize={23}
+                                fontSize={30}
                             />
                             <Spacer height={10} />
-                            <View style={{ marginVertical: -40 }}>
-                                <View style={{ position: "absolute", top: verticalScale(95), left: verticalScale(-75) }}>
+                            <View style={{ marginVertical: -60 }}>
+                                <View style={{ position: "absolute", top: verticalScale(110), left: verticalScale(-75) }}>
                                     <CustomText
                                         label={"GROUP"}
                                         color={colors.white}
@@ -237,18 +237,18 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                 <Spacer height={10} />
                                 <CustomText
                                     label={state?.eventGroupID?.groupLetter?.toUpperCase() || "A"}
-                                    //label = {"Z"}
+                                   // label = {"Z"}
                                     color={colors.white}
                                     fontFamily={"semiBold"}
-                                    fontSize={120}
+                                    fontSize={150}
                                 />
                             </View>
-                            <Spacer height={10} />
                             <CustomText
-                                label={(state.eventGroupID?.groupCapacity || "20") + " People"}
+                               label={(state.eventGroupID?.groupCapacity || "20") + " People"}
+                              //label="8 People"
                                 color={colors.white}
                                 fontFamily={"semiBold"}
-                                fontSize={30}
+                                fontSize={40}
                             />
                         </View>
                         <Spacer height={10} />

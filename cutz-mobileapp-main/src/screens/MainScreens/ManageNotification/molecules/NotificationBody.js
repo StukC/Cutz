@@ -49,7 +49,6 @@ const NotificationBody = ({ setModalVisible }) => {
     }).catch((err) => console.log(err));
 
 
-
   }, []);
 
   async function registerForPushNotificationsAsync() {
@@ -89,14 +88,33 @@ const NotificationBody = ({ setModalVisible }) => {
     const handleTestNotification = async () => {
       console.log("sending push notfication..");
 
-      //mesg
-      const messaage = {
-        to:expoPushToken,
-        sound: "default",
-        title: "My first Notfication!",
-        body: "sending firstnotfication on arpil fools day!",
-      };  
-    
+      console.log("Testing notification...");
+
+      // provide some notification ID
+      const notificationID = "65aec1ae4e4f22f7e224ddf5";
+
+      console.log("before (get) fetch");
+
+      // Fetch notification data from your backend
+      const response = await fetch(`http://192.168.0.116:3006/api/v1/notification/${notificationID}`);
+      const notificationData = await response.json();
+
+      // Extract the notification text from the response data
+      const notificationText = notificationData.notificationText;
+
+      console.log("notificationText = ", notificationText);
+
+      console.log("after (get) fetch");
+
+    const messaage = {
+      to:expoPushToken,
+      sound: "default",
+      icon:"./assets/icons/appIconNav.png",
+      title: "My first Notfication!",
+      body: notificationText,
+    };
+
+    console.log(messaage);
       await fetch("https://exp.host/--/api/v2/push/send", {
         method: "POST",
         headers: {
