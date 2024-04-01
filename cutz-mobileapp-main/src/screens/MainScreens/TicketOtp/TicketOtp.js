@@ -182,11 +182,11 @@ const TicketOtp = ({ route: { params } }) => {
                 setPin4("");
                 if (AuthUser.clientStatus) {
                   updateCheckInAndCheckOutClient({checkOut: Date()}, AuthUser.token, state._id).then((data) => {
-                    navigation.navigate("Receipt");
+                    navigation.navigate("Welcome");
                   })
                 }else{
                   updateCheckInAndCheckOutVolunteer({checkOut: Date()}, AuthUser.token, state._id).then((data) => {
-                    navigation.navigate("Receipt");
+                    navigation.navigate("Welcome");
                   })
                 }
 
