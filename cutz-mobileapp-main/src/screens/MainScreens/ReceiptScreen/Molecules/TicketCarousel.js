@@ -308,7 +308,7 @@ const TicketCarousel = ({
 
       <InfoText2 />
 
-      <Spacer height={20} />
+      <Spacer height={50} />
       
       {/* Button row */}
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
@@ -331,7 +331,7 @@ const TicketCarousel = ({
           onPress={() => handleViewDetailsPress(activeSlide)}
         />
 
-        <Spacer width={20} />
+        <Spacer width={30} />
 
         {/* Cancel button */}
         <CustomButton

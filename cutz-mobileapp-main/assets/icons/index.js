@@ -32,6 +32,7 @@ export const icons={
     eye:require("./eye.png"),
     eyeSlash:require("./hidden.png"),
     copy:require("./copy.png"),
+    information:require("./text-file.png"),
 
 
 

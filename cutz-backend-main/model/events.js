@@ -107,6 +107,11 @@ const Event = new mongoose.Schema({
     type: Number,
     required: [true, "checkOutCode is required"],
   },
+  foodNum: {
+    type: Number,
+    required: false,
+    
+  },
 });
 
 module.exports = mongoose.model("Event", Event);
