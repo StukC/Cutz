@@ -154,7 +154,7 @@ const TicketDetails = ({
                   }
                   fontFamily={"semiBold"}
                   color={colors.secondary}
-                  fontSize={14}
+                  fontSize={18}
                 />
                 <CustomText
                   label={ticketData?.groupHour}
@@ -168,7 +168,7 @@ const TicketDetails = ({
             <View style={{ flexDirection: "row" }}>
               <Spacer width={10} />
               <Image
-                source={icons.marker2}
+                source={icons.marker}
                 resizeMode={"contain"}
                 containerStyle={{ height: scale(30), width: scale(30) }}
               />
@@ -178,7 +178,7 @@ const TicketDetails = ({
                   label={ticketData?.addresses[0].place}
                   fontFamily={"semiBold"}
                   color={colors.secondary}
-                  fontSize={14}
+                  fontSize={18}
                 />
                 <CustomText
                   label={ticketData?.addresses[0].house}
@@ -200,7 +200,7 @@ const TicketDetails = ({
           <View style={{ flexDirection: "row" }}>
             <Spacer width={10} />
             <Image
-              source={icons.ticket2f}
+              source={icons.ticket1}
               resizeMode={"contain"}
               style={{
                 tintColor: colors.secondary,
@@ -213,7 +213,7 @@ const TicketDetails = ({
                 label={ticketData?.eventType}
                 fontFamily={"semiBold"}
                 color={colors.secondary}
-                fontSize={14}
+                fontSize={18}
               />
             </View>
           </View>

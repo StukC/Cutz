@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  SafeAreaView,
 } from "react-native";
 import commonStyles, { PH20 } from "../../../utils/CommonStyles";
 import { Spacer } from "../../../components/Spacer";
@@ -18,9 +17,6 @@ import Loader from "../../../utils/Loader";
 import loaderAnimation from "../../../../assets/Loaders/index";
 import BackIcon from "../../../../assets/icons/back.png";
 import * as ImagePicker from "expo-image-picker";
-import AppHeader from "../../../components/AppHeader";
-import { colors } from "../../../utils/Colors";
-
 
 export const onClickImage = async (setImageUri, setImage) => {
   try {
@@ -53,12 +49,13 @@ const EditProfile = ({ route, navigation }) => {
 
   return (
     <View style={commonStyles.commonMain}>
-     <SafeAreaView style={styles.safeArea}>
-    <AppHeader backButton onPressBack={() => navigation.goBack()} />
-  
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Image source={BackIcon} style={styles.backIcon} />
+      </TouchableOpacity>
 
       <ScrollView>
         <PH20>
+          <Spacer height={50} />
           {authUser?.currentUser === "Client" ? (
             <ClientEditProfile
               setLoading={setLoading}
@@ -78,8 +75,6 @@ const EditProfile = ({ route, navigation }) => {
         </PH20>
       </ScrollView>
       <Loader file={loaderAnimation} loading={loading} />
-      </SafeAreaView>
-
     </View>
   );
 };
@@ -87,10 +82,18 @@ const EditProfile = ({ route, navigation }) => {
 export default EditProfile;
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.white,
-    paddingTop: 32,
+  backButton: {
+    position: 'absolute',
+    top: 50,
+    left: 10,
+    padding: 10,
+    zIndex: 10,
   },
-   
+  backIcon: {
+    width: 48,
+    height: 48, 
+  },
+  scrollView: {
+    marginTop: 60,
+  },
 });

@@ -208,8 +208,6 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                 />
                                 <CustomText
                                     label={state?.eventID?.event_id}
-                                    //label={"125"}
-
                                     color={colors.white}
                                     fontFamily={"semiBold"}
                                     fontSize={25}
@@ -217,9 +215,8 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                             </View>
                             <Spacer height={5} />
                             <CustomText
-                               label={moment(state?.time?.eventStartTime).utc().format("MM/DD/YY") + " @ " + state.eventGroupID?.groupHour}
-                              //label={"3/20/24 @ 2pm"}
-
+                                label={moment(state?.time?.eventStartTime).utc().format("MM/DD/YY") + " @ " + state.eventGroupID?.groupHour}
+                                // label={"2/12/23 @ 2PM"}
                                 color={colors.white}
                                 fontFamily={"semiBold"}
                                 fontSize={23}
@@ -237,7 +234,6 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                 <Spacer height={10} />
                                 <CustomText
                                     label={state?.eventGroupID?.groupLetter?.toUpperCase() || "A"}
-                                    //label = {"Z"}
                                     color={colors.white}
                                     fontFamily={"semiBold"}
                                     fontSize={120}
@@ -274,7 +270,6 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                             }}
                         />
                     </View>
-                   
                 </>
             )}
         </View>

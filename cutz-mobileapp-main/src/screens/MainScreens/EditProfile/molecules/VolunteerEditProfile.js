@@ -326,7 +326,7 @@ const VolunteerEditProfile = (props) => {
   return (
     <>
       <View>
-        <Spacer height={40} />
+        <Spacer height={80} />
         <View
           style={{
             flexDirection: "row",

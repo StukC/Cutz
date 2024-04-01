@@ -179,7 +179,7 @@ const ClientEditProfile = ({
   };
   return (
     <>
-      <Spacer height={40} />
+      <Spacer height={80} />
       <View
         style={{
           flexDirection: "row",
