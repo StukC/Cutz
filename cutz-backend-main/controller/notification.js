@@ -45,7 +45,19 @@ const getOrganizationAndEventForNotification = async (req, res) => {
     });
 };
 
+const getNotificationById = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const notification = await Notification.findById(id);
+    res.status(200).json(notification);
+  }
+  catch (error) {
+      res.status(500).json({message: error.message})
+  }
+};
+
 module.exports = {
   createNotification,
   getOrganizationAndEventForNotification,
+  getNotificationById,
 };

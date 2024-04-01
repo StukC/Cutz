@@ -39,7 +39,7 @@ const NotificationContainer = (props) => {
               ):<></>
               
           }
-    
+   
         <CustomText
           label={props.name}
           fontSize={13}

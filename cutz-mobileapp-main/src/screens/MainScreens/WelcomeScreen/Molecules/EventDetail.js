@@ -66,9 +66,9 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
             borderWidth: dateIndex === indexx ? 1 : 0,
             borderColor: colors.secondary,
             paddingHorizontal: scale(18),
-            paddingVertical: verticalScale(6),
-            marginVertical: verticalScale(10), ...styles.shadow,
-        }}
+            paddingVertical: verticalScale(6), 
+             marginVertical: verticalScale(10), ...styles.shadow,
+           }}
         onPress={() => {
             setSelectedEventTypeId(eventId);
             setDateIndex(indexx)
@@ -93,7 +93,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
             fontFamily={"semiBold"}
         />
         <Spacer height={4}/>
-    </TouchableOpacity>);
+    </TouchableOpacity>); 
 
 
     return (<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
