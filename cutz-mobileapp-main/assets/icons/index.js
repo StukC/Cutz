@@ -8,6 +8,7 @@ export const icons={
     receipt:require("./receipt.png"),
     marker:require("./marker.png"),
     marker2:require("./marker2.png"),
+    exit:require("./exit.png"),
     calender:require("./calender.png"),
     ticket1:require("./ticket1.png"),
     ticket2:require("./ticket2.png"),

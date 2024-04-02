@@ -4,7 +4,6 @@ import CustomText from "../../../../components/CustomText";
 import { colors } from "../../../../utils/Colors";
 import { scale, verticalScale } from "react-native-size-matters";
 
-
 const ProfileHeader = ({ AuthUser }) => {
   console.log("CurrentAuth", AuthUser?.firstName);
   return (
@@ -16,17 +15,16 @@ const ProfileHeader = ({ AuthUser }) => {
           paddingVertical: verticalScale(12),
         }}
       >
-
         {/* <ProfilePhoto addPhoto/> */}
         <View style={{ marginLeft: scale(15) }}>
           <CustomText
-            label={AuthUser.firstName + " " + AuthUser.lastName}
+            label="Welcome"
             family={"semiBold"}
             fontSize={18}
             color={colors.txtGray}
           />
           <CustomText
-            label="Welcome to Cutz"
+            label={AuthUser.firstName + " " + AuthUser.lastName}
             family={"semiBold"}
             fontSize={14}
             color={colors.txtGray}
