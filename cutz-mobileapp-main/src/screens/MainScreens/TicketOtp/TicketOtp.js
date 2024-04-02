@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import CustomText from "../../../components/CustomText";
@@ -16,6 +17,8 @@ import OTP from "../ReceiptScreen/Molecules/OTP";
 import { scale, verticalScale } from "react-native-size-matters";
 import CustomButton from "../../../components/CustomButton";
 import { images } from "../../../../assets/images";
+import AppHeader from "../../../components/AppHeader";
+
 import {
   updateCheckInAndCheckOutClient,
   updateCheckInAndCheckOutVolunteer
@@ -38,7 +41,11 @@ const TicketOtp = ({ route: { params } }) => {
   const [pin4, setPin4] = useState("");
 
   return (
-    <ImageBackground source={images.ticketBackground} style={styles.container}>
+    <SafeAreaView style={styles.safeArea}>
+    <AppHeader />
+    <View style={styles.container}>
+     
+  
        <View style={[styles.voucherContainer, { width: "110%" }]}>
         <View style={styles.voucherBody}>
           <View style={styles.voucherHeader}>
@@ -205,17 +212,27 @@ const TicketOtp = ({ route: { params } }) => {
           }}
         />
       </View>
-    </ImageBackground>
+
+    </View>
+    </SafeAreaView>
+
   );
 };
 
 export default TicketOtp;
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.white,
+    paddingTop: 32,
+  },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#fff",
+   
   },
   voucherContainer: {
     alignItems: "center",
@@ -235,7 +252,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 5,
-
+   
     elevation: 9,
   },
   voucherBody: {
@@ -249,6 +266,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     // inputMarginTop:-20,
     shadowOffset: { width: -1, height: 3 },
+    borderColor: colors.gray5,
+    borderWidth: 0.8,
   },
   container1: {
     // flex: 1,

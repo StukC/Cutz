@@ -176,16 +176,22 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                     >
                         <ModalContent />
                     </Modal>
-                    <View style={{ alignItems: "center", marginTop: 0 }}>
+                    <View style={{ alignItems: "center"} }>
+                    
                         <CustomButton
                             title={state.checkIN ? " " : " IT'S TIME TO GET IN LINE"}
+                            
+
                             width={"90%"}
                             height={45}
-                            activeOpacity={1}
+                            //activeOpacity={3}
                             fontSize={20}
                             fontFamily={"semiBold"}
-                            borderRadius={0}
-                        />
+                            
+                            textAlign="center"       
+
+                            
+                            />
                         <Spacer height={5} />
                         <CustomText
                             label={"Be Sure To Check Out \n Before You Leave"}
@@ -204,7 +210,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                     label={"EVENT ID: "}
                                     color={colors.white}
                                     fontFamily={"semiBold"}
-                                    fontSize={30}
+                                    fontSize={25}
                                 />
                                 <CustomText
                                     label={state?.eventID?.event_id}
@@ -212,7 +218,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
 
                                     color={colors.white}
                                     fontFamily={"semiBold"}
-                                    fontSize={30}
+                                    fontSize={25}
                                 />
                             </View>
                             <Spacer height={5} />
@@ -222,7 +228,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
 
                                 color={colors.white}
                                 fontFamily={"semiBold"}
-                                fontSize={30}
+                                fontSize={25}
                             />
                             <Spacer height={10} />
                             <View style={{ marginVertical: -60 }}>

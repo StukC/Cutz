@@ -64,6 +64,8 @@ function CustomButton({
                 fontSize: verticalScale(fontSize|| 18),
                 fontWeight:"600",
                 fontFamily: fontFamily || "semiBold"
+                
+                
               },
             ]}
           >
