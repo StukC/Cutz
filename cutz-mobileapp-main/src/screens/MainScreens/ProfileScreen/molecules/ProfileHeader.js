@@ -19,14 +19,14 @@ const ProfileHeader = ({ AuthUser }) => {
         <View style={{ marginLeft: scale(15) }}>
           <CustomText
             label="Welcome"
-            family={"semiBold"}
+            fontFamily={"semiBold"}
             fontSize={18}
             color={colors.txtGray}
           />
           <CustomText
             label={AuthUser.firstName + " " + AuthUser.lastName}
-            family={"semiBold"}
-            fontSize={14}
+            fontFamily={"semiBold"}
+            fontSize={18}
             color={colors.txtGray}
           />
         </View>
