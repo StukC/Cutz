@@ -46,7 +46,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
             height: 100,
             paddingVertical: verticalScale(10),
             backgroundColor: backgroundColor,
-            borderRadius: 5,
+            borderRadius: 15,
             alignItems: "center",
             justifyContent: "center",
             marginBottom: 15,
@@ -54,9 +54,9 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
             ...styles.shadow,
         }}
     >
-        <CustomText label={place} fontSize={12} textAlign={"center"}/>
-        <CustomText label={house} fontSize={12} textAlign={"center"}/>
-        <CustomText label={zip} fontSize={12} textAlign={"center"}/>
+        <CustomText label={place} fontSize={12} fontFamily={"semiBold"} color={colors.white} textAlign={"center"}/>
+        <CustomText label={house} fontSize={12} fontFamily={"semiBold"} color={colors.white} textAlign={"center"}/>
+        <CustomText label={zip} fontSize={12} fontFamily={"semiBold"} color={colors.white} textAlign={"center"}/>
     </TouchableOpacity>);
 
     const EventDateItem = ({date, day, MMYY, indexx, eventId}) => (<TouchableOpacity
@@ -66,9 +66,9 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
             borderWidth: dateIndex === indexx ? 1 : 0,
             borderColor: colors.secondary,
             paddingHorizontal: scale(18),
-            paddingVertical: verticalScale(6),
-            marginVertical: verticalScale(10), ...styles.shadow,
-        }}
+            paddingVertical: verticalScale(6), 
+             marginVertical: verticalScale(10), ...styles.shadow,
+           }}
         onPress={() => {
             setSelectedEventTypeId(eventId);
             setDateIndex(indexx)
@@ -93,7 +93,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
             fontFamily={"semiBold"}
         />
         <Spacer height={4}/>
-    </TouchableOpacity>);
+    </TouchableOpacity>); 
 
 
     return (<ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
@@ -127,7 +127,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
         <View style={{alignItems: "center"}}>
             <CustomText
                 label={"CHOOSE AN ORGANIZATION"}            
-                color={colors.blue1}
+                color={colors.secondary}           
                 fontSize={11}
                 fontFamily={"semiBold"}
             />
@@ -149,7 +149,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
         <View style={{alignItems: "center"}}>
             <CustomText
                 label={"TYPE OF EVENT"}
-                color={colors.blue1}
+                color={colors.secondary}
                 fontSize={11}
                 fontFamily={"semiBold"}
             />
@@ -207,7 +207,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
                     place={state.events[selectedEventTypeIndex]?.times[dateIndex]?.eventId.addresses[0].place}
                     house={state.events[selectedEventTypeIndex]?.times[dateIndex]?.eventId.addresses[0].house}
                     zip={state.events[selectedEventTypeIndex]?.times[dateIndex]?.eventId.addresses[0].zip}
-                    backgroundColor={"#EDB879"}
+                    backgroundColor={"#F07E2B"}
                 />
             </PH20>
             {/*<PH20>*/}

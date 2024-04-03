@@ -80,6 +80,14 @@ const PersonalScreen = ({ navigation, route }) => {
           <>
             <NameContainer name={"FAMILY SIZE"} />
             <DetailContainer name={authUser?.familySize} />
+            <NameContainer name={"Card Details"} />
+            <DetailContainer name={authUser?.cardName} />
+            <DetailContainer name={authUser?.cardNumber} />
+            <DetailContainer name={authUser?.cardNameTwo} />
+            <DetailContainer name={authUser?.cardNumberTwo} />
+
+
+
           </>
         ) : (
           <>

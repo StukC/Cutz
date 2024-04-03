@@ -64,6 +64,8 @@ export const useSignup = (signupValue, signupErrors, setSignupError ) => {
 
     return;
   }
+  
+
   if (!signupValue.password) {
     setSignupError({ ...signupErrors,passwordError : "password is required" });
 

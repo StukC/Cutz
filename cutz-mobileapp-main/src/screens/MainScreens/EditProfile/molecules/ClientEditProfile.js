@@ -38,6 +38,8 @@ const ClientEditProfile = ({
   const [newConfirmError, setNewConfirmError] = useState("");
   const dispatch = useDispatch();
   const [phoneRaw, setPhoneRaw] = useState("");
+  const [cards, setCards] = useState(false);
+
 
   const AuthUser = useSelector((state) => state.authReducers.authState);
 
@@ -54,8 +56,10 @@ const ClientEditProfile = ({
     addressError: "",
     sizeError: "",
     passwordError: "",
-    cardNumberError:"",
+    cardNumberError:"",  
     cardNameError: "",
+    cardNameTwoError: "",
+    cardNumberTwoError:"",  
     confirmError: "",
   });
   const [signupValue, setSignupValue] = useState({
@@ -69,6 +73,9 @@ const ClientEditProfile = ({
     confirmPassword: "empty1111",
     cardNumber: AuthUser?.cardNumber,
     cardName: AuthUser?.cardName,
+    cardNameTwo: AuthUser?.cardNameTwo,
+    cardNumberTwo: AuthUser?.cardNumberTwo,
+
   });
   const onSubmitUpdate = async () => {
     console.log("nkbk");
@@ -88,6 +95,8 @@ const ClientEditProfile = ({
         familySize: Number(signupValue.familySize),
         cardNumber: signupValue.cardNumber,
         cardName: signupValue.cardName,
+        cardNameTwo: signupValue.cardNameTwo,
+        cardNumberTwo: signupValue.cardNumberTwo,
         // password: signupValue.password,
         // confirmPassword: signupValue.confirmPassword,
       };
@@ -131,6 +140,11 @@ const ClientEditProfile = ({
     }
   };
 
+  const addCard = () => {
+    setCards(true);
+  };
+
+
   const onSubmitDelete = async () => {
     const res = await DeleteClientEvent(AuthUser?.token);
     if (res?.data) {
@@ -165,7 +179,7 @@ const ClientEditProfile = ({
   };
   return (
     <>
-      <Spacer height={80} />
+      <Spacer height={40} />
       <View
         style={{
           flexDirection: "row",
@@ -310,6 +324,7 @@ const ClientEditProfile = ({
               setSignupError({ ...signupErrors, cardName: "" });
           }}
         />
+          <Spacer height={30} />
 
       <CustomInputs
         placeholder="Card Number"
@@ -325,6 +340,61 @@ const ClientEditProfile = ({
             setSignupError({ ...signupErrors, cardNumberError: "" });
         }}
       />
+
+        {cards && (
+          <>
+          <Spacer height={30} />
+
+              <CustomInputs
+          placeholder="Card Name 2"
+          paddingLeft={20}
+          alignSelf="center"
+          width="100%"
+        
+
+          value={signupValue.cardNameTwo}
+          error={signupErrors.cardNameTwoError}
+          onChangeText={(txt) => {
+            setSignupValue({ ...signupValue, cardNameTwo: txt });
+              setSignupError({ ...signupErrors, cardNameTwoError: "" });
+          }}
+        />
+          <Spacer height={30} />
+
+      <CustomInputs
+        placeholder="Card Number"
+        paddingLeft={20}
+        alignSelf="center"
+        width="100%"
+       
+
+        value={signupValue.cardNumberTwo}
+        error={signupErrors.cardNumberTwoError}
+        onChangeText={(txt) => {
+          setSignupValue({ ...signupValue, cardNumberTwo: txt });
+            setSignupError({ ...signupErrors, cardNumberTwoError: "" });
+        }}
+      />
+      </>
+      )}
+
+      <Spacer height={30} />
+
+        <CustomButton
+          title="Add Card"
+          fontFamily={"bold"}
+          onPress={addCard}
+          borderRadius={15}
+          width={"42%"}
+          btnStyle={{
+            shadowColor: Platform.OS == "ios" ? "#343a40" : colors.black,
+            shadowRadius: 2,
+            elevation: 5,
+            shadowOpacity: 0.4,
+            shadowOffset: { width: -1, height: 3 },
+          }}
+          backgroundColor={colors.secondary}
+        />
 
       <Spacer height={30} />
       <CustomInputs
@@ -373,7 +443,7 @@ const ClientEditProfile = ({
           justifyContent: "space-between",
           paddingHorizontal: 5,
         }}
-      >
+      >    
         <CustomButton
           title="Update"
           fontFamily={"bold"}

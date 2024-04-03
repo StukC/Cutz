@@ -14,6 +14,7 @@ import CustomBottomSheet from "../../../components/CustomBottomSheet";
 import SignupBottom from "./SignupBottom";
 import { useSignup } from "../useSignup";
 import { ClientSignup, UserSignup } from "../../../services/LoginSignupApi";
+
 import { icons } from "../../../../assets/icons";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -35,6 +36,8 @@ const SignupBody = (props) => {
     cardNumberError:"",
     confirmError: "",
     cardNameError: "",
+    cardNameTwoError:"",
+    cardNumberTwoError:"",
   });
   const [signupValue, setSignupValue] = useState({
     firstName: "",
@@ -47,6 +50,8 @@ const SignupBody = (props) => {
     confirmPassword: "",
     cardNumber:"",
     cardName: "",
+    cardNameTwo:"",
+    cardNumberTwo:"",
   });
 
   useFocusEffect(
@@ -85,6 +90,8 @@ const SignupBody = (props) => {
         familySize: Number(signupValue.familySize),
         cardNumber: signupValue.cardNumber,
         cardName: signupValue.cardName,
+        cardNameTwo: signupValue.cardNameTwo,
+        cardNumberTwo: signupValue.cardNumberTwo,
         password: signupValue.password,
         confirmPassword: signupValue.confirmPassword,
         clientAttandance: "none",
@@ -294,6 +301,41 @@ const SignupBody = (props) => {
                 setSignupError({ ...signupErrors, cardNumberError: "" });
             }}
           />
+                    <Spacer height={15} />
+
+
+        <CustomTextInput
+            placeholder="Card Name 2"
+            paddingLeft={20}
+            alignSelf="center"
+            width="100%"
+          
+
+            value={signupValue.cardNameTwo}
+            error={signupErrors.cardNameTwoError}
+            onChangeText={(txt) => {
+              setSignupValue({ ...signupValue, cardNameTwo: txt });
+                setSignupError({ ...signupErrors, cardNameErrorTwo: "" });
+            }}
+          />
+          <Spacer height={15} />
+
+          <CustomTextInput
+            placeholder="Card Number 2"
+            paddingLeft={20}
+            alignSelf="center"
+            width="100%"
+          
+
+            value={signupValue.cardNumberTwo}
+            error={signupErrors.cardNumberTwoError}
+            onChangeText={(txt) => {
+              setSignupValue({ ...signupValue, cardNumberTwo: txt });
+                setSignupError({ ...signupErrors, cardNumberTwoError: "" });
+            }}
+          />  
+
+         
 
           <Spacer height={15} />
           <CustomTextInput

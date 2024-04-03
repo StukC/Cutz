@@ -81,6 +81,11 @@ function ManageEvent() {
       width: '150px',
     },
     {
+      name: "# Food",
+      sortable: true,
+      selector: (row) => row.foodNum,
+    },
+    {
       name: "Group Time",
       sortable: true,
       selector: (row) => row.groupServicePeriod ,

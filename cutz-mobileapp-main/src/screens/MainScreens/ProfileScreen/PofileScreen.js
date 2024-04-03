@@ -115,7 +115,7 @@ const ProfileScreen = ({ navigation, route }) => {
 
         <ProfileBody
           name={"Delete Account"}
-          img={icons.howuse}
+          img={icons.close}
           family={"semiBold"}
           onPress={() => {
             Alert.alert(
@@ -141,7 +141,7 @@ const ProfileScreen = ({ navigation, route }) => {
         {/* <Spacer height={10} /> */}
         <ProfileBody
           name={"Logout"}
-          img={icons.howuse}
+          img={icons.exit}
           family={"semiBold"}
           onPress={async () => {
             await AsyncStorage.removeItem?.("CurrentAuth");
