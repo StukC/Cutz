@@ -16,11 +16,11 @@ const ProfileHeader = ({ AuthUser }) => {
         }}
       >
         {/* <ProfilePhoto addPhoto/> */}
-        <View style={{ marginLeft: scale(15) }}>
+        <View style={{ marginLeft: scale(1) }}>
           <CustomText
-            label="Welcome"
+            label="Welcome to Cutz"
             fontFamily={"semiBold"}
-            fontSize={18}
+            fontSize={15}
             color={colors.txtGray}
           />
           <CustomText

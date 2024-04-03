@@ -173,7 +173,7 @@ const AppDescription = ({ navigation }) => {
                         color={"#969696"}
                     />
                     <CustomText
-                        label={"Dr. Mahmoud Abou-Nasr, PhD???"}
+                        label={"Dr. Mahmoud Abou-Nasr, PhD Professor of Engineering Computer and Information Science"}
                         fontFamily="regular"
                         fontSize={14}
                         color={"#969696"}
