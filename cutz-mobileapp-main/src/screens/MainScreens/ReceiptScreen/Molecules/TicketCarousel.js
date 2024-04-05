@@ -280,6 +280,7 @@ const TicketCarousel = ({
             }}
           >
             No Reservations Yet
+           
           </Text>
         </View>
       )}

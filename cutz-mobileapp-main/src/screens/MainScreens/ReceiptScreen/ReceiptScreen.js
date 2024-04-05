@@ -151,7 +151,7 @@ const ReceiptScreen = ({navigation: {navigate}, route}) => {
                 <TicketCheckInAndOut
                     state={state.ticketData}
                     setState={setState}
-                    profilePicture={AuthUser?.profilePicture}
+                    //profilePicture={AuthUser?.profilePicture}
                 />
             </>) : (<>
                 <AppHeader
@@ -160,6 +160,7 @@ const ReceiptScreen = ({navigation: {navigate}, route}) => {
                         setState({...state, ticketDetail: false});
                     }}
                 />
+
                 {state.greet ? (state.checkOut ? (<SmileGreeting
                     state={state}
                     setState={setState}

@@ -78,83 +78,12 @@ const WelcomeScreen = ({navigation: {navigate}, route}) => {
                 ticketData: time,
             });
         }else {
-            if (state.eventTypes.length) {
-                if (state.timings.length) {
-                    loaderOn();
+            setTicketVisible(true);
+            setState({
+                ...state,
+                ticketData: time,
+            });
 
-
-                    console.log('time', time)
-
-                    let mainEventTime = state.timings.filter((e) => e.eventId === time.eventID);
-                    if (time.eventID) {
-                        if (AuthUser.clientStatus) {
-                            getEventById(time.eventID).then((r) => {
-                                let event = r.data;
-                                getOrganizationById(event.orgId).then((r) => {
-                                    let org = r.data;
-                                    setState({
-                                        ...state,
-                                        ticketData: {
-                                            ...event,
-                                            ...time,
-                                            ...mainEventTime,
-                                            eventId: event._id,
-                                            groupId: time._id,
-                                            organization: org.organizationName,
-                                        },
-                                    });
-                                    setTicketVisible(true);
-                                    console.log("state.ticketData", {
-                                        ...time,
-                                        ...event,
-                                        organization: org.organizationName,
-                                    });
-                                });
-                                // loaderOff();
-                            });
-                        } else {
-                            if (state.error) {
-                                getEventById(time.eventID).then((r) => {
-                                    let event = r.data;
-                                    getOrganizationById(event.orgId).then((r) => {
-                                        let org = r.data;
-                                        setState({
-                                            ...state,
-                                            ticketData: {
-                                                ...time,
-                                                ...event,
-                                                ...mainEventTime,
-                                                eventId: event._id,
-                                                groupId: time._id,
-                                                organization: org.organizationName,
-                                            },
-                                        });
-                                        setTicketVisible(true);
-                                        console.log("state.ticketData", {
-                                            ...time,
-                                            ...event,
-                                            organization: org.organizationName,
-                                        });
-                                    });
-                                    // loaderOff();
-                                });
-                            } else {
-                                loaderOff();
-                                alert("Select Timing");
-                            }
-                        }
-                    } else {
-                        loaderOff();
-                        alert("Error");
-                    }
-                } else {
-                    alert("Select Timing");
-                }
-            } else {
-                console.log("Event Types:", state.eventTypes);
-                console.log("Timings:", state.timings); 
-                alert("Select Event Type");
-            }
         }
     };
     const handleCancelPress = () => {

@@ -286,7 +286,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
                 onPress={() => {
                     
                     let timeDetails = "";
-                    if (AuthUser.clientStatus) {
+                    if (AuthUser.clientStatus || AuthUser.volunteerStatus) {
 
                         if (!timingIndex) {
                             timeDetails = state.events[selectedEventTypeIndex]?.times[dateIndex]?.timeGroup[0];
@@ -317,6 +317,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
                             timeDetails = state.timings[dateIndex];
                         }
                         handleBookingPress(timeDetails);
+                        console.log("timeDetails");
                     }
 
 

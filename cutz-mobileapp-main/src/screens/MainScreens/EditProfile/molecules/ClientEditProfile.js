@@ -22,6 +22,7 @@ import Toast from "react-native-root-toast";
 import { UploadImage } from "../../../../services/UploadImage";
 import { URLS } from "../../../../services/Urls";
 import { icons } from "../../../../../assets/icons";
+
 const ClientEditProfile = ({
   navigation,
   setLoading,
@@ -97,9 +98,10 @@ const ClientEditProfile = ({
         cardName: signupValue.cardName,
         cardNameTwo: signupValue.cardNameTwo,
         cardNumberTwo: signupValue.cardNumberTwo,
-        // password: signupValue.password,
-        // confirmPassword: signupValue.confirmPassword,
+        password: signupValue.password,
+        confirmPassword: signupValue.confirmPassword,
       };
+      console.log('wow')
 
       if (newPassword) {
         if (newPassword.length <= 7) {
@@ -118,17 +120,7 @@ const ClientEditProfile = ({
         data["confirmPassword"] = newConfirmPassword;
       }
 
-      setLoading(true);
-
-      if (imageUri) {
-        try {
-          const res = await UploadImage(imageUri);
-          let host = "https://event-apis-production.up.railway.app";
-          data["profilePicture"] = `${host}${res.link}`;
-        } catch (error) {}
-      }
-
-      console.log("DataImage", data);
+    
 
       await UpdateClientEvent(
         AuthUser?.token,
@@ -137,6 +129,8 @@ const ClientEditProfile = ({
         dispatch,
         setLoading
       );
+      console.log('wasow')
+
     }
   };
 
