@@ -100,10 +100,10 @@ const SignupBody = (props) => {
       // await ClientSignup(
       await UserSignup(
       data,
-        setLoading,
-        props.navigation,
-        props.checkUser,
-        dispatch
+      setLoading,
+      props.navigation,
+      props.checkUser,
+      dispatch
       );
 
       // console.log("ResponseData", responData);

@@ -65,16 +65,17 @@ function ForgotPasswordPage() {
 
       <div className="mt-2 d-flex justify-content-center mainstyle">
         <div className="loginhearder">
-          <h2 className="headlogin"> Forgot Password</h2>
+          <h2 className="loginhead"> Forgot Password!!</h2>
 
           <input
-            className="d-flex in1"
-            placeholder="email"
+            className="d-flex inputs1"
+            placeholder=" Email"
             type="Email"
             required
             onChange={(e) => setEmail(e.target.value)}
             onKeyUp={() => setError({ ...error, email: "" })}
           />
+          <br></br>
           <p style={{ color: "red" }}>{error.email}</p>
           <a className="send-otp" onClick={sendOtp}>
             Send OTP{" "}

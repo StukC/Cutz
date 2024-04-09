@@ -109,6 +109,18 @@ section {
   border: 1px solid #000000;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.inputs1 {
+  box-sizing: border-box;
+  position: relative ;
+  width: 80%;
+  margin: 0 auto;
+  height: 55px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 .in2 {
   box-sizing: border-box;
   position: relative ;
@@ -131,8 +143,9 @@ section {
 
 .send-otp {
   position: absolute;
-  top: 45%;
-  left: 45%;
+  top: 295px;
+  left: 50%; /* Change from 45% to 50% */
+  transform: translate(-50%, -50%); /* Center the element */
   cursor: pointer;
 }
 .reset-password{
@@ -160,7 +173,19 @@ section {
 
 .headlogin {
   color: #fff;
-  height: 14%;
+  height: 17%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #666ca3;
+  width: 100%; /* Set the width to 100% to span the entire length */
+  box-sizing: border-box; /* Ensure the padding and border are included in the width */
+}
+
+.loginhead {
+  color: #fff;
+  height: 37%;
   text-align: center;
   display: flex;
   justify-content: center;

@@ -104,23 +104,35 @@ export const UpdateClientEvent = async (
   setLoading
 ) => {
   console.log("TokenData", token);
+  
+  const userURL = (checkUser == 'Client' ? 
+    `${URLS.BASE_URL}${URLS.CLIENT_SIGNUP}` :
+    `${URLS.BASE_URL}${URLS.VOLUNTEER_SIGNUP}`
+  )
   const options = {
-    method: "PATCH",
-    url: `${URLS.BASE_URL}${URLS.GET_CLIENT}`,
-    headers: { Authorization: "Bearer " + token },
-    data: data,
+    method: "POST",
+    url: userURL,
+    headers: { Accept: "application/json" },
+    data: {
+      ...data,
+      email: data.email.toLowerCase(),
+    },
   };
+  setLoading(true);
 
+console.log("post")
   try {
     await axios
       .request(options)
       .then(async function (response) {
-        // console.log("userCreated", response?.message);
+         console.log("userCreated", response?.message);
         if (response) {
           const res = await GetClientEvent(token);
           const data = res?.data;
           data["token"] = token;
           data["currentUser"] = AuthUser.currentUser;
+          data={...data, ...response.data?.userDetails}
+
           Toast.show("Profile is updated");
           console.log("UpdatedData", JSON.stringify(data, null, 2));
           setLoading(false);
