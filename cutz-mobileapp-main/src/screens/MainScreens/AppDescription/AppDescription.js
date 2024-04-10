@@ -83,7 +83,7 @@ const AppDescription = ({ navigation }) => {
                         color={"#000000"}
                     />
                     <CustomText
-                        label={"1. Select an organization, an event, location, date, and time you would like to reserve. (Note: Time slots will disappear when they are filled.)"}
+                        label={"1. Select an organization, event, location, date, and time you would like to reserve. (Note: Time slots will disappear when they are filled.)"}
                         fontFamily="regular"
                         fontSize={12}
                         color={"#000000"}
@@ -149,7 +149,7 @@ const AppDescription = ({ navigation }) => {
                         color={"#000000"}
                     />
                     <CustomText
-                        label={"1. Select an organization, an event, location, date, and time you would like to volunteer. (Note: Time slots will disappear when they are filled.)"}
+                        label={"1. Select an organization, event, location, date, and time you would like to volunteer. (Note: Time slots will disappear when they are filled.)"}
                         fontFamily="regular"
                         fontSize={12}
                         color={"#000000"}
@@ -185,25 +185,25 @@ const AppDescription = ({ navigation }) => {
                         color={"#000000"}
                     /> 
                 <CustomText
-                        label={"Dr. Bruce Maxim, "}
+                        label={"Dr. Bruce Maxim, PhD"}
                         fontFamily="regular"
                         fontSize={14}
                         color={"#000000"}
                     />
                     <CustomText
-                        label={"PhD Natty Natarajan Professor of Engineering Computer and Information Science "}
+                        label={"Nattu Natarajan Professor of Engineering and Computer and Information Science"}
                         fontFamily="regular"
                         fontSize={12}
                         color={"#000000"}
                     />
                     <CustomText
-                        label={"Dr. Mahmoud Abou-Nasr,"}
+                        label={"Dr. Mahmoud Abou-Nasr, PhD"}
                         fontFamily="regular"
                         fontSize={14}
                         color={"#000000"}
                     />
                                       <CustomText
-                        label={"PhD Professor of Engineering Computer and Information Science"}
+                        label={"Lecturer Computer and Information Science"}
                         fontFamily="regular"
                         fontSize={12}
                         color={"#000000"}
