@@ -65,7 +65,7 @@ const AppDescription = ({ navigation }) => {
     style={{ textAlign: "center" }}
 />
                     <CustomText
-                        label={"Cutz connect users with non-profits, for-profits, and government organizations and helps manage large events by eliminating chaos and congestion.\n"}
+                        label={"Cutz connects users with non-profits, for-profits, and government organizations and helps manage large events by eliminating chaos and congestion.\n"}
                         fontFamily="regular"
                         fontSize={14}
                         color={"#000000"}
