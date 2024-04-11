@@ -1,7 +1,9 @@
 export const Urls = {
   // https://event-app-production-production.up.railway.app/api/v1/client/getall
   // BaseUrl:"https://cutz-production.up.railway.app/",
-  BaseUrl: "http://localhost:3006/",
+  //BaseUrl: "http://localhost:3006/",
+  BaseUrl: "https://your-heroku-app.herokuapp.com/",
+
   //BaseUrl:'https://cutz-final-production.up.railway.app/',
   // BaseUrl:"https://event-app-production-production.up.railway.app/",
   CLIENT_SIGNUP: "api/v1/client/signup",
