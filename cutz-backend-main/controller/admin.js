@@ -60,7 +60,7 @@ const LoginAdmin = async (req, res) => {
           process.env.JWT_KEY
         );
         return res.status(200).json({
-          messagae: "Auth Successful",
+          message: "Auth Successful",
           token: token,
           id: admin._id,
         });
