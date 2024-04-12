@@ -91,16 +91,14 @@ app.post("/api/v1/upload", upload.single("image"), (req, res) => {
 });
 
 // Serve the frontend files
-app.get("/*", function (req, res){
-  res.sendFile(
-    path.join(__dirname, "../cutz-admin-dashboard/build/index.html"),
-    function(err){
-      if(err){
-        res.status(500).send(err);
-      }
-    }
-  );
+// Serve static files from the 'build' directory
+app.use(express.static(path.join(__dirname, '../cutz-admin-dashboard/build')));
+
+// Serve the React app's 'index.html' file for all other routes
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../cutz-admin-dashboard/build/index.html'));
 });
+
 
 app.get("/", (req, res) => {
   res.send({ message: "welcome to events API!!" });
