@@ -3,7 +3,7 @@ export const Urls = {
   // BaseUrl:"https://cutz-production.up.railway.app/",
   //BaseUrl: "http://localhost:3006/",
   BaseUrl: "https://cutz-5d27a035f5c8.herokuapp.com/",
-
+  //BaseUrl: "https://cutzapp.netlify.app/",
   //BaseUrl:'https://cutz-final-production.up.railway.app/',
   // BaseUrl:"https://event-app-production-production.up.railway.app/",
   CLIENT_SIGNUP: "api/v1/client/signup",
