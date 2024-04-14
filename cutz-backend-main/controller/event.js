@@ -16,15 +16,27 @@ const CreateEvent = async (req, res) => {
   // res.json(customIds)
 
   try {
-    // Convert event start and end times to Date objects
-    const startTime = new Date(data.eventStartTime);
-    const endTime = new Date(data.eventEndTime);
+    console.log("Start Time from data:", data.eventStartTime);
+    console.log("End Time from data:", data.eventEndTime);
 
-    // Calculate duration in milliseconds
-    const durationMs = endTime - startTime;
+    // Convert Unix timestamps to ISO 8601 format
+    const startTime = new Date(data.eventStartTime * 1000).toISOString();
+    const endTime = new Date(data.eventEndTime * 1000).toISOString();
+
+    // Calculate difference between start and end times in minutes
+    const startDateTime = new Date(startTime);
+    const endDateTime = new Date(endTime);
+    const durationMinutes = (endDateTime - startDateTime) / (1000 * 60);
+
+    console.log("******************** duration:", durationMinutes);
 
     // Convert milliseconds to hours and minutes
-    const eventPeriod = durationMs / (1000 * 60 * 60);
+    // Convert duration from minutes to hours and minutes
+    const hours = Math.floor(durationMinutes / 60);
+    const minutes = durationMinutes % 60;
+    const eventPeriod = hours + " hours " + minutes + " minutes";
+
+    console.log("******************** event period:", eventPeriod);
 
     // Generate array of alphabets for groups
     const alpha = Array.from(Array(26)).map((e, i) => i + 65);
@@ -33,10 +45,12 @@ const CreateEvent = async (req, res) => {
     let numberOfGroups;
 
     if (data.groupServicePeriod === "30 min") {
-      numberOfGroups = eventPeriod / 0.5;
+      numberOfGroups = Math.ceil(durationMinutes / 30); // Round up to ensure enough groups for the entire duration
     } else {
-      numberOfGroups = eventPeriod;
+      numberOfGroups = Math.ceil(durationMinutes / 60); // Round up to ensure enough groups for the entire duration
     }
+
+
 
     // Uncomment this logic if you need to consider remaining time after one hour of time
     // if (eventPeriodRemaining !== 0 && eventPeriodRemaining <= 1800) {
@@ -49,7 +63,6 @@ const CreateEvent = async (req, res) => {
     //   }
     // }
 
-    console.log("************** Event Period: ", eventPeriod);
     console.log("************** Number of Groups: ", numberOfGroups);
 
     // Create new event
