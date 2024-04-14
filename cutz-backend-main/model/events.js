@@ -5,9 +5,9 @@ const mongoose = require("mongoose");
 // Organization
 // EventType
 // Location
-// Prioreventstarttime
-// Prioreventendtime
-// EventstartTime
+// PriorEventStartTime
+// PriorEventEndTime
+// EventStartTime
 // EventEndTime
 // AfterEventStartTime
 // AfterEventEndTime
@@ -73,6 +73,30 @@ const Event = new mongoose.Schema({
       },
     },
   ],
+  // priorEventStartTime: {
+  //   type: String,
+  //   required: [true, "priorEventStartTime is required"],
+  // },
+  // priorEventEndTime: {
+  //   type: String,
+  //   required: [true, "priorEventEndTime is required"],
+  // },
+  // eventStartTime: {
+  //   type: String,
+  //   required: [true, "eventStartTime is required"],
+  // },
+  // eventEndTime: {
+  //   type: String,
+  //   required: [true, "eventEndTime is required"],
+  // },
+  // afterEventStartTime: {
+  //   type: String,
+  //   required: [true, "afterEventStartTime is required"],
+  // },
+  // afterEventEndTime: {
+  //   type: String,
+  //   required: [true, "afterEventEndTime is required"],
+  // },
   eventCapacity: {
     type: Number,
     required: [true, "EventCapacity is required"],
@@ -107,10 +131,17 @@ const Event = new mongoose.Schema({
     type: Number,
     required: [true, "checkOutCode is required"],
   },
-  foodNum: {
+  unitsToDistribute: {
     type: Number,
     required: false,
-    
+  },
+  unitPrice: {
+    type: Number,
+    required: false,
+  },
+  additionalDetails: {
+    type: String,
+    required: false,
   },
 });
 

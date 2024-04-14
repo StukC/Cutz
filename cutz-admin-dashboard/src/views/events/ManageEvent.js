@@ -67,6 +67,7 @@ function ManageEvent() {
       name: "# People",
       sortable: true,
       selector: (row) => row.eventCapacity,
+      width: '150px',
     },
     {
       name: "# Groups",
@@ -74,34 +75,41 @@ function ManageEvent() {
       selector: (row) => row.numberOfGroups,
       width: '150px',
     },
+    // {
+    //   name: "Group Size",
+    //   sortable: true,
+    //   selector: (row) => Math.floor(row.eventCapacity / row.numberOfGroups),
+    //   width: '150px',
+    // },
     {
-      name: "Group Size",
+      name: "Units of Food",
       sortable: true,
-      selector: (row) => Math.floor(row.eventCapacity / row.numberOfGroups),
+      selector: (row) => row.unitsToDistribute,
       width: '150px',
     },
     {
-      name: "# Food",
+      name: "unitPrice",
       sortable: true,
-      selector: (row) => row.foodNum,
+      selector: (row) => row.UnitPrice,
+      width: '150px',
     },
     {
       name: "Group Time",
       sortable: true,
       selector: (row) => row.groupServicePeriod ,
-      width: '200px',
+      width: '150px',
     },
     {
       name: "Organization",
       sortable: true,
       selector: (row) => row.orgId.organizationName,
-      width: '200px',
+      width: '150px',
     },
     {
-      name: "Event",
+      name: "Event Type",
       sortable: true,
       selector: (row) => row.eventType,
-      width: '200px',
+      width: '150px',
     },
     {
       name: "Location",
@@ -113,14 +121,14 @@ function ManageEvent() {
       name: "Start Time",
       sortable: true,
       selector: (row) =>
-        moment(row?.group?.eventStartTime).utc().format("MM/DD/YY h:s A"),
+        moment(row?.group?.eventStartTime).utc().format("MM/DD/YY h:ss A"),
         width: '200px',
     },
     {
       name: "End Time",
       sortable: true,
       selector: (row) =>
-        moment(row?.group?.eventEndTime).utc().format("MM/DD/YY h:s A"),
+        moment(row?.group?.eventEndTime).utc().format("MM/DD/YY h:ss A"),
         width: '200px',
     },
     {

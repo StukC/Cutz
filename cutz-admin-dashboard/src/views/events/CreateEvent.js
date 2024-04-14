@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+import axios from "axios";
+
 import "../../assets/css/argon-dashboard-react.min.css";
 import { Card, Container, Row, CardHeader, Input } from "reactstrap";
-import moment from "moment";
-
 import Header from "components/Headers/Header.js";
-import {
-  createOrganization,
-  getAdminOrganizations,
-} from "services/Organization";
-import { getOrganizations } from "services/Organization";
+import { createOrganization, getAdminOrganizations, getOrganizations } from "services/Organization";
 import { createEvent } from "services/Event";
+import { Urls } from "utilities/Urls";
 import loaderAnimation from "assets/Loaders";
 import Lottie from "react-lottie";
-import axios from "axios";
-import { Urls } from "utilities/Urls";
 
+// Lottie animation settings for load button
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -25,12 +22,15 @@ const defaultOptions = {
 };
 
 function CreateEvent() {
+  // Check if user is super admin
   const isSuperAdmin = localStorage.getItem("isSuperAdmin");
-  const [loading, setLoading] = useState(false);
-  const [orgList, setOrgList] = useState([]);
-  const [adminOrgList, setAdminOrgList] = useState([]);
-  const [selectedOrg, setSelectedOrg] = useState("");
-  const [timings, setTimings] = useState({
+
+  // Define state variables
+  const [loading, setLoading] = useState(false); 
+  const [orgList, setOrgList] = useState([]);   // Stores list of organizations
+  const [adminOrgList, setAdminOrgList] = useState([]);   
+  const [selectedOrg, setSelectedOrg] = useState("");   // Stores seleted organziation
+  const [timings, setTimings] = useState({    // Stores timing information
     eventId: "",
     priorEventStartTime: "",
     priorEventEndTime: "",
@@ -40,7 +40,7 @@ function CreateEvent() {
     afterEventEndTime: "",
     capacity: 100,
   });
-  const [state, setState] = useState({
+  const [state, setState] = useState({    // Stores event details
     location: {
       latitude: 37.78825,
       longitude: -122.4324,
@@ -64,19 +64,23 @@ function CreateEvent() {
         _id: "64352db63be4664fe6a9cfbf",
       },
     ],
-    eventCapacity: 99,
+    eventCapacity: 0,
     groupServicePeriod: "30 min",
-    volunteerCapacity: 20,
+    volunteerCapacity: 0,
     eventCode: "",
     eventStartTime: Math.floor(moment(new Date()).valueOf() / 1000),
     eventEndTime: Math.floor(moment(new Date()).valueOf() / 1000),
     checkInCode: 0,
     checkOutCode: 0,
+    additionalDetails: "",
+    unitsToDistribute: 0,
+    unitPrice: 0.00,
   });
 
+  // Create event timings
   const createTiming = async (id) => {
+    // Convert timings to proper format
     let times = { ...timings };
-
     times.eventStartTime = moment(times.eventStartTime * 1000).format(
       "yyyy-MM-DDTHH:mm"
     );
@@ -84,6 +88,7 @@ function CreateEvent() {
       "yyyy-MM-DDTHH:mm"
     );
 
+    // POST request to create timings
     await axios
       .post(Urls.BaseUrl + "api/v1/timing", {
         ...times,
@@ -100,9 +105,12 @@ function CreateEvent() {
       });
   };
 
+  // Add event
   const addEvent = (data) => {
+    // POST request to create an event
     createEvent(data)
       .then((r) => {
+        // Once created, create timings
         createTiming(r.data.id);
       })
       .catch((e) => {
@@ -111,6 +119,7 @@ function CreateEvent() {
       });
   };
 
+  // Handle form submission
   const onSubmit = () => {
     setLoading(true);
     const res = orgList.find(
@@ -118,8 +127,10 @@ function CreateEvent() {
     );
     if (res) {
       // res.organizationName
+      // If org exists, create event with its ID
       addEvent({ ...state, orgId: res._id });
     } else {
+      // If org doesn't exist, create it first
       createOrganization({ organizationName: selectedOrg })
         .then((r) => {
           addEvent({ ...state, orgId: r.data.id });
@@ -131,30 +142,35 @@ function CreateEvent() {
     }
   };
 
+  // Fetch org data when component mounts
   useEffect(() => {
+    // If user is super admin, fetch admin organizations
     if (isSuperAdmin === "1") {
       getAdminOrganizations().then((r) => {
         setAdminOrgList(r.data);
         setSelectedOrg(r.data[0]?.organization);
       });
     } else {
+      // Else fetch regular organizations
       setSelectedOrg(localStorage.getItem("organization"));
     }
+    // Fetch all organizations
     getOrganizations().then((r) => {
       setOrgList(r.data);
     });
-  }, []);
+  }, [isSuperAdmin]);
 
+  // JSX rendering
   return (
     <>
       <Header />
-
+  
       <div className="mb-3 p-4 mb-6 admin">
         <div>
           <h1 className="admin">Create Event</h1>
         </div>
       </div>
-
+  
       {/* Page content */}
       <Container className="mt--7 mb-5 bg-gradient-info " fluid>
         {/* Dark table */}
@@ -189,18 +205,19 @@ function CreateEvent() {
                   </div>
                 ) : (
                   <div className="inputborder">
+                    <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Organization</lable>
                     <Input
                       className="inputborder"
                       type="text"
+                      placeholder="Organaization"
                       value={selectedOrg}
                       onChange={(e) => setSelectedOrg(e.target.value)}
-                      placeholder="Organaization"
                       disabled
                     ></Input>
                   </div>
                 )}
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Event Type</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Type</lable>
                   <Input
                     className="inputborder"
                     type="text"
@@ -213,10 +230,10 @@ function CreateEvent() {
                 </div>
                 <div></div>
               </div>
-
+  
               <div className="d-flex justify-content-around pt-5">
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Event Site Name</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Site Name</lable>
                   <Input
                     className="inputborder"
                     type="text"
@@ -234,7 +251,7 @@ function CreateEvent() {
                   ></Input>
                 </div>
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Address</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Address</lable>
                   <Input
                     className="inputborder"
                     type="text"
@@ -258,7 +275,7 @@ function CreateEvent() {
                   className="inputborder"
                   style={{ width: "100%", paddingRight: "1%" }}
                 >
-                 <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Zip Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Zip Code</lable>
                   <Input
                     className="inputborder"
                     type="text"
@@ -279,13 +296,13 @@ function CreateEvent() {
                   className="inputborder"
                   style={{ width: "100%", paddingRight: "1%" }}
                 >
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Same As Check In Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Code</lable>
                   <Input
                     className="inputborder"
                     type="text"
                     minLength={4}
                     maxLength={4}
-                    placeholder="Event Code"
+                    placeholder="Same As Check In Code"
                     value={state.eventCode}
                     onChange={(e) =>
                       setState({
@@ -298,7 +315,7 @@ function CreateEvent() {
               </div>
               <div className="d-flex justify-content-around pt-5">
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Prep Event Start Time</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Prep Event Start Time</lable>
                   <Input
                     className="inputborder"
                     type="datetime-local"
@@ -313,7 +330,7 @@ function CreateEvent() {
                   ></Input>
                 </div>
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Prep Event End Time</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Prep Event End Time</lable>
                   <Input
                     className="inputborder"
                     type="datetime-local"
@@ -331,7 +348,7 @@ function CreateEvent() {
               </div>
               <div className="d-flex justify-content-around pt-5">
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Event Start Time</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Start Time</lable>
                   <Input
                     className="inputborder"
                     type="datetime-local"
@@ -352,7 +369,7 @@ function CreateEvent() {
                   ></Input>
                 </div>
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Event End Time</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event End Time</lable>
                   <Input
                     className="inputborder"
                     type="datetime-local"
@@ -374,10 +391,10 @@ function CreateEvent() {
                 </div>
                 <div>{/* <Input>asdf</Input> */}</div>
               </div>
-
+  
               <div className="d-flex justify-content-around pt-5">
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Clean Up Start Time</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Clean Up Start Time</lable>
                   <Input
                     className="inputborder"
                     type="datetime-local"
@@ -392,7 +409,7 @@ function CreateEvent() {
                   ></Input>
                 </div>
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Clean Up End Time</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Clean Up End Time</lable>
                   <Input
                     className="inputborder"
                     type="datetime-local"
@@ -409,8 +426,8 @@ function CreateEvent() {
                 <div>{/* <Input>asdf</Input> */}</div>
               </div>
               <div className="d-flex pb-4 justify-content-around pt-4">
-                <div className="inputborder" style={{ marginTop: "23px" }}>
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Total Capacity for This Event</lable>
+                <div className="inputborder" style={{ marginTop: "0px" }}>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Capacity</lable>
                   <Input
                     className="inputborder"
                     type="number"
@@ -421,8 +438,8 @@ function CreateEvent() {
                     }
                   ></Input>
                 </div>
-                <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Duration for Each Group</lable>
+                <div className="inputborder" style={{ marginTop: "10px" }}>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Group Service Period</lable>
                   <select
                     class="form-select pt-3 inputborder"
                     style={{ colo: "#666CA3" }}
@@ -431,9 +448,6 @@ function CreateEvent() {
                       setState({ ...state, groupServicePeriod: e.target.value })
                     }
                   >
-                    <option selected hidden disabled>
-                      Group service period
-                    </option>
                     <option value="30 min">30 min</option>
                     <option value="1 hour">1 hour</option>
                   </select>
@@ -441,8 +455,49 @@ function CreateEvent() {
                 <div>{/* <Input>asdf</Input> */}</div>
               </div>
               <div className="d-flex pb-4 justify-content-around pt-4">
+                <div className="inputborder" style={{ marginTop: "0px" }}>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Volunteer Capacity</lable>
+                  <Input
+                    className="inputborder"
+                    type="number"
+                    placeholder="Volunteer Capacity"
+                    value={state.volunteerCapacity}
+                    onChange={(e) =>
+                      setState({ ...state, volunteerCapacity: e.target.value })
+                    }
+                  ></Input>
+                </div>
+                <div className="inputborder" style={{ marginTop: "0px" }}>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Units to Distribute</lable>
+                  <Input
+                    className="inputborder"
+                    type="number"
+                    placeholder="Units of Food to Distribute"
+                    value={state.unitsToDistribute}
+                    onChange={(e) =>
+                      setState({ ...state, unitsToDistribute: e.target.value })
+                    }
+                  ></Input>
+                </div>
+                <div>{/* <Input>asdf</Input> */}</div>
+              </div>
+                <div className="inputborder" style={{ marginTop: "0px", width: "48%"}}>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Price per Unit</lable>
+                  <Input
+                    className="inputborder"
+                    type="number"
+                    placeholder="Price per Unit"
+                    value={state.unitPrice}
+                    onChange={(e) =>
+                      setState({ ...state, unitPrice: e.target.value })
+                    }
+                  ></Input>
+                </div>
+                <div>
+                </div>
+              <div className="d-flex pb-4 justify-content-around pt-4">
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Check In Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Check In Code</lable>
                   <Input
                     className="inputborder"
                     type="number"
@@ -455,7 +510,7 @@ function CreateEvent() {
                   ></Input>
                 </div>
                 <div className="inputborder">
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Check Out Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Check Out Code</lable>
                   <Input
                     className="inputborder"
                     type="number"
@@ -469,7 +524,27 @@ function CreateEvent() {
                 </div>
                 <div>{/* <Input>asdf</Input> */}</div>
               </div>
-
+              {/* New field for additional details */}
+              <div className="d-flex pb-4 justify-content-around pt-4">
+                <div className="inputborder">
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Additional Details</lable>
+                  <Input
+                    className="inputborder"
+                    type="textarea"
+                    placeholder="Enter additional details"
+                    value={state.additionalDetails}
+                    onChange={(e) =>
+                      setState({ ...state, additionalDetails: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="d-flex pb-4 justify-content-around pt-4">
+                <div className="inputborder">
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}><em>*required</em></lable>
+                </div>
+              </div>
+  
               <div className="addevents">
                 <button className="mainbuttons" onClick={onSubmit}>
                   Add Event
@@ -491,7 +566,7 @@ function CreateEvent() {
         </Row>
       </Container>
     </>
-  );
+  );  
 }
 
 export default CreateEvent;

@@ -16,15 +16,20 @@ const CreateEvent = async (req, res) => {
   // res.json(customIds)
 
   try {
+    // Convert event start and end times to Date objects
+    const startTime = new Date(data.eventStartTime);
+    const endTime = new Date(data.eventEndTime);
+
+    // Calculate duration in milliseconds
+    const durationMs = endTime - startTime;
+
+    // Convert milliseconds to hours and minutes
+    const eventPeriod = durationMs / (1000 * 60 * 60);
+
     // Generate array of alphabets for groups
     const alpha = Array.from(Array(26)).map((e, i) => i + 65);
     const alphabet = alpha.map((x) => String.fromCharCode(x));
 
-    // Calculate number of groups based on event time and service period
-    let eventPeriod = Math.floor(
-      (data.eventEndTime - data.eventStartTime) / 3600
-    );
-    let eventPeriodRemaining = (data.eventEndTime - data.eventStartTime) % 3600;
     let numberOfGroups;
 
     if (data.groupServicePeriod === "30 min") {
@@ -33,7 +38,7 @@ const CreateEvent = async (req, res) => {
       numberOfGroups = eventPeriod;
     }
 
-    //Uncomment this logic if you need to consider remaining time after one hour of time
+    // Uncomment this logic if you need to consider remaining time after one hour of time
     // if (eventPeriodRemaining !== 0 && eventPeriodRemaining <= 1800) {
     //   numberOfGroups = numberOfGroups + 1;
     // } else if (eventPeriod > 1800 && eventPeriod <= 3600) {
@@ -43,6 +48,9 @@ const CreateEvent = async (req, res) => {
     //     numberOfGroups = numberOfGroups + 1;
     //   }
     // }
+
+    console.log("************** Event Period: ", eventPeriod);
+    console.log("************** Number of Groups: ", numberOfGroups);
 
     // Create new event
     const event = await Event.create({
@@ -59,23 +67,26 @@ const CreateEvent = async (req, res) => {
       eventCapacity: data.eventCapacity,
       groupServicePeriod: data.groupServicePeriod,
       volunteerCapacity: data.volunteerCapacity,
+      unitsToDistribute: data.unitsToDistribute,
+      unitPrice: data.unitPrice,
       eventCode: data.eventCode,
       checkInCode: data.checkInCode,
       checkOutCode: data.checkOutCode,
       numberOfGroups: numberOfGroups,
       eventPeriod: eventPeriod,
+      additionalDetails: data.additionalDetails,
 
       // Timing
-      // priorEventStartTime: data.priorEventStartTime,
-      // priorEventEndTime: data.priorEventEndTime,
-      // eventStartTime: data.eventStartTime,
-      // eventEndTime: data.eventEndTime,
-      // afterEventStartTime: data.afterEventStartTime,
-      // afterEventEndTime: data.afterEventEndTime,
+      priorEventStartTime: data.priorEventStartTime,
+      priorEventEndTime: data.priorEventEndTime,
+      eventStartTime: data.eventStartTime,
+      eventEndTime: data.eventEndTime,
+      afterEventStartTime: data.afterEventStartTime,
+      afterEventEndTime: data.afterEventEndTime,
 
-      // place: data.place,
-      // house: data.house,
-      // zip: data.zip,
+      place: data.place,
+      house: data.house,
+      zip: data.zip,
       // day: data.day ? data.day : null,
       // date: data.date ? data.date : null,
       // monthYear: data.monthYear ? data.monthYear : null,
@@ -117,9 +128,16 @@ const CreateEvent = async (req, res) => {
       id: event._id,
     });
   } catch (err) {
-    res.status(500).json({
-      error: err,
-    });
+    console.error("Error creating event:", err); // Log the error for debugging
+
+    // Handle specific error cases
+    if (err.name === "ValidationError") {
+      // Validation error from Mongoose schema
+      return res.status(400).json({ error: "Validation error", details: err.errors });
+    } else {
+      // Other unexpected errors
+      return res.status(500).json({ error: "Internal server error", details: err.errors });
+    }
   }
 };
 

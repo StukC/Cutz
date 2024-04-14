@@ -67,54 +67,67 @@ function EventRecord() {
         name: "# People",
         sortable: true,
         selector: (row) => row.eventCapacity,
+        width: '150px',
     },
-   // {
-     //   name: "# Groups",
-      //  sortable: true,
-     //   selector: (row) =>row.numberOfGroups,
-   // },
-  //  {
-   //     name: "Group Size",
-   //     sortable: true,
-  //      selector: (row) => Math.floor(row.eventCapacity / row.numberOfGroups),
-   // },
+    // {
+    //     name: "# Groups",
+    //     sortable: true,
+    //     selector: (row) =>row.numberOfGroups,
+    // },
+    // {
+    //     name: "Group Size",
+    //     sortable: true,
+    //     selector: (row) => Math.floor(row.eventCapacity / row.numberOfGroups),
+    // },
     {
         name: "Organization",
         sortable: true,
         selector: (row) => row.organizationName,
+        width: '150px',
     },
     {
-        name: "Event",
+        name: "Event Type",
         sortable: true,
         selector: (row) => row.eventType,
+        width: '150px',
     },
     {
         name: "Location",
         sortable: true,
         selector: (row) => row.addresses[0].house,
+        width: '200px',
     },
     {
         name: "Start Time",
         sortable: true,
         selector: (row) =>
-        moment(row.eventStartTime).utc().format("MM/DD/YY h:s A"),
+        moment(row.eventStartTime).utc().format("MM/DD/YY h:ss A"),
+        width: '200px',
     },
     {
         name: "End Time",
         sortable: true,
         selector: (row) =>
-        moment(row.eventEndTime).utc().format("MM/DD/YY h:s A"),
+        moment(row.eventEndTime).utc().format("MM/DD/YY h:ss A"),
+        width: '200px',
     },
-   // {
-    //    name: "Served",
-    //    sortable: true,
-    //    selector: (row) => row.numberOfClientsServed,
-   // },
+   {
+       name: "People Served",
+       sortable: true,
+       selector: (row) => row.numberOfClientsServed,
+       width: '150px',
+   },
    // {
      //   name: "Total number",
      //   sortable: true,
        // selector: (row) => row.totalNumberOfPeopleServed,
    // }
+    {
+        name: "Units Distributed",
+        sortable: true,
+        selector: (row) => row.numberOfClientsServed,
+        width: '200px',
+    }
     ];
 
     return (
