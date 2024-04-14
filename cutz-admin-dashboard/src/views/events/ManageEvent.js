@@ -88,9 +88,9 @@ function ManageEvent() {
       width: '150px',
     },
     {
-      name: "unitPrice",
+      name: "Price Per Unit",
       sortable: true,
-      selector: (row) => row.UnitPrice,
+      selector: (row) => parseFloat(row.unitPrice).toFixed(2),
       width: '150px',
     },
     {
@@ -314,6 +314,8 @@ function ManageEvent() {
       checkInCode: "abc",
       checkOutCode: "abc",
       numberOfGroups: 8,
+      unitsToDistribute: row.unitsToDistribute,
+      unitPrice: row.unitPrice,
       organizationName: row.orgId?.organizationName,
       priorEventStartTime: row.group?.eventStartTime,
       priorEventEndTime: row.group?.priorEventEndTime,
