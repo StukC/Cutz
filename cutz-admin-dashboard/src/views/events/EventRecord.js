@@ -127,6 +127,28 @@ function EventRecord() {
         sortable: true,
         selector: (row) => row.numberOfClientsServed,
         width: '200px',
+    },
+    {
+        name: "Price Per Unit",
+        sortable: true,
+        selector: (row) => row.unitPrice,
+        width: '200px',
+    },
+    {
+        name: "Total Price",
+        sortable: true,
+        selector: (row) => {
+            const numberOfClientsServed = parseFloat(row.numberOfClientsServed);
+            const unitPrice = parseFloat(row.unitPrice);
+            
+            if (isNaN(numberOfClientsServed) || isNaN(unitPrice)) {
+                return ''; // If either value is not a number, return an empty string
+            } else {
+                const totalPrice = numberOfClientsServed * unitPrice;
+                return totalPrice.toFixed(2); // Format the total price to have two decimal places
+            }
+        },
+        width: '200px',
     }
     ];
 

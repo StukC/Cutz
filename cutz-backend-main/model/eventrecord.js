@@ -119,6 +119,18 @@ const EventRecord = new mongoose.Schema({
     type: String,
     required: [true, "numberOfClientsServed is required"],
   },
+  unitsToDistribute: {
+    type: Number,
+    required: false,
+  },
+  unitPrice: {
+    type: Number,
+    required: false,
+  },
+  totalPrice: {
+    type: Number,
+    required: false,
+  },
   totalNumberOfPeopleServed: {
     type: String,
     required: [true, "totalNumberOfPeopleServed is required"],

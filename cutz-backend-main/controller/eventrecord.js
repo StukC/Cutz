@@ -49,6 +49,9 @@ const CreateEventRecord = async (req, res) => {
       eventEndTime: data.eventEndTime,
       afterEventStartTime: data.afterEventStartTime,
       afterEventEndTime: data.afterEventEndTime,
+      unitsToDistribute: data.unitsToDistribute,
+      unitPrice: data.unitPrice,
+      totalPrice: data.totalPrice,
       numberOfClientsServed: numberOfClientsServed,
       totalNumberOfPeopleServed: clients.length || 0,
     });

@@ -90,7 +90,10 @@ function ManageEvent() {
     {
       name: "Price Per Unit",
       sortable: true,
-      selector: (row) => parseFloat(row.unitPrice).toFixed(2),
+      selector: (row) => {
+        const unitPrice = parseFloat(row.unitPrice);
+        return isNaN(unitPrice) ? '' : unitPrice.toFixed(2);
+      },
       width: '150px',
     },
     {
