@@ -7,6 +7,8 @@ import CustomText from "../../../components/CustomText";
 import { Spacer } from "../../../components/Spacer";
 import { Image } from "react-native-elements";
 import { scale, verticalScale } from "react-native-size-matters";
+import moment from "moment";
+
 
 
 
@@ -46,14 +48,28 @@ const ViewDetails = ({ navigation, route }) => {
               />
               <Spacer width={10} />
               <View>
-                <CustomText
-                  label={formatDate(ticket.time.eventStartTime)}
-                  fontFamily={"semiBold"}
-                  color={colors.secondary}
-                  fontSize={15}
-                />
-                            
-              </View>
+              <CustomText
+              label={
+
+                   moment(ticket.time.eventStartTime).utc().format("dddd") +
+                    ", " +
+                    moment(ticket.time.eventStartTime).utc().format("MMMM") +
+                    " " +
+                    moment(ticket.time.eventStartTime).utc().format("DD")
+
+              }
+              fontFamily={"semiBold"}
+              color={colors.secondary}    // date & time color
+              fontSize={14}
+            />
+             <CustomText
+                label={ticket.eventGroupID?.groupHour}
+                fontFamily={"semiBold"}
+                color={colors.gray5}
+                fontSize={11}
+              />
+            </View>
+
             </View>
       <Spacer height={20} />
       <View style={{ flexDirection: "row" }}>
