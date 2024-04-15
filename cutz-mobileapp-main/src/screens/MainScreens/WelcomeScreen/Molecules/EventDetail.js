@@ -60,6 +60,7 @@ const EventDetail = ({handleBookingPress, userType, state, setState}) => {
     </TouchableOpacity>);
 
     const EventDateItem = ({date, day, MMYY, indexx, eventId}) => (<TouchableOpacity
+    
         style={{
             alignItems: "center",
             backgroundColor: dateIndex === indexx ? colors.white : colors.gray2,

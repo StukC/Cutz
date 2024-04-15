@@ -211,6 +211,7 @@ const TicketCarousel = ({
             fontSize={14}
           />
         </View>
+        
       </View>
       
       <Spacer height={30} />

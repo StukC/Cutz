@@ -11,7 +11,6 @@ import moment from "moment";
 
 
 
-
 const ViewDetails = ({ navigation, route }) => {
   const { ticket } = route.params; 
 
@@ -20,35 +19,60 @@ const ViewDetails = ({ navigation, route }) => {
     return `${date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}, ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
   };
 
+  if (!ticket) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <AppHeader backButton onPressBack={() => navigation.goBack()} />
+        <View style={{alignItems: "center"}}>
+          <CustomText
+              label={"EVENT DETAILS"}
+              color={colors.primary}
+              fontSize={20}
+              fontFamily={"semiBold"}
+          />
+        </View>
+        
+        <Spacer height={10} />
+
+        <View style={{alignItems: "center"}}>
+        <CustomText
+              label={"You are not registered for this event."}
+              fontFamily={"semiBold"}
+              color={colors.secondary}
+              fontSize={15}
+            />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
-    <AppHeader backButton onPressBack={() => navigation.goBack()} />
+      <AppHeader backButton onPressBack={() => navigation.goBack()} />
   
-    <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
 
-    <View style={{alignItems: "center"}}>
-        <CustomText
-            label={"EVENT DETAILS"}
-            color={colors.primary}
-            fontSize={20}
-            fontFamily={"semiBold"}
-        />
-                    
-    </View>
-      <Text style={styles.eventLabel}>{ticket.eventID.eventLabel}</Text> 
-    
-      <Spacer height={10} />
-      
-         <View style={{ flexDirection: "row" }}>
-              <Spacer width={10} />
-              <Image
-                source={icons.calender}
-                resizeMode={"contain"}
-                containerStyle={{ height: scale(30), width: scale(30) }}
-              />
-              <Spacer width={10} />
-              <View>
-              <CustomText
+        <View style={{alignItems: "center"}}>
+          <CustomText
+              label={"EVENT DETAILS"}
+              color={colors.primary}
+              fontSize={20}
+              fontFamily={"semiBold"}
+          />
+        </View>
+        
+        <Spacer height={10} />
+        
+        <View style={{ flexDirection: "row" }}>
+          <Spacer width={10} />
+          <Image
+            source={icons.calender}
+            resizeMode={"contain"}
+            containerStyle={{ height: scale(30), width: scale(30) }}
+          />
+          <Spacer width={10} />
+          <View>
+            <CustomText
               label={
 
                    moment(ticket.time.eventStartTime).utc().format("dddd") +
@@ -62,99 +86,100 @@ const ViewDetails = ({ navigation, route }) => {
               color={colors.secondary}    // date & time color
               fontSize={14}
             />
-             <CustomText
-                label={ticket.eventGroupID?.groupHour}
-                fontFamily={"semiBold"}
-                color={colors.gray5}
-                fontSize={11}
-              />
-            </View>
-
-            </View>
-      <Spacer height={20} />
-      <View style={{ flexDirection: "row" }}>
-              <Spacer width={10} />
-              <Image
-                source={icons.marker2}
-                resizeMode={"contain"}
-                containerStyle={{ height: scale(30), width: scale(30) }}
-              />
-              <Spacer width={15} />
-              <View>
-                <CustomText
-                  label={ticket.eventID.addresses[0].place}
-                  fontFamily={"semiBold"}
-                  color={colors.secondary}
-                  fontSize={15}
-                />
-                <CustomText
-                  label={ticket.eventID.addresses[0].house}
-                  fontFamily={"semiBold"}
-                  color={colors.gray5}
-                  fontSize={11}
-                />
-                <CustomText
-                  label={ticket.eventID.addresses[0].zip}
-                  fontFamily={"semiBold"}
-                  color={colors.gray5}
-                  fontSize={11}
-                />
-              </View>
-            </View>
-
-      <Spacer height={20} />
-      <View style={{ flexDirection: "row" }}>
-            <Spacer width={10} />
-            <Image
-              source={icons.ticket2f}
-              resizeMode={"contain"}
-            style={{
-            tintColor: colors.secondary,  // ticket color
-            height: scale(30),
-            width: scale(30) }}
-            />
-            <Spacer width={15} />
-            <View>
-              <CustomText
-                label={ticket.eventID.eventType}
-                fontFamily={"semiBold"}
-                color={colors.secondary}
-                fontSize={15}
-              />
-            </View>
-          </View>
-          <Spacer height={20} />
-          <Spacer height={20} />
-      <View style={{ flexDirection: "row" }}>
-            <Spacer width={10} />
-            <Image
-              source={icons.information}
-              resizeMode={"contain"}
-            style={{
-            tintColor: colors.secondary,  // ticket color
-            height: scale(30),
-            width: scale(30) }}
-            />
-            <Spacer width={15} />
-            <View>
             <CustomText
-            label={"Additional Details:"}
-            fontFamily={"semiBold"}
-            color={colors.secondary}    // address color
-            fontSize={15}
-          />
-            </View>
+              label={ticket.eventGroupID?.groupHour}
+              fontFamily={"semiBold"}
+              color={colors.gray5}
+              fontSize={11}
+            />
           </View>
-          <Spacer height={20} />
-      
-      <Text style={styles.sectionContent}>{ticket.additionalDetails}</Text>
-    </ScrollView>
-    {/* Navigation icons go here */}
-    <View style={styles.navBar}></View>
-  </SafeAreaView>
-  
+
+        </View>
+        <Spacer height={20} />
+        <View style={{ flexDirection: "row" }}>
+          <Spacer width={10} />
+          <Image
+            source={icons.marker2}
+            resizeMode={"contain"}
+            containerStyle={{ height: scale(30), width: scale(30) }}
+          />
+          <Spacer width={15} />
+          <View>
+            <CustomText
+              label={ticket.eventID.addresses[0].place}
+              fontFamily={"semiBold"}
+              color={colors.secondary}
+              fontSize={15}
+            />
+            <CustomText
+              label={ticket.eventID.addresses[0].house}
+              fontFamily={"semiBold"}
+              color={colors.gray5}
+              fontSize={11}
+            />
+            <CustomText
+              label={ticket.eventID.addresses[0].zip}
+              fontFamily={"semiBold"}
+              color={colors.gray5}
+              fontSize={11}
+            />
+          </View>
+        </View>
+
+        <Spacer height={20} />
+        <View style={{ flexDirection: "row" }}>
+          <Spacer width={10} />
+          <Image
+            source={icons.ticket2f}
+            resizeMode={"contain"}
+            style={{
+              tintColor: colors.secondary,  // ticket color
+              height: scale(30),
+              width: scale(30)
+            }}
+          />
+          <Spacer width={15} />
+          <View>
+            <CustomText
+              label={ticket.eventID.eventType}
+              fontFamily={"semiBold"}
+              color={colors.secondary}
+              fontSize={15}
+            />
+          </View>
+        </View>
+        <Spacer height={20} />
+        <Spacer height={20} />
+        <View style={{ flexDirection: "row" }}>
+          <Spacer width={10} />
+          <Image
+            source={icons.information}
+            resizeMode={"contain"}
+            style={{
+              tintColor: colors.secondary,  // ticket color
+              height: scale(30),
+              width: scale(30)
+            }}
+          />
+          <Spacer width={15} />
+          <View>
+            <CustomText
+              label={"Additional Details:"}
+              fontFamily={"semiBold"}
+              color={colors.secondary}    // address color
+              fontSize={15}
+            />
+          </View>
+        </View>
+        <Spacer height={20} />
+        <Text style={styles.sectionContent}>{ticket.eventID.additionalDetails}</Text>
+      </ScrollView>
+      {/* Navigation icons go here */}
+      <View style={styles.navBar}></View>
+    </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   safeArea: {
