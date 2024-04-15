@@ -227,7 +227,7 @@ const AppDescription = ({ navigation }) => {
                         color={"#000000"}
                     /> 
                <CustomText
-                        label={"Shahd Mustafa — Project Manager"}
+                        label={"Shahd Mustafa — Project Manager & Developer"}
                         fontFamily="regular"
                         fontSize={14}
                         color={"#000000"}
