@@ -306,11 +306,11 @@ const TicketCarousel = ({
       </View>
 
 
-      <Spacer height={20} />
+      <Spacer height={10} />
 
       <InfoText2 />
 
-      <Spacer height={50} />
+      <Spacer height={30} />
       
       {/* Button row */}
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
