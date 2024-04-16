@@ -27,10 +27,10 @@ const notification = require("./routes/notification");
 // const upload = require('./routes/upload')
 const multer = require("multer");
 
-app.use(cors());
 
 const app = express();
 const PORT = process.env.PORT || 3006;
+app.use(cors());
 
 app.use("/images", express.static(__dirname + "/images"));
 app.use(express.json());
