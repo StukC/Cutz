@@ -9,8 +9,6 @@ import { Image } from "react-native-elements";
 import { scale, verticalScale } from "react-native-size-matters";
 import moment from "moment";
 
-
-
 const ViewDetails = ({ navigation, route }) => {
   const { ticket } = route.params; 
 
@@ -180,7 +178,7 @@ const ViewDetails = ({ navigation, route }) => {
               fontSize: 15,
               marginLeft: 64, 
             }]}>
-          {ticket.eventID.additionalDetails}
+          {ticket.eventID.additionalDetails ? ticket.eventID.additionalDetails : "No additional details"}
           </Text>
       </ScrollView>
       {/* Navigation icons go here */}
