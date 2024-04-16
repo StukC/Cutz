@@ -61,7 +61,7 @@ const ViewDetails = ({ navigation, route }) => {
           />
         </View>
         
-        <Spacer height={10} />
+        <Spacer height={20} />
         
         <View style={{ flexDirection: "row" }}>
           <Spacer width={10} />
@@ -95,7 +95,7 @@ const ViewDetails = ({ navigation, route }) => {
           </View>
 
         </View>
-        <Spacer height={20} />
+        <Spacer height={25} />
         <View style={{ flexDirection: "row" }}>
           <Spacer width={10} />
           <Image
@@ -126,7 +126,7 @@ const ViewDetails = ({ navigation, route }) => {
           </View>
         </View>
 
-        <Spacer height={20} />
+        <Spacer height={25} />
         <View style={{ flexDirection: "row" }}>
           <Spacer width={10} />
           <Image
@@ -148,8 +148,7 @@ const ViewDetails = ({ navigation, route }) => {
             />
           </View>
         </View>
-        <Spacer height={20} />
-        <Spacer height={20} />
+        <Spacer height={35} />
         <View style={{ flexDirection: "row" }}>
           <Spacer width={10} />
           <Image
@@ -170,9 +169,19 @@ const ViewDetails = ({ navigation, route }) => {
               fontSize={15}
             />
           </View>
-        </View>
-        <Spacer height={20} />
-        <Text style={styles.sectionContent}>{ticket.eventID.additionalDetails}</Text>
+          </View>
+          <Spacer height={0} />
+          <Text 
+            style={[
+              //styles.sectionContent,
+              { maxWidth: 300,
+              fontFamily: "semiBold",
+              color: colors.gray5,
+              fontSize: 15,
+              marginLeft: 64, 
+            }]}>
+          {ticket.eventID.additionalDetails}
+          </Text>
       </ScrollView>
       {/* Navigation icons go here */}
       <View style={styles.navBar}></View>
