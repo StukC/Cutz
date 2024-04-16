@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 3.7.2"
+    "version": ">= 3.7.2",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -17,16 +18,24 @@
         "gradleCommand": ":app:assembleRelease"
       },
       "ios": {
-        "resourceClass": "m1-medium"
+        "resourceClass": "m-medium",
+        "buildConfiguration": "Debug",
+        "image": "latest"
       }
     },
     "production": {
       "ios": {
-        "resourceClass": "m1-medium"
+        "resourceClass": "m-medium"
       }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios":{
+        "appleId": "mjabbar@umich.edu",
+        "ascAppId": "6497486562",
+        "appleTeamId": "QERYDV2M4T"
+      }
+    }
   }
 }
