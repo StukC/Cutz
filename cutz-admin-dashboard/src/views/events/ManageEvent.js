@@ -82,10 +82,10 @@ function ManageEvent() {
     //   width: '150px',
     // },
     {
-      name: "Units of Food",
+      name: "Units to Distribute",
       sortable: true,
       selector: (row) => row.unitsToDistribute,
-      width: '150px',
+      width: '175px',
     },
     {
       name: "Price Per Unit",
