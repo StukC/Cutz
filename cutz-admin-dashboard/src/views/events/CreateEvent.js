@@ -32,12 +32,12 @@ function CreateEvent() {
   const [selectedOrg, setSelectedOrg] = useState("");   // Stores seleted organziation
   const [timings, setTimings] = useState({    // Stores timing information
     eventId: "",
-    priorEventStartTime: "",
-    priorEventEndTime: "",
-    eventStartTime: Math.floor(moment(new Date()).valueOf() / 1000),
-    eventEndTime: Math.floor(moment(new Date()).valueOf() / 1000),
-    afterEventStartTime: "",
-    afterEventEndTime: "",
+    priorEventStartTime: "2024-04-20T10:00:00",
+    priorEventEndTime: "2024-04-20T12:00:00",
+    eventStartTime: "2024-04-20T12:00:00",
+    eventEndTime: "2024-04-20T16:00:00",
+    afterEventStartTime: "2024-04-20T16:00:00",
+    afterEventEndTime: "2024-04-20T17:00:00",
     capacity: 100,
   });
   const [state, setState] = useState({    // Stores event details
@@ -299,7 +299,7 @@ function CreateEvent() {
                   className="inputborder"
                   style={{ width: "100%", paddingRight: "1%" }}
                 >
-                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Event Code (4 Digits)</lable>
                   <Input
                     className="inputborder"
                     type="text"
@@ -319,7 +319,7 @@ function CreateEvent() {
 
               <div className="d-flex pb-4 justify-content-around pt-4">
                 <div className="inputborder">
-                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Check In Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Check In Code (4 Digits)</lable>
                   <Input
                     className="inputborder"
                     type="number"
@@ -332,7 +332,7 @@ function CreateEvent() {
                   ></Input>
                 </div>
                 <div className="inputborder">
-                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Check Out Code</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Check Out Code (4 Digits)</lable>
                   <Input
                     className="inputborder"
                     type="number"
@@ -388,9 +388,7 @@ function CreateEvent() {
                     className="inputborder"
                     type="datetime-local"
                     placeholder="Enter a date"
-                    value={moment(timings.eventStartTime * 1000).format(
-                      "yyyy-MM-DDTHH:mm"
-                    )}
+                    value={timings.eventStartTime}
                     onChange={(e) => {
                       setState({
                         ...state,
@@ -409,9 +407,7 @@ function CreateEvent() {
                     className="inputborder"
                     type="datetime-local"
                     placeholder="Type Event"
-                    value={moment(timings.eventEndTime * 1000).format(
-                      "yyyy-MM-DDTHH:mm"
-                    )}
+                    value={timings.eventEndTime}
                     onChange={(e) => {
                       setState({
                         ...state,
@@ -493,16 +489,16 @@ function CreateEvent() {
 
               <div className="d-flex pb-4 justify-content-around pt-4">
                 <div className="inputborder" style={{ marginTop: "0px" }}>
-                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Volunteer Capacity</lable>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Price Per Unit</lable>
                   <Input
                     className="inputborder"
-                    type="number"
-                    placeholder="Volunteer Capacity"
-                    value={state.volunteerCapacity}
-                    onChange={(e) =>
-                      setState({ ...state, volunteerCapacity: e.target.value })
-                    }
-                  ></Input>
+                    type="text"
+                    placeholder="0.00"
+                    value={state.unitPrice}
+                      onChange={(e) =>
+                        setState({ ...state, unitPrice: e.target.value })
+                      }
+                    ></Input>
                 </div>
                 <div className="inputborder" style={{ marginTop: "0px" }}>
                   <lable className="evnetcolor" style={{ marginLeft: '10px' }}>Units to Distribute</lable>
@@ -519,20 +515,20 @@ function CreateEvent() {
                 <div>{/* <Input>asdf</Input> */}</div>
               </div>
 
-              <div className="inputborder" style={{ marginTop: "0px", width: "48%"}}>
-                <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Price Per Unit</lable>
-                <Input
-                  className="inputborder"
-                  type="text"
-                  placeholder="0.00"
-                  value={state.unitPrice}
+              <div className="inputborder" style={{ marginTop: "0px", width: "48%" }}>
+                  <lable className="evnetcolor" style={{ marginLeft: '10px' }}>*Volunteer Capacity</lable>
+                  <Input
+                    className="inputborder"
+                    type="number"
+                    placeholder="Volunteer Capacity"
+                    value={state.volunteerCapacity}
                     onChange={(e) =>
-                      setState({ ...state, unitPrice: e.target.value })
+                      setState({ ...state, volunteerCapacity: e.target.value })
                     }
                   ></Input>
-                </div>
-                <div>
-                </div>
+              </div>
+              <div>
+              </div>
               
               <div className="d-flex pb-4 justify-content-around pt-4">
                 <div className="inputborder">
