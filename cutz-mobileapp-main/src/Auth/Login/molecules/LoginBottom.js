@@ -77,7 +77,7 @@ const LoginBottom = ({ navigation, checkUser, remember, setRemember, loading, on
       {/* Copyright message */}
       <CustomText 
         marginTop={verticalScale(5)}
-        label="©2023 COVERSHIFTZ, LLC"
+        label="©2024 COVERSHIFTZ, LLC"
         fontFamily="bold"
         fontSize={10}
         color={colors.darkGray}

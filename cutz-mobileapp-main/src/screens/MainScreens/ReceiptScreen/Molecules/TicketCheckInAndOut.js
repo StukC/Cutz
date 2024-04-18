@@ -43,7 +43,7 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                 <View style={styles.voucherBody}>
                     <View style={styles.voucherHeader}>
                         <CustomText
-                            label={"Check In"}
+                            label={state?.checkIN ? "Check Out" : "Check In"}
                             color={colors.black}
                             fontFamily={"semiBold"}
                             fontSize={40}
@@ -250,8 +250,8 @@ const TicketCheckInAndOut = ({ setState, state, profilePicture }) => {
                                 />
                             </View>
                             <CustomText
-                               label={(state.eventGroupID?.groupCapacity || "20") + " People"}
-                              //label="8 People"
+                               //label={(state.eventGroupID?.groupCapacity || "20") + " People"}
+                              label="20 People"
                                 color={colors.white}
                                 fontFamily={"semiBold"}
                                 fontSize={40}

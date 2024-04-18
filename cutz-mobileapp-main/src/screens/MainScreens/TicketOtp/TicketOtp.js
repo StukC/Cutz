@@ -50,8 +50,9 @@ const TicketOtp = ({ route: { params } }) => {
         <View style={styles.voucherBody}>
           <View style={styles.voucherHeader}>
           
-            <CustomText
-              label={state.currentTicket?.checkIN ?"Check Out":"Check In"}
+            <CustomText 
+              label={state?.checkIN ? "Check Out" : "Check In"}
+              
               color={colors.white}
               fontFamily={"semiBold"}
               fontSize={20}

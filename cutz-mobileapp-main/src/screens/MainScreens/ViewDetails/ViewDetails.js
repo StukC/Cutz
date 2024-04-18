@@ -68,7 +68,7 @@ const ViewDetails = ({ navigation, route }) => {
             resizeMode={"contain"}
             containerStyle={{ height: scale(30), width: scale(30) }}
           />
-          <Spacer width={10} />
+          <Spacer width={15} />
           <View>
             <CustomText
               label={
@@ -88,7 +88,7 @@ const ViewDetails = ({ navigation, route }) => {
               label={ticket.eventGroupID?.groupHour}
               fontFamily={"semiBold"}
               color={colors.gray5}
-              fontSize={11}
+              fontSize={12}
             />
           </View>
 
@@ -113,13 +113,13 @@ const ViewDetails = ({ navigation, route }) => {
               label={ticket.eventID.addresses[0].house}
               fontFamily={"semiBold"}
               color={colors.gray5}
-              fontSize={11}
+              fontSize={12}
             />
             <CustomText
               label={ticket.eventID.addresses[0].zip}
               fontFamily={"semiBold"}
               color={colors.gray5}
-              fontSize={11}
+              fontSize={12}
             />
           </View>
         </View>
@@ -166,6 +166,7 @@ const ViewDetails = ({ navigation, route }) => {
               color={colors.secondary}    // address color
               fontSize={15}
             />
+            
           </View>
           </View>
           <Spacer height={0} />
@@ -175,8 +176,8 @@ const ViewDetails = ({ navigation, route }) => {
               { maxWidth: 300,
               fontFamily: "semiBold",
               color: colors.gray5,
-              fontSize: 15,
-              marginLeft: 64, 
+              fontSize: 14,
+              marginLeft: 59, 
             }]}>
           {ticket.eventID.additionalDetails ? ticket.eventID.additionalDetails : "No additional details"}
           </Text>
